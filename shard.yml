@@ -1,0 +1,16 @@
+name: ishi
+version: 0.1.0
+
+description: |
+  Graph plotting package with a small API powered by gnuplot.
+
+authors:
+  - Todd Sundsted
+
+development_dependencies:
+  spectator:
+    gitlab: arctic-fox/spectator
+
+crystal: 0.33.0
+
+license: Apache License, Version 2.0
