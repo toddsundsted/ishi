@@ -7,4 +7,15 @@ Spectator.describe Ishi do
       expect(Ishi::VERSION).to eq(version)
     end
   end
+
+  describe ".new" do
+    it "creates a new instance" do
+      described_class.new
+    end
+
+    it "takes a block and yields a new instance" do
+      described_class.new do
+      end
+    end
+  end
 end
