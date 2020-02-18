@@ -10,6 +10,8 @@ authors:
 development_dependencies:
   spectator:
     gitlab: arctic-fox/spectator
+  iterm2:
+    github: toddsundsted/iterm2
 
 crystal: 0.33.0
 
