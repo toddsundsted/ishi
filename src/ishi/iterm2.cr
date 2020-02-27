@@ -5,14 +5,14 @@ module Ishi
   # Renders chart as image to the ITerm2 console.
   #
   class ITerm2 < Base
-    def initialize
-      @gnuplot = Gnuplot.new(["set term png"])
+    def show(**options)
+      Gnuplot.new(["set term png"]).show(@chart, **options)
     end
   end
 
   class Gnuplot
-    def show(**options)
-      Iterm2.new.display(previous_def(), **options)
+    def show(chart, **options)
+      Iterm2.new.display(previous_def(chart), **options)
     end
   end
 

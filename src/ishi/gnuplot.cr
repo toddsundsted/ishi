@@ -4,7 +4,96 @@ module Ishi
   # Requires "gnuplot" be installed and available.
   #
   class Gnuplot
-    private abstract class Plot
+    # A chart is a collection of plots and related metadata.
+    #
+    class Chart
+      # Sets the label of the `x` axis.
+      #
+      def xlabel(@xlabel : String)
+        self
+      end
+
+      # Sets the label of the `y` axis.
+      #
+      def ylabel(@ylabel : String)
+        self
+      end
+
+      # Sets the label of the `z` axis.
+      #
+      def zlabel(@zlabel : String)
+        self
+      end
+
+      getter xlabel, ylabel, zlabel
+
+      # Sets the range of the `x` axis.
+      #
+      def xrange(@xrange : Range(Float64, Float64) | Range(Int32, Int32))
+        self
+      end
+
+      # Sets the range of the `y` axis.
+      #
+      def yrange(@yrange : Range(Float64, Float64) | Range(Int32, Int32))
+        self
+      end
+
+      # Sets the range of the `z` axis.
+      #
+      def zrange(@zrange : Range(Float64, Float64) | Range(Int32, Int32))
+        self
+      end
+
+      getter xrange, yrange, zrange
+
+      @plots = [] of Plot
+
+      getter plots
+
+      # Adds a plot to the chart.
+      #
+      def plot(plot)
+        plots << plot
+        self
+      end
+
+      # Returns the number of plots.
+      #
+      def size
+        @plots.size
+      end
+
+      # Clears the chart.
+      #
+      def clear
+        @plots.clear
+        @xlabel = @ylabel = @zlabel = nil
+        @xrange = @yrange = @zrange = nil
+      end
+
+      # Returns the dimensionality of the chart.
+      #
+      # All plots in a chart must have the same dimensionality (it's not
+      # currently possible to plot 2D and 3D data simultaneously).
+      #
+      def dim
+        unless @plots.empty?
+          return 2 if @plots.all? { |plot| plot.dim == 2 }
+          return 3 if @plots.all? { |plot| plot.dim == 3 }
+          raise "all plots in a chart must have the same dimensionality"
+        end
+        raise "the chart is empty"
+      end
+
+      def dim?
+        dim
+      rescue
+        nil
+      end
+    end
+
+    abstract class Plot
       abstract def inst
       abstract def data
       abstract def dim
@@ -20,10 +109,10 @@ module Ishi
       end
     end
 
-    private class PlotE < Plot
+    class PlotE < Plot
       @@styles = [:lines, :points]
 
-      def initialize(@expression : String, @title : String?, @style : Symbol? = nil)
+      def initialize(@expression : String, @title : String? = nil, @style : Symbol? = nil)
         check_style
       end
 
@@ -43,16 +132,17 @@ module Ishi
       end
     end
 
-    private class Plot1(Y) < Plot
+    class Plot1(Y) < Plot
       @@styles = [:boxes, :lines, :points]
 
-      def initialize(@ydata : Indexable(Y), @title : String?, @style : Symbol)
+      def initialize(@ydata : Indexable(Y), @title : String? = nil, @style : Symbol? = nil)
         check_style
       end
 
       def inst
         String.build do |io|
-          io << "'-' with #{@style}"
+          io << "'-'"
+          io << " with #{@style}" if @style
           io << " title '#{@title}'" if @title
         end
       end
@@ -71,16 +161,17 @@ module Ishi
       end
     end
 
-    private class Plot2(X, Y) < Plot
+    class Plot2(X, Y) < Plot
       @@styles = [:boxes, :lines, :points]
 
-      def initialize(@xdata : Indexable(X), @ydata : Indexable(Y), @title : String?, @style : Symbol)
+      def initialize(@xdata : Indexable(X), @ydata : Indexable(Y), @title : String? = nil, @style : Symbol? = nil)
         check_style
       end
 
       def inst
         String.build do |io|
-          io << "'-' with #{@style}"
+          io << "'-'"
+          io << " with #{@style}" if @style
           io << " title '#{@title}'" if @title
         end
       end
@@ -99,16 +190,17 @@ module Ishi
       end
     end
 
-    private class Plot3(X, Y, Z) < Plot
+    class Plot3(X, Y, Z) < Plot
       @@styles = [:circles, :lines, :points]
 
-      def initialize(@xdata : Indexable(X), @ydata : Indexable(Y), @zdata : Indexable(Z), @title : String?, @style : Symbol)
+      def initialize(@xdata : Indexable(X), @ydata : Indexable(Y), @zdata : Indexable(Z), @title : String? = nil, @style : Symbol? = nil)
         check_style
       end
 
       def inst
         String.build do |io|
-          io << "'-' with #{@style}"
+          io << "'-'"
+          io << " with #{@style}" if @style
           io << " title '#{@title}'" if @title
         end
       end
@@ -127,139 +219,36 @@ module Ishi
       end
     end
 
-    @plots = [] of Plot
-
-    # Returns the number of plots.
+    # Creates a new instance of the gnuplot engine.
     #
-    def size
-      @plots.size
-    end
-
-    # Returns the dimensionality of the chart.
-    #
-    # All plots in a chart must have the same dimensionality (it's not
-    # currently possible to plot 2D and 3D data simultaneously).
-    #
-    def dim
-      unless @plots.empty?
-        return 2 if @plots.all? { |plot| plot.dim == 2 }
-        return 3 if @plots.all? { |plot| plot.dim == 3 }
-        raise "all plots in a chart must have the same dimensionality"
-      end
-      raise "the chart is empty"
-    end
-
-    private def dim?
-      dim
-    rescue
-      nil
-    end
-
-    # Clears the chart.
-    #
-    def clear
-      @plots.clear
-      @xlabel = @ylabel = @zlabel = nil
-      @xrange = @yrange = @zrange = nil
-    end
-
-    # Plots a mathematical expression.
-    #
-    def plot(expression : String, title : String? = nil, style : Symbol? = nil)
-      @plots << PlotE.new(expression, title, style)
-      self
-    end
-
-    # Plots `y` using `x` ranging from `0` to `N-1`.
-    #
-    def plot(ydata : Indexable(Y), title : String? = nil, style : Symbol = :lines) forall Y
-      {% raise "data must be numeric" unless Y < Number %}
-      @plots << Plot1.new(ydata, title, style)
-      self
-    end
-
-    # Plots `x` and `y`.
-    #
-    def plot(xdata : Indexable(X), ydata : Indexable(Y), title : String? = nil, style : Symbol = :lines) forall X, Y
-      {% raise "data must be numeric" unless X < Number && Y < Number %}
-      @plots << Plot2.new(xdata, ydata, title, style)
-      self
-    end
-
-    # Plots `x`, `y` and `z`.
-    #
-    def plot(xdata : Indexable(X), ydata : Indexable(Y), zdata : Indexable(Z), title : String? = nil, style : Symbol = :points) forall X, Y, Z
-      {% raise "data must be numeric" unless X < Number && Y < Number && Z < Number %}
-      @plots << Plot3.new(xdata, ydata, zdata, title, style)
-      self
-    end
-
-    # Sets the label of the `x` axis.
-    #
-    def xlabel(@xlabel : String)
-      self
-    end
-
-    # Sets the label of the `y` axis.
-    #
-    def ylabel(@ylabel : String)
-      self
-    end
-
-    # Sets the label of the `z` axis.
-    #
-    def zlabel(@zlabel : String)
-      self
-    end
-
-    # Sets the range of the `x` axis.
-    #
-    def xrange(@xrange : Range(Float64, Float64) | Range(Int32, Int32))
-      self
-    end
-
-    # Sets the range of the `y` axis.
-    #
-    def yrange(@yrange : Range(Float64, Float64) | Range(Int32, Int32))
-      self
-    end
-
-    # Sets the range of the `z` axis.
-    #
-    def zrange(@zrange : Range(Float64, Float64) | Range(Int32, Int32))
-      self
+    def initialize(@prologue : Enumerable(String) = [] of String, @epilogue : Enumerable(String) = ["exit"])
     end
 
     # Shows the chart.
     #
-    def show
+    def show(chart)
       commands = [] of String
-      commands << "set xlabel '#{@xlabel}'" if @xlabel
-      commands << "set ylabel '#{@ylabel}'" if @ylabel
-      commands << "set zlabel '#{@zlabel}'" if @zlabel
-      if xrange = @xrange
+      commands << "set xlabel '#{chart.xlabel}'" if chart.xlabel
+      commands << "set ylabel '#{chart.ylabel}'" if chart.ylabel
+      commands << "set zlabel '#{chart.zlabel}'" if chart.zlabel
+      if xrange = chart.xrange
         commands << "set xrange[#{xrange.begin}:#{xrange.end}]"
       end
-      if yrange = @yrange
+      if yrange = chart.yrange
         commands << "set yrange[#{yrange.begin}:#{yrange.end}]"
       end
-      if zrange = @zrange
+      if zrange = chart.zrange
         commands << "set zrange[#{zrange.begin}:#{zrange.end}]"
       end
-      unless @plots.empty?
-        instruction = dim? == 3 ? "splot " : "plot "
-        instruction += @plots.map(&.inst).join(",")
+      unless chart.plots.empty?
+        instruction = chart.dim? == 3 ? "splot " : "plot "
+        instruction += chart.plots.map(&.inst).join(",")
         commands << instruction
-        @plots.each { |plot| commands += plot.data }
+        chart.plots.each { |plot| commands += plot.data }
       end
       run(commands)
     ensure
-      clear
-    end
-
-    # Creates a new instance of the gnuplot engine.
-    #
-    def initialize(@prologue : Enumerable(String) = [] of String, @epilogue : Enumerable(String) = ["exit"])
+      chart.clear
     end
 
     # Runs a "gnuplot" process and feeds it `commands`.

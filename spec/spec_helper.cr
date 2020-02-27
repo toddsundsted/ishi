@@ -4,8 +4,8 @@ require "yaml"
 
 module Ishi
   private class SpecHelper < Base
-    def initialize
-      @gnuplot = Gnuplot.new(["set term dumb"])
+    def show(**options)
+      Gnuplot.new(["set term dumb"]).show(@chart, **options)
     end
   end
 

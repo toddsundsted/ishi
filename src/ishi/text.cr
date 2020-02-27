@@ -15,14 +15,18 @@ module Ishi
   #
   class Text < Base
     def initialize(io : IO = STDOUT)
-      @gnuplot = Gnuplot.new(["set term dumb"])
       Ishi.io = io
+      super()
+    end
+
+    def show(**options)
+      Gnuplot.new(["set term dumb"]).show(@chart, **options)
     end
   end
 
   class Gnuplot
-    def show
-      previous_def().each_line do |line|
+    def show(chart)
+      previous_def(chart).each_line do |line|
         Ishi.io.puts line
       end
     end

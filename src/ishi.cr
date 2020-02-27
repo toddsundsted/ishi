@@ -7,8 +7,8 @@ module Ishi
 
   class Base
     # :nodoc:
-    def initialize(*args)
-      @gnuplot = Gnuplot.new(["set term qt persist"])
+    def initialize
+      @chart = Ishi::Gnuplot::Chart.new
     end
 
     # Plots a mathematical expression.
@@ -23,7 +23,7 @@ module Ishi
     # style. Supported values include `:lines` and `:points`.
     #
     def plot(expression : String, title : String? = nil, style : Symbol? = nil)
-      @gnuplot.plot(expression, title, style)
+      @chart.plot(Ishi::Gnuplot::PlotE.new(expression, title, style))
       self
     end
 
@@ -34,7 +34,8 @@ module Ishi
     # `:points`.
     #
     def plot(ydata : Indexable(Y), title : String? = nil, style : Symbol = :lines) forall Y
-      @gnuplot.plot(ydata, title, style)
+      {% raise "data must be numeric" unless Y < Number %}
+      @chart.plot(Ishi::Gnuplot::Plot1.new(ydata, title, style))
       self
     end
 
@@ -45,7 +46,8 @@ module Ishi
     # `:points`.
     #
     def plot(xdata : Indexable(X), ydata : Indexable(Y), title : String? = nil, style : Symbol = :lines) forall X, Y
-      @gnuplot.plot(xdata, ydata, title, style)
+      {% raise "data must be numeric" unless X < Number && Y < Number %}
+      @chart.plot(Ishi::Gnuplot::Plot2.new(xdata, ydata, title, style))
       self
     end
 
@@ -56,56 +58,57 @@ module Ishi
     # `:points`.
     #
     def plot(xdata : Indexable(X), ydata : Indexable(Y), zdata : Indexable(Z), title : String? = nil, style : Symbol = :points) forall X, Y, Z
-      @gnuplot.plot(xdata, ydata, zdata, title, style)
+      {% raise "data must be numeric" unless X < Number && Y < Number && Z < Number %}
+      @chart.plot(Ishi::Gnuplot::Plot3.new(xdata, ydata, zdata, title, style))
       self
     end
 
     # Sets the label of the `x` axis.
     #
     def xlabel(xlabel : String)
-      @gnuplot.xlabel(xlabel)
+      @chart.xlabel(xlabel)
       self
     end
 
     # Sets the label of the `y` axis.
     #
     def ylabel(ylabel : String)
-      @gnuplot.ylabel(ylabel)
+      @chart.ylabel(ylabel)
       self
     end
 
     # Sets the label of the `z` axis.
     #
     def zlabel(zlabel : String)
-      @gnuplot.zlabel(zlabel)
+      @chart.zlabel(zlabel)
       self
     end
 
     # Sets the range of the `x` axis.
     #
     def xrange(xrange : Range(Float64, Float64) | Range(Int32, Int32))
-      @gnuplot.xrange(xrange)
+      @chart.xrange(xrange)
       self
     end
 
     # Sets the range of the `y` axis.
     #
     def yrange(yrange : Range(Float64, Float64) | Range(Int32, Int32))
-      @gnuplot.yrange(yrange)
+      @chart.yrange(yrange)
       self
     end
 
     # Sets the range of the `z` axis.
     #
     def zrange(zrange : Range(Float64, Float64) | Range(Int32, Int32))
-      @gnuplot.zrange(zrange)
+      @chart.zrange(zrange)
       self
     end
 
     # Shows the chart.
     #
     def show(**options)
-      @gnuplot.show(**options)
+      Gnuplot.new(["set term qt persist"]).show(@chart, **options)
     end
   end
 
@@ -119,8 +122,8 @@ module Ishi
   # ishi.show
   # ```
   #
-  def self.new(*args)
-    @@default.new(*args)
+  def self.new
+    @@default.new
   end
 
   # Creates a new instance.
@@ -135,8 +138,8 @@ module Ishi
   # end
   # ```
   #
-  def self.new(*args, **options)
-    @@default.new(*args).tap do |instance|
+  def self.new(**options)
+    @@default.new.tap do |instance|
       with instance yield
       instance.show(**options)
     end
