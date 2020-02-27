@@ -109,7 +109,7 @@ module Ishi
       end
     end
 
-    class PlotE < Plot
+    class PlotExp < Plot
       @@styles = [:lines, :points]
 
       def initialize(@expression : String, @title : String? = nil, @style : Symbol? = nil)
@@ -132,7 +132,7 @@ module Ishi
       end
     end
 
-    class Plot1(Y) < Plot
+    class PlotY(Y) < Plot
       @@styles = [:boxes, :lines, :points]
 
       def initialize(@ydata : Indexable(Y), @title : String? = nil, @style : Symbol? = nil)
@@ -161,7 +161,7 @@ module Ishi
       end
     end
 
-    class Plot2(X, Y) < Plot
+    class PlotXY(X, Y) < Plot
       @@styles = [:boxes, :lines, :points]
 
       def initialize(@xdata : Indexable(X), @ydata : Indexable(Y), @title : String? = nil, @style : Symbol? = nil)
@@ -190,7 +190,7 @@ module Ishi
       end
     end
 
-    class Plot3(X, Y, Z) < Plot
+    class PlotXYZ(X, Y, Z) < Plot
       @@styles = [:circles, :lines, :points]
 
       def initialize(@xdata : Indexable(X), @ydata : Indexable(Y), @zdata : Indexable(Z), @title : String? = nil, @style : Symbol? = nil)

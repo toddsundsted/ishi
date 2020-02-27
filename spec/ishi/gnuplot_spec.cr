@@ -7,68 +7,68 @@ Spectator.describe Ishi::Gnuplot do
   describe "#plot" do
     context "given a mathematical expression" do
       it "invokes 'plot'" do
-        output = subject.show(chart.plot(Ishi::Gnuplot::PlotE.new("sin(x)")))
+        output = subject.show(chart.plot(Ishi::Gnuplot::PlotExp.new("sin(x)")))
         expect(output).to have(/^plot sin\(x\)/)
       end
 
       it "specifies the title" do
-        output = subject.show(chart.plot(Ishi::Gnuplot::PlotE.new("sin(x)", title: "foobar")))
+        output = subject.show(chart.plot(Ishi::Gnuplot::PlotExp.new("sin(x)", title: "foobar")))
         expect(output).to have(/title 'foobar'/)
       end
 
       it "specifies the style" do
-        output = subject.show(chart.plot(Ishi::Gnuplot::PlotE.new("sin(x)", style: :points)))
+        output = subject.show(chart.plot(Ishi::Gnuplot::PlotExp.new("sin(x)", style: :points)))
         expect(output).to have(/with points/)
       end
     end
 
     context "given one array of data" do
       it "invokes 'plot'" do
-        output = subject.show(chart.plot(Ishi::Gnuplot::Plot1.new([1, 2, 3, 4])))
+        output = subject.show(chart.plot(Ishi::Gnuplot::PlotY.new([1, 2, 3, 4])))
         expect(output).to have(/^plot '-'/)
       end
 
       it "specifies the title" do
-        output = subject.show(chart.plot(Ishi::Gnuplot::Plot1.new([1, 2, 3, 4], title: "foobar")))
+        output = subject.show(chart.plot(Ishi::Gnuplot::PlotY.new([1, 2, 3, 4], title: "foobar")))
         expect(output).to have(/title 'foobar'/)
       end
 
       it "specifies the style" do
-        output = subject.show(chart.plot(Ishi::Gnuplot::Plot1.new([1, 2, 3, 4], style: :points)))
+        output = subject.show(chart.plot(Ishi::Gnuplot::PlotY.new([1, 2, 3, 4], style: :points)))
         expect(output).to have(/with points/)
       end
     end
 
     context "given two arrays of data" do
       it "invokes 'plot'" do
-        output = subject.show(chart.plot(Ishi::Gnuplot::Plot2.new([1, 2, 3, 4], [0, 1, 2, 3])))
+        output = subject.show(chart.plot(Ishi::Gnuplot::PlotXY.new([1, 2, 3, 4], [0, 1, 2, 3])))
         expect(output).to have(/^plot '-'/)
       end
 
       it "specifies the title" do
-        output = subject.show(chart.plot(Ishi::Gnuplot::Plot2.new([1, 2, 3, 4], [0, 1, 2, 3], title: "foobar")))
+        output = subject.show(chart.plot(Ishi::Gnuplot::PlotXY.new([1, 2, 3, 4], [0, 1, 2, 3], title: "foobar")))
         expect(output).to have(/title 'foobar'/)
       end
 
       it "specifies the style" do
-        output = subject.show(chart.plot(Ishi::Gnuplot::Plot2.new([1, 2, 3, 4], [0, 1, 2, 3], style: :points)))
+        output = subject.show(chart.plot(Ishi::Gnuplot::PlotXY.new([1, 2, 3, 4], [0, 1, 2, 3], style: :points)))
         expect(output).to have(/with points/)
       end
     end
 
     context "given three arrays of data" do
       it "invokes 'splot'" do
-        output = subject.show(chart.plot(Ishi::Gnuplot::Plot3.new([1, 2, 3, 4], [0, 1, 2, 3], [0, 0, 1, 1])))
+        output = subject.show(chart.plot(Ishi::Gnuplot::PlotXYZ.new([1, 2, 3, 4], [0, 1, 2, 3], [0, 0, 1, 1])))
         expect(output).to have(/^splot '-'/)
       end
 
       it "specifies the title" do
-        output = subject.show(chart.plot(Ishi::Gnuplot::Plot3.new([1, 2, 3, 4], [0, 1, 2, 3], [0, 0, 1, 1], title: "foobar")))
+        output = subject.show(chart.plot(Ishi::Gnuplot::PlotXYZ.new([1, 2, 3, 4], [0, 1, 2, 3], [0, 0, 1, 1], title: "foobar")))
         expect(output).to have(/title 'foobar'/)
       end
 
       it "specifies the style" do
-        output = subject.show(chart.plot(Ishi::Gnuplot::Plot3.new([1, 2, 3, 4], [0, 1, 2, 3], [0, 0, 1, 1], style: :lines)))
+        output = subject.show(chart.plot(Ishi::Gnuplot::PlotXYZ.new([1, 2, 3, 4], [0, 1, 2, 3], [0, 0, 1, 1], style: :lines)))
         expect(output).to have(/with lines/)
       end
     end
@@ -118,12 +118,12 @@ Spectator.describe Ishi::Gnuplot do
 
   describe "#show" do
     it "displays the chart" do
-      output = subject.show(chart.plot(Ishi::Gnuplot::PlotE.new("2 * x + 1")))
+      output = subject.show(chart.plot(Ishi::Gnuplot::PlotExp.new("2 * x + 1")))
       expect(output).to have("plot 2 * x + 1")
     end
 
     it "clears the chart" do
-      subject.show(chart.plot(Ishi::Gnuplot::PlotE.new("2 * x + 1")))
+      subject.show(chart.plot(Ishi::Gnuplot::PlotExp.new("2 * x + 1")))
       expect(chart.size).to eq(0)
     end
   end

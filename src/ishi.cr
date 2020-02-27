@@ -23,7 +23,7 @@ module Ishi
     # style. Supported values include `:lines` and `:points`.
     #
     def plot(expression : String, title : String? = nil, style : Symbol? = nil)
-      @chart.plot(Ishi::Gnuplot::PlotE.new(expression, title, style))
+      @chart.plot(Ishi::Gnuplot::PlotExp.new(expression, title, style))
       self
     end
 
@@ -35,7 +35,7 @@ module Ishi
     #
     def plot(ydata : Indexable(Y), title : String? = nil, style : Symbol = :lines) forall Y
       {% raise "data must be numeric" unless Y < Number %}
-      @chart.plot(Ishi::Gnuplot::Plot1.new(ydata, title, style))
+      @chart.plot(Ishi::Gnuplot::PlotY.new(ydata, title, style))
       self
     end
 
@@ -47,7 +47,7 @@ module Ishi
     #
     def plot(xdata : Indexable(X), ydata : Indexable(Y), title : String? = nil, style : Symbol = :lines) forall X, Y
       {% raise "data must be numeric" unless X < Number && Y < Number %}
-      @chart.plot(Ishi::Gnuplot::Plot2.new(xdata, ydata, title, style))
+      @chart.plot(Ishi::Gnuplot::PlotXY.new(xdata, ydata, title, style))
       self
     end
 
@@ -59,7 +59,7 @@ module Ishi
     #
     def plot(xdata : Indexable(X), ydata : Indexable(Y), zdata : Indexable(Z), title : String? = nil, style : Symbol = :points) forall X, Y, Z
       {% raise "data must be numeric" unless X < Number && Y < Number && Z < Number %}
-      @chart.plot(Ishi::Gnuplot::Plot3.new(xdata, ydata, zdata, title, style))
+      @chart.plot(Ishi::Gnuplot::PlotXYZ.new(xdata, ydata, zdata, title, style))
       self
     end
 
