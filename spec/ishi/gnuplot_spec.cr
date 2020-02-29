@@ -3,6 +3,7 @@ require "../spec_helper"
 alias Options = NamedTuple(
   title: String | Nil,
   style: Symbol | String | Nil,
+  format: String | Nil,
   dashtype: Array(Int32) | Int32 | String | Nil,
   linecolor: String | Nil,
   linewidth: Int32 | Float64 | Nil,
@@ -14,6 +15,7 @@ def options(options)
   Options.from({
     "title" => options["title"]?,
     "style" => options["style"]?,
+    "format" => options["format"]?,
     "dashtype" => options["dashtype"]?,
     "linecolor" => options["linecolor"]?,
     "linewidth" => options["linewidth"]?,
@@ -41,7 +43,12 @@ Spectator.describe Ishi::Gnuplot do
       { {style: :lines, pointsize: 1.3}, /with linespoints/ },
       { {style: :lines, pointtype: 1}, /with linespoints/ },
       { {pointsize: 1.3}, /with linespoints/ },
-      { {pointtype: 1}, /with linespoints/ }
+      { {pointtype: 1}, /with linespoints/ },
+      { {format: "red"}, /lc rgb "red"/ },
+      { {format: "#ff0000"}, /lc rgb "#ff0000"/ },
+      { {format: "r"}, /lc rgb "red"/ },
+      { {format: "+"}, /pt 1/ },
+      { {format: ":"}, /dt 3/ }
     ]
 
     context "given a mathematical expression" do

@@ -102,6 +102,7 @@ module Ishi
 
       @title : String? = nil
       @style : Symbol | String | Nil = nil
+      @format : String? = nil
       @dashtype : Array(Int32) | Int32 | String | Nil = nil
       @linecolor : String? = nil
       @linewidth : Int32 | Float64 | Nil = nil
@@ -110,6 +111,7 @@ module Ishi
 
       def initialize
         check_style
+        parse_format
         make_style
       end
 
@@ -117,6 +119,70 @@ module Ishi
         if @style
           unless @@styles.includes?(@style)
             raise ArgumentError.new("invalid style: #{@style.inspect}")
+          end
+        end
+      end
+
+      private COLOR_MAP = {
+        "b" => "blue",
+        "g" => "green",
+        "r" => "red",
+        "c" => "cyan",
+        "m" => "magenta",
+        "y" => "yellow",
+        "k" => "black",
+        "w" => "white"
+      }
+
+      private POINT_TYPE_MAP = {
+        "." => 0,
+        "+" => 1,
+        "x" => 2,
+        "*" => 3,
+        "s" => 5,
+        "o" => 7,
+        "^" => 9,
+        "v" => 11,
+        "d" => 13
+      }
+
+      private DASH_TYPE_MAP = {
+        "-" => 1,
+        "--" => 2,
+        "-." => 9,
+        ":" => 3
+      }
+
+      private def parse_format
+        if format = @format
+          unless @linecolor
+            if format =~ /^#([0-9A-F]{2}){3,4}$/i
+              @linecolor = format
+              return
+            elsif %w(blue green red cyan magenta yellow black white).includes?(format)
+              @linecolor = format
+              return
+            elsif !(m = format.split(//) & COLOR_MAP.keys).empty?
+              raise ArgumentError.new("ambiguous color: #{m.join}") if m.size > 1
+              @linecolor = COLOR_MAP[m.first]
+              format = format.gsub(m.first, "")
+            end
+          end
+          unless @pointtype
+            if !(m = format.split(//) & POINT_TYPE_MAP.keys).empty?
+              raise ArgumentError.new("ambiguous point type: #{m.join}") if m.size > 1
+              @pointtype = POINT_TYPE_MAP[m.first]
+              format = format.gsub(m.first, "")
+            end
+          end
+          unless @dashtype
+            if DASH_TYPE_MAP.keys.includes?(format)
+              @dashtype = DASH_TYPE_MAP[format]
+              format = ""
+            end
+          end
+          unless format.empty?
+            raise ArgumentError.new("invalid format: #{format}")
           end
         end
       end
@@ -173,6 +239,7 @@ module Ishi
 
       def initialize(@expression : String,
                      @title : String? = nil, @style : Symbol | String | Nil = nil,
+                     @format : String? = nil,
                      @dashtype : Array(Int32) | Int32 | String | Nil = nil,
                      @linecolor : String? = nil,
                      @linewidth : Int32 | Float64 | Nil = nil,
@@ -203,6 +270,7 @@ module Ishi
 
       def initialize(@ydata : Indexable(Y),
                      @title : String? = nil, @style : Symbol | String | Nil = nil,
+                     @format : String? = nil,
                      @dashtype : Array(Int32) | Int32 | String | Nil = nil,
                      @linecolor : String? = nil,
                      @linewidth : Int32 | Float64 | Nil = nil,
@@ -239,6 +307,7 @@ module Ishi
 
       def initialize(@xdata : Indexable(X), @ydata : Indexable(Y),
                      @title : String? = nil, @style : Symbol | String | Nil = nil,
+                     @format : String? = nil,
                      @dashtype : Array(Int32) | Int32 | String | Nil = nil,
                      @linecolor : String? = nil,
                      @linewidth : Int32 | Float64 | Nil = nil,
@@ -275,6 +344,7 @@ module Ishi
 
       def initialize(@xdata : Indexable(X), @ydata : Indexable(Y), @zdata : Indexable(Z),
                      @title : String? = nil, @style : Symbol | String | Nil = nil,
+                     @format : String? = nil,
                      @dashtype : Array(Int32) | Int32 | String | Nil = nil,
                      @linecolor : String? = nil,
                      @linewidth : Int32 | Float64 | Nil = nil,
