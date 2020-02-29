@@ -6,7 +6,7 @@ module Ishi
   #
   class ITerm2 < Base
     def show(**options)
-      Gnuplot.new(["set term png"]).show(@chart, **options)
+      Gnuplot.new(["set term pngcairo enhanced"]).show(@chart, **options)
     end
   end
 
