@@ -8,7 +8,12 @@ alias Options = NamedTuple(
   linecolor: String | Nil,
   linewidth: Int32 | Float64 | Nil,
   pointsize: Int32 | Float64 | Nil,
-  pointtype: Int32 | Nil
+  pointtype: Int32 | Nil,
+  dt: Array(Int32) | Int32 | String | Nil,
+  lc: String | Nil,
+  lw: Int32 | Float64 | Nil,
+  ps: Int32 | Float64 | Nil,
+  pt: Int32 | Nil
 )
 
 def options(options)
@@ -21,6 +26,11 @@ def options(options)
     "linewidth" => options["linewidth"]?,
     "pointsize" => options["pointsize"]?,
     "pointtype" => options["pointtype"]?,
+    "dt" => options["dt"]?,
+    "lc" => options["lc"]?,
+    "lw" => options["lw"]?,
+    "ps" => options["ps"]?,
+    "pt" => options["pt"]?
   })
 end
 
@@ -48,7 +58,12 @@ Spectator.describe Ishi::Gnuplot do
       { {format: "#ff0000"}, /lc rgb "#ff0000"/ },
       { {format: "r"}, /lc rgb "red"/ },
       { {format: "+"}, /pt 1/ },
-      { {format: ":"}, /dt 3/ }
+      { {format: ":"}, /dt 3/ },
+      { {dt: 1}, /dt 1/ },
+      { {lc: "#80ff00ee"}, /lc rgb "#80ff00ee"/ },
+      { {lw: 3}, /lw 3/ },
+      { {ps: 2}, /ps 2/ },
+      { {pt: 2}, /pt 2/ }
     ]
 
     context "given a mathematical expression" do

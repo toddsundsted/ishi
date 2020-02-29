@@ -109,8 +109,9 @@ module Ishi
       @pointsize : Int32 | Float64 | Nil = nil
       @pointtype : Int32? = nil
 
-      def initialize
+      def initialize(options = nil)
         check_style
+        expand_abbreviations(options) if options
         parse_format
         make_style
       end
@@ -121,6 +122,14 @@ module Ishi
             raise ArgumentError.new("invalid style: #{@style.inspect}")
           end
         end
+      end
+
+      private def expand_abbreviations(options)
+        @dashtype ||= options[:dt]?
+        @linecolor ||= options[:lc]?
+        @linewidth ||= options[:lw]?
+        @pointsize ||= options[:ps]?
+        @pointtype ||= options[:pt]?
       end
 
       private COLOR_MAP = {
@@ -244,9 +253,10 @@ module Ishi
                      @linecolor : String? = nil,
                      @linewidth : Int32 | Float64 | Nil = nil,
                      @pointsize : Int32 | Float64 | Nil = nil,
-                     @pointtype : Int32? = nil
+                     @pointtype : Int32? = nil,
+                     **options
                     )
-        super()
+        super(options)
       end
 
       def inst
@@ -275,9 +285,10 @@ module Ishi
                      @linecolor : String? = nil,
                      @linewidth : Int32 | Float64 | Nil = nil,
                      @pointsize : Int32 | Float64 | Nil = nil,
-                     @pointtype : Int32? = nil
+                     @pointtype : Int32? = nil,
+                     **options
                     )
-        super()
+        super(options)
       end
 
       def inst
@@ -312,9 +323,10 @@ module Ishi
                      @linecolor : String? = nil,
                      @linewidth : Int32 | Float64 | Nil = nil,
                      @pointsize : Int32 | Float64 | Nil = nil,
-                     @pointtype : Int32? = nil
+                     @pointtype : Int32? = nil,
+                     **options
                     )
-        super()
+        super(options)
       end
 
       def inst
@@ -349,9 +361,10 @@ module Ishi
                      @linecolor : String? = nil,
                      @linewidth : Int32 | Float64 | Nil = nil,
                      @pointsize : Int32 | Float64 | Nil = nil,
-                     @pointtype : Int32? = nil
+                     @pointtype : Int32? = nil,
+                     **options
                     )
-        super()
+        super(options)
       end
 
       def inst
