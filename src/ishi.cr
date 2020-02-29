@@ -22,8 +22,8 @@ module Ishi
     # *title* is the title of the plot. *style* is the drawing
     # style. Supported values include `:lines` and `:points`.
     #
-    def plot(expression : String, title : String? = nil, style : Symbol? = nil)
-      @chart.plot(Ishi::Gnuplot::PlotExp.new(expression, title, style))
+    def plot(expression : String, title : String? = nil, style : Symbol? = nil, **options)
+      @chart.plot(Ishi::Gnuplot::PlotExp.new(expression, title, style, **options))
       self
     end
 
@@ -33,9 +33,9 @@ module Ishi
     # style. Supported values include `:boxes`, `:lines` and
     # `:points`.
     #
-    def plot(ydata : Indexable(Y), title : String? = nil, style : Symbol = :lines) forall Y
+    def plot(ydata : Indexable(Y), title : String? = nil, style : Symbol = :lines, **options) forall Y
       {% raise "data must be numeric" unless Y < Number %}
-      @chart.plot(Ishi::Gnuplot::PlotY.new(ydata, title, style))
+      @chart.plot(Ishi::Gnuplot::PlotY.new(ydata, title, style, **options))
       self
     end
 
@@ -45,9 +45,9 @@ module Ishi
     # style. Supported values include `:boxes`, `:lines` and
     # `:points`.
     #
-    def plot(xdata : Indexable(X), ydata : Indexable(Y), title : String? = nil, style : Symbol = :lines) forall X, Y
+    def plot(xdata : Indexable(X), ydata : Indexable(Y), title : String? = nil, style : Symbol = :lines, **options) forall X, Y
       {% raise "data must be numeric" unless X < Number && Y < Number %}
-      @chart.plot(Ishi::Gnuplot::PlotXY.new(xdata, ydata, title, style))
+      @chart.plot(Ishi::Gnuplot::PlotXY.new(xdata, ydata, title, style, **options))
       self
     end
 
@@ -57,9 +57,9 @@ module Ishi
     # style. Supported values include `:boxes`, `:lines` and
     # `:points`.
     #
-    def plot(xdata : Indexable(X), ydata : Indexable(Y), zdata : Indexable(Z), title : String? = nil, style : Symbol = :points) forall X, Y, Z
+    def plot(xdata : Indexable(X), ydata : Indexable(Y), zdata : Indexable(Z), title : String? = nil, style : Symbol = :points, **options) forall X, Y, Z
       {% raise "data must be numeric" unless X < Number && Y < Number && Z < Number %}
-      @chart.plot(Ishi::Gnuplot::PlotXYZ.new(xdata, ydata, zdata, title, style))
+      @chart.plot(Ishi::Gnuplot::PlotXYZ.new(xdata, ydata, zdata, title, style, **options))
       self
     end
 

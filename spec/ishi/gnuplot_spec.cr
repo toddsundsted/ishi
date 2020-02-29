@@ -1,24 +1,60 @@
 require "../spec_helper"
 
+alias Options = NamedTuple(
+  title: String | Nil,
+  style: Symbol | String | Nil,
+  dashtype: Array(Int32) | Int32 | String | Nil,
+  linecolor: String | Nil,
+  linewidth: Int32 | Float64 | Nil,
+  pointsize: Int32 | Float64 | Nil,
+  pointtype: Int32 | Nil
+)
+
+def options(options)
+  Options.from({
+    "title" => options["title"]?,
+    "style" => options["style"]?,
+    "dashtype" => options["dashtype"]?,
+    "linecolor" => options["linecolor"]?,
+    "linewidth" => options["linewidth"]?,
+    "pointsize" => options["pointsize"]?,
+    "pointtype" => options["pointtype"]?,
+  })
+end
+
 Spectator.describe Ishi::Gnuplot do
-  let(:chart) { Ishi::Gnuplot::Chart.new }
   subject { described_class.new(["set term dumb"]) }
+  let(:chart) { Ishi::Gnuplot::Chart.new }
 
   describe "#plot" do
+    EXAMPLES = [
+      { {title: "foobar"}, /title 'foobar'/ },
+      { {style: :lines}, /with lines/ },
+      { {dashtype: [2, 2]}, /dt \(2,2\)/ },
+      { {dashtype: "--  "}, /dt "--  "/ },
+      { {linecolor: "red"}, /lc rgb "red"/ },
+      { {linewidth: 2.3}, /lw 2.3/ },
+      { {pointsize: 1.3}, /ps 1.3/ },
+      { {pointtype: 1}, /pt 1/ },
+      { {style: :points, dashtype: ".. "}, /with linespoints/ },
+      { {style: :points, linewidth: 1.3}, /with linespoints/ },
+      { {style: :lines, pointsize: 1.3}, /with linespoints/ },
+      { {style: :lines, pointtype: 1}, /with linespoints/ },
+      { {pointsize: 1.3}, /with linespoints/ },
+      { {pointtype: 1}, /with linespoints/ }
+    ]
+
     context "given a mathematical expression" do
       it "invokes 'plot'" do
-        output = subject.show(chart.plot(Ishi::Gnuplot::PlotExp.new("sin(x)")))
-        expect(output).to have(/^plot sin\(x\)/)
+        commands = subject.show(chart.plot(Ishi::Gnuplot::PlotExp.new("sin(x)")))
+        expect(commands).to have(/^plot sin\(x\)/)
       end
 
-      it "specifies the title" do
-        output = subject.show(chart.plot(Ishi::Gnuplot::PlotExp.new("sin(x)", title: "foobar")))
-        expect(output).to have(/title 'foobar'/)
-      end
-
-      it "specifies the style" do
-        output = subject.show(chart.plot(Ishi::Gnuplot::PlotExp.new("sin(x)", style: :points)))
-        expect(output).to have(/with points/)
+      sample EXAMPLES do |example|
+        it "generates commands" do
+          commands = subject.show(chart.plot(Ishi::Gnuplot::PlotExp.new("sin(x)", **options(example[0]))))
+          expect(commands).to have(example[1])
+        end
       end
     end
 
@@ -28,14 +64,11 @@ Spectator.describe Ishi::Gnuplot do
         expect(output).to have(/^plot '-'/)
       end
 
-      it "specifies the title" do
-        output = subject.show(chart.plot(Ishi::Gnuplot::PlotY.new([1, 2, 3, 4], title: "foobar")))
-        expect(output).to have(/title 'foobar'/)
-      end
-
-      it "specifies the style" do
-        output = subject.show(chart.plot(Ishi::Gnuplot::PlotY.new([1, 2, 3, 4], style: :points)))
-        expect(output).to have(/with points/)
+      sample EXAMPLES do |example|
+        it "generates commands" do
+          commands = subject.show(chart.plot(Ishi::Gnuplot::PlotY.new([1, 2], **options(example[0]))))
+          expect(commands).to have(example[1])
+        end
       end
     end
 
@@ -45,14 +78,11 @@ Spectator.describe Ishi::Gnuplot do
         expect(output).to have(/^plot '-'/)
       end
 
-      it "specifies the title" do
-        output = subject.show(chart.plot(Ishi::Gnuplot::PlotXY.new([1, 2, 3, 4], [0, 1, 2, 3], title: "foobar")))
-        expect(output).to have(/title 'foobar'/)
-      end
-
-      it "specifies the style" do
-        output = subject.show(chart.plot(Ishi::Gnuplot::PlotXY.new([1, 2, 3, 4], [0, 1, 2, 3], style: :points)))
-        expect(output).to have(/with points/)
+      sample EXAMPLES do |example|
+        it "generates commands" do
+          commands = subject.show(chart.plot(Ishi::Gnuplot::PlotXY.new([1, 2], [0, 1], **options(example[0]))))
+          expect(commands).to have(example[1])
+        end
       end
     end
 
@@ -62,14 +92,11 @@ Spectator.describe Ishi::Gnuplot do
         expect(output).to have(/^splot '-'/)
       end
 
-      it "specifies the title" do
-        output = subject.show(chart.plot(Ishi::Gnuplot::PlotXYZ.new([1, 2, 3, 4], [0, 1, 2, 3], [0, 0, 1, 1], title: "foobar")))
-        expect(output).to have(/title 'foobar'/)
-      end
-
-      it "specifies the style" do
-        output = subject.show(chart.plot(Ishi::Gnuplot::PlotXYZ.new([1, 2, 3, 4], [0, 1, 2, 3], [0, 0, 1, 1], style: :lines)))
-        expect(output).to have(/with lines/)
+      sample EXAMPLES do |example|
+        it "generates commands" do
+          commands = subject.show(chart.plot(Ishi::Gnuplot::PlotXYZ.new([1, 2], [0, 1], [0, 0], **options(example[0]))))
+          expect(commands).to have(example[1])
+        end
       end
     end
   end

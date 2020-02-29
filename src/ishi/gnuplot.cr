@@ -100,6 +100,19 @@ module Ishi
 
       @@styles = [] of Symbol
 
+      @title : String? = nil
+      @style : Symbol | String | Nil = nil
+      @dashtype : Array(Int32) | Int32 | String | Nil = nil
+      @linecolor : String? = nil
+      @linewidth : Int32 | Float64 | Nil = nil
+      @pointsize : Int32 | Float64 | Nil = nil
+      @pointtype : Int32? = nil
+
+      def initialize
+        check_style
+        make_style
+      end
+
       private def check_style
         if @style
           unless @@styles.includes?(@style)
@@ -107,20 +120,73 @@ module Ishi
           end
         end
       end
+
+      private def make_style
+        s = _style
+        @style = s ? " with #{s}" : nil
+        if @dashtype || @linecolor || @linewidth || @pointsize || @pointtype
+          @style = String.build do |io|
+            io << @style || ""
+            io << " dt #{_dashtype}" if @dashtype
+            io << " lc #{_linecolor}" if @linecolor
+            io << " lw #{@linewidth}" if @linewidth
+            io << " ps #{@pointsize}" if @pointsize
+            io << " pt #{_pointtype}" if @pointtype
+          end
+        end
+      end
+
+      private def _style
+        if @style.nil? && (@pointsize || @pointtype)
+          :linespoints
+        elsif @style == :lines && (@pointsize || @pointtype)
+          :linespoints
+        elsif @style == :points && (@dashtype || @linewidth)
+          :linespoints
+        else
+          @style
+        end
+      end
+
+      private def _dashtype
+        case (dashtype = @dashtype)
+        when Array
+          "(#{dashtype.join(",")})"
+        when String
+          "\"#{dashtype}\""
+        else
+          dashtype
+        end
+      end
+
+      private def _linecolor
+        "rgb \"#{@linecolor}\""
+      end
+
+      private def _pointtype
+        @pointtype.to_s
+      end
     end
 
     class PlotExp < Plot
       @@styles = [:lines, :points]
 
-      def initialize(@expression : String, @title : String? = nil, @style : Symbol? = nil)
-        check_style
+      def initialize(@expression : String,
+                     @title : String? = nil, @style : Symbol | String | Nil = nil,
+                     @dashtype : Array(Int32) | Int32 | String | Nil = nil,
+                     @linecolor : String? = nil,
+                     @linewidth : Int32 | Float64 | Nil = nil,
+                     @pointsize : Int32 | Float64 | Nil = nil,
+                     @pointtype : Int32? = nil
+                    )
+        super()
       end
 
       def inst
         String.build do |io|
           io << "#{@expression}"
-          io << " with #{@style}" if @style
           io << " title '#{@title}'" if @title
+          io << " #{@style}" if @style
         end
       end
 
@@ -133,17 +199,24 @@ module Ishi
     end
 
     class PlotY(Y) < Plot
-      @@styles = [:boxes, :lines, :points]
+      @@styles = [:boxes, :lines, :points, :linespoints, :dots]
 
-      def initialize(@ydata : Indexable(Y), @title : String? = nil, @style : Symbol? = nil)
-        check_style
+      def initialize(@ydata : Indexable(Y),
+                     @title : String? = nil, @style : Symbol | String | Nil = nil,
+                     @dashtype : Array(Int32) | Int32 | String | Nil = nil,
+                     @linecolor : String? = nil,
+                     @linewidth : Int32 | Float64 | Nil = nil,
+                     @pointsize : Int32 | Float64 | Nil = nil,
+                     @pointtype : Int32? = nil
+                    )
+        super()
       end
 
       def inst
         String.build do |io|
           io << "'-'"
-          io << " with #{@style}" if @style
           io << " title '#{@title}'" if @title
+          io << " #{@style}" if @style
         end
       end
 
@@ -162,17 +235,24 @@ module Ishi
     end
 
     class PlotXY(X, Y) < Plot
-      @@styles = [:boxes, :lines, :points]
+      @@styles = [:boxes, :lines, :points, :linespoints, :dots]
 
-      def initialize(@xdata : Indexable(X), @ydata : Indexable(Y), @title : String? = nil, @style : Symbol? = nil)
-        check_style
+      def initialize(@xdata : Indexable(X), @ydata : Indexable(Y),
+                     @title : String? = nil, @style : Symbol | String | Nil = nil,
+                     @dashtype : Array(Int32) | Int32 | String | Nil = nil,
+                     @linecolor : String? = nil,
+                     @linewidth : Int32 | Float64 | Nil = nil,
+                     @pointsize : Int32 | Float64 | Nil = nil,
+                     @pointtype : Int32? = nil
+                    )
+        super()
       end
 
       def inst
         String.build do |io|
           io << "'-'"
-          io << " with #{@style}" if @style
           io << " title '#{@title}'" if @title
+          io << " #{@style}" if @style
         end
       end
 
@@ -191,17 +271,24 @@ module Ishi
     end
 
     class PlotXYZ(X, Y, Z) < Plot
-      @@styles = [:circles, :lines, :points]
+      @@styles = [:circles, :surface, :lines, :points, :dots]
 
-      def initialize(@xdata : Indexable(X), @ydata : Indexable(Y), @zdata : Indexable(Z), @title : String? = nil, @style : Symbol? = nil)
-        check_style
+      def initialize(@xdata : Indexable(X), @ydata : Indexable(Y), @zdata : Indexable(Z),
+                     @title : String? = nil, @style : Symbol | String | Nil = nil,
+                     @dashtype : Array(Int32) | Int32 | String | Nil = nil,
+                     @linecolor : String? = nil,
+                     @linewidth : Int32 | Float64 | Nil = nil,
+                     @pointsize : Int32 | Float64 | Nil = nil,
+                     @pointtype : Int32? = nil
+                    )
+        super()
       end
 
       def inst
         String.build do |io|
           io << "'-'"
-          io << " with #{@style}" if @style
           io << " title '#{@title}'" if @title
+          io << " #{@style}" if @style
         end
       end
 
