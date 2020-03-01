@@ -45,8 +45,8 @@ module Ishi
     # style. Supported styles include `:boxes`, `:lines`, `:points`,
     # `:linespoints` and `:dots`.
     #
-    def plot(xdata : Indexable(X), ydata : Indexable(Y), format : String? = nil, *, title : String? = nil, style : Symbol = :lines, **options) forall X, Y
-      {% raise "data must be numeric" unless X < Number && Y < Number %}
+    def plot(xdata : Indexable(M), ydata : Indexable(N), format : String? = nil, *, title : String? = nil, style : Symbol = :lines, **options) forall M, N
+      {% raise "data must be numeric" unless M < Number && N < Number %}
       @chart.plot(Ishi::Gnuplot::PlotXY.new(xdata, ydata, title, style, format, **options))
       self
     end
@@ -57,8 +57,8 @@ module Ishi
     # style. Supported styles include `:surface`, `:circles`,
     # `:lines`, `:points` and `:dots`.
     #
-    def plot(xdata : Indexable(X), ydata : Indexable(Y), zdata : Indexable(Z), format : String? = nil, *, title : String? = nil, style : Symbol = :points, **options) forall X, Y, Z
-      {% raise "data must be numeric" unless X < Number && Y < Number && Z < Number %}
+    def plot(xdata : Indexable(T), ydata : Indexable(U), zdata : Indexable(V), format : String? = nil, *, title : String? = nil, style : Symbol = :points, **options) forall T, U, V
+      {% raise "data must be numeric" unless T < Number && U < Number && V < Number %}
       @chart.plot(Ishi::Gnuplot::PlotXYZ.new(xdata, ydata, zdata, title, style, format, **options))
       self
     end

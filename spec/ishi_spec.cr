@@ -18,4 +18,11 @@ Spectator.describe Ishi do
       end
     end
   end
+
+  describe ".plot" do
+    it "accepts numbers of different types" do
+      described_class.new.plot([1, 2, 3], [3, 2, 1], [1.0, 2.0, 3.0]).show
+      described_class.new.plot([1, 2, 3], [1.0, 2.0, 3.0]).show
+    end
+  end
 end
