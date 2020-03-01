@@ -63,6 +63,26 @@ module Ishi
       self
     end
 
+    # Scatter plots `x` and `y`.
+    #
+    # *title* is the title of the plot.
+    #
+    def scatter(xdata : Indexable(M), ydata : Indexable(N), format : String? = nil, *, title : String? = nil, style : Symbol = :dots, **options) forall M, N
+      {% raise "data must be numeric" unless M < Number && N < Number %}
+      @chart.plot(Ishi::Gnuplot::PlotXY.new(xdata, ydata, title, style, format, **options))
+      self
+    end
+
+    # Scatter plots `x`, `y` and `z`.
+    #
+    # *title* is the title of the plot.
+    #
+    def scatter(xdata : Indexable(T), ydata : Indexable(U), zdata : Indexable(V), format : String? = nil, *, title : String? = nil, style : Symbol = :dots, **options) forall T, U, V
+      {% raise "data must be numeric" unless T < Number && U < Number && V < Number %}
+      @chart.plot(Ishi::Gnuplot::PlotXYZ.new(xdata, ydata, zdata, title, style, format, **options))
+      self
+    end
+
     # Sets the label of the `x` axis.
     #
     def xlabel(xlabel : String)
