@@ -165,10 +165,10 @@ module Ishi
       private def parse_format
         if format = @format
           unless @linecolor
-            if format =~ /^#([0-9A-F]{2}){3,4}$/i
+            if format =~ /^[A-Z]{3,}$/i
               @linecolor = format
               return
-            elsif %w(blue green red cyan magenta yellow black white).includes?(format)
+            elsif format =~ /^#([0-9A-F]{2}){3,4}$/i
               @linecolor = format
               return
             elsif !(m = format.split(//) & COLOR_MAP.keys).empty?
