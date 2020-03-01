@@ -158,7 +158,7 @@ module Ishi
       private DASH_TYPE_MAP = {
         "-" => 1,
         "--" => 2,
-        "-." => 9,
+        "!" => 9,
         ":" => 3
       }
 

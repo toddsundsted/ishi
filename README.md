@@ -96,7 +96,7 @@ Color is a letter from the set b (blue), g (green), r (red), c (cyan),
 m (magenta), y (yellow), k (black) or w (white). Point is a letter
 from the set . (dot), + (plus sign), x (multiplication sign), *
 (asterisk), s (square), c (circle), ^ (up triangle), v (down triangle)
-or d (diamond). Line may be - (solid line), -- (dashed line), -.
+or d (diamond). Line may be - (solid line), -- (dashed line), !
 (dash-dot line) and : (dotted line).
 
 Given these rules, the format string "b" is a solid blue line, "or" is
