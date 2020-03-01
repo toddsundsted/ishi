@@ -45,7 +45,7 @@ module Ishi
     # style. Supported styles include `:boxes`, `:lines`, `:points`,
     # `:linespoints` and `:dots`.
     #
-    def plot(xdata : Indexable(M), ydata : Indexable(N), format : String? = nil, *, title : String? = nil, style : Symbol = :lines, **options) forall M, N
+    def plot(xdata : Indexable(M), ydata : Indexable(N), format : String? = nil, *, title : String? = nil, style : Symbol = :points, **options) forall M, N
       {% raise "data must be numeric" unless M < Number && N < Number %}
       @chart.plot(Ishi::Gnuplot::PlotXY.new(xdata, ydata, title, style, format, **options))
       self
