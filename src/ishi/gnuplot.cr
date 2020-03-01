@@ -107,7 +107,7 @@ module Ishi
       @linecolor : String? = nil
       @linewidth : Int32 | Float64 | Nil = nil
       @pointsize : Int32 | Float64 | Nil = nil
-      @pointtype : Int32? = nil
+      @pointtype : Int32 | String | Nil = nil
 
       def initialize(options = nil)
         check_style
@@ -239,7 +239,12 @@ module Ishi
       end
 
       private def _pointtype
-        @pointtype.to_s
+        case (pointtype = @pointtype)
+        when String
+          POINT_TYPE_MAP[pointtype]
+        else
+          pointtype
+        end
       end
     end
 
@@ -253,7 +258,7 @@ module Ishi
                      @linecolor : String? = nil,
                      @linewidth : Int32 | Float64 | Nil = nil,
                      @pointsize : Int32 | Float64 | Nil = nil,
-                     @pointtype : Int32? = nil,
+                     @pointtype : Int32 | String | Nil = nil,
                      **options
                     )
         super(options)
@@ -285,7 +290,7 @@ module Ishi
                      @linecolor : String? = nil,
                      @linewidth : Int32 | Float64 | Nil = nil,
                      @pointsize : Int32 | Float64 | Nil = nil,
-                     @pointtype : Int32? = nil,
+                     @pointtype : Int32 | String | Nil = nil,
                      **options
                     )
         super(options)
@@ -323,7 +328,7 @@ module Ishi
                      @linecolor : String? = nil,
                      @linewidth : Int32 | Float64 | Nil = nil,
                      @pointsize : Int32 | Float64 | Nil = nil,
-                     @pointtype : Int32? = nil,
+                     @pointtype : Int32 | String | Nil = nil,
                      **options
                     )
         super(options)
@@ -361,7 +366,7 @@ module Ishi
                      @linecolor : String? = nil,
                      @linewidth : Int32 | Float64 | Nil = nil,
                      @pointsize : Int32 | Float64 | Nil = nil,
-                     @pointtype : Int32? = nil,
+                     @pointtype : Int32 | String | Nil = nil,
                      **options
                     )
         super(options)
