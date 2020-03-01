@@ -3,10 +3,12 @@ require "../ishi"
 module Ishi
   @@io : IO = STDOUT
 
+  # :nodoc:
   def self.io
     @@io
   end
 
+  # :nodoc:
   def self.io=(io)
     @@io = io
   end

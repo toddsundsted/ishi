@@ -20,7 +20,7 @@ module Ishi
     # [Expressions](http://www.gnuplot.info/docs_5.2/Gnuplot_5.2.pdf#section*.27).
     #
     # *title* is the title of the plot. *style* is the drawing
-    # style. Supported values include `:lines` and `:points`.
+    # style. Supported styles include `:lines` and `:points`.
     #
     def plot(expression : String, format : String? = nil, *, title : String? = nil, style : Symbol? = nil, **options)
       @chart.plot(Ishi::Gnuplot::PlotExp.new(expression, title, style, format, **options))
@@ -30,8 +30,8 @@ module Ishi
     # Plots `y` using `x` ranging from `0` to `N-1`.
     #
     # *title* is the title of the plot. *style* is the drawing
-    # style. Supported values include `:boxes`, `:lines` and
-    # `:points`.
+    # style. Supported styles include `:boxes`, `:lines`, `:points`,
+    # `:linespoints` and `:dots`.
     #
     def plot(ydata : Indexable(Y), format : String? = nil, *, title : String? = nil, style : Symbol = :lines, **options) forall Y
       {% raise "data must be numeric" unless Y < Number %}
@@ -42,8 +42,8 @@ module Ishi
     # Plots `x` and `y`.
     #
     # *title* is the title of the plot. *style* is the drawing
-    # style. Supported values include `:boxes`, `:lines` and
-    # `:points`.
+    # style. Supported styles include `:boxes`, `:lines`, `:points`,
+    # `:linespoints` and `:dots`.
     #
     def plot(xdata : Indexable(X), ydata : Indexable(Y), format : String? = nil, *, title : String? = nil, style : Symbol = :lines, **options) forall X, Y
       {% raise "data must be numeric" unless X < Number && Y < Number %}
@@ -54,8 +54,8 @@ module Ishi
     # Plots `x`, `y` and `z`.
     #
     # *title* is the title of the plot. *style* is the drawing
-    # style. Supported values include `:boxes`, `:lines` and
-    # `:points`.
+    # style. Supported styles include `:surface`, `:circles`,
+    # `:lines`, `:points` and `:dots`.
     #
     def plot(xdata : Indexable(X), ydata : Indexable(Y), zdata : Indexable(Z), format : String? = nil, *, title : String? = nil, style : Symbol = :points, **options) forall X, Y, Z
       {% raise "data must be numeric" unless X < Number && Y < Number && Z < Number %}
