@@ -125,6 +125,22 @@ module Ishi
       self
     end
 
+    # Sets the viewing angle for 3D charts.
+    #
+    # For information on setting the viewing angle, see:
+    # [View](http://www.gnuplot.info/docs_5.2/Gnuplot_5.2.pdf#section*.385).
+    #
+    def view(xrot : Float64, zrot : Float64)
+      @chart.view(xrot, zrot)
+      self
+    end
+
+    # :ditto:
+    def view(xrot : Int32, zrot : Int32)
+      @chart.view(xrot, zrot)
+      self
+    end
+
     # Shows the chart.
     #
     def show(**options)

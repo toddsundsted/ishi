@@ -47,6 +47,21 @@ module Ishi
 
       getter xrange, yrange, zrange
 
+      # Sets the viewing angle for 3D charts.
+      #
+      def view(xrot : Float64, zrot : Float64)
+        @view = {xrot, zrot}
+        self
+      end
+
+      # :ditto:
+      def view(xrot : Int32, zrot : Int32)
+        @view = {xrot, zrot}
+        self
+      end
+
+      getter view
+
       @plots = [] of Plot
 
       getter plots
@@ -414,6 +429,9 @@ module Ishi
       end
       if zrange = chart.zrange
         commands << "set zrange[#{zrange.begin}:#{zrange.end}]"
+      end
+      if view = chart.view
+        commands << "set view #{view[0]},#{view[1]}"
       end
       unless chart.plots.empty?
         instruction = chart.dim? == 3 ? "splot " : "plot "

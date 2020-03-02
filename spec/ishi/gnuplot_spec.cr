@@ -166,6 +166,13 @@ Spectator.describe Ishi::Gnuplot do
     end
   end
 
+  describe "#view" do
+    it "sets the viewing angle for 3D charts" do
+      output = subject.show(chart.view(60, 30))
+      expect(output).to have("set view 60,30")
+    end
+  end
+
   describe "#show" do
     it "displays the chart" do
       output = subject.show(chart.plot(Ishi::Gnuplot::PlotExp.new("2 * x + 1")))
