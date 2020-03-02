@@ -171,6 +171,16 @@ module Ishi
       self
     end
 
+    # Shows/hides the chart ytics.
+    #
+    # For information on setting/unsetting the ytics, see:
+    # [Ytics](http://www.gnuplot.info/docs_5.2/Gnuplot_5.2.pdf#section*.423).
+    #
+    def show_ytics(show : Bool)
+      @chart.show_ytics(show)
+      self
+    end
+
     # Shows the chart.
     #
     def show(**options)

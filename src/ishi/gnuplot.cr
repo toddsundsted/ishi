@@ -86,6 +86,14 @@ module Ishi
 
       getter show_xtics
 
+      # Shows/hides the chart ytics.
+      #
+      def show_ytics(@show_ytics : Bool)
+        self
+      end
+
+      getter show_ytics
+
       @plots = [] of Plot
 
       getter plots
@@ -474,6 +482,12 @@ module Ishi
         commands << "set xtics"
       when false
         commands << "unset xtics"
+      end
+      case show = chart.show_ytics
+      when true
+        commands << "set ytics"
+      when false
+        commands << "unset ytics"
       end
       unless chart.plots.empty?
         instruction = chart.dim? == 3 ? "splot " : "plot "
