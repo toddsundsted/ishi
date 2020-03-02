@@ -173,6 +173,18 @@ Spectator.describe Ishi::Gnuplot do
     end
   end
 
+  describe "#show_border" do
+    it "shows the border" do
+      output = subject.show(chart.show_border(true))
+      expect(output).to have("set border 31")
+    end
+
+    it "hides the border" do
+      output = subject.show(chart.show_border(false))
+      expect(output).to have("unset border")
+    end
+  end
+
   describe "#show" do
     it "displays the chart" do
       output = subject.show(chart.plot(Ishi::Gnuplot::PlotExp.new("2 * x + 1")))

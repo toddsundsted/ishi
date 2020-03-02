@@ -62,6 +62,14 @@ module Ishi
 
       getter view
 
+      # Shows/hides the chart border.
+      #
+      def show_border(@show_border : Bool)
+        self
+      end
+
+      getter show_border
+
       @plots = [] of Plot
 
       getter plots
@@ -432,6 +440,12 @@ module Ishi
       end
       if view = chart.view
         commands << "set view #{view[0]},#{view[1]}"
+      end
+      case show = chart.show_border
+      when true
+        commands << "set border 31"
+      when false
+        commands << "unset border"
       end
       unless chart.plots.empty?
         instruction = chart.dim? == 3 ? "splot " : "plot "

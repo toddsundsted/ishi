@@ -141,6 +141,16 @@ module Ishi
       self
     end
 
+    # Shows/hides the chart border.
+    #
+    # For information on setting/unsetting the border, see:
+    # [Border](http://www.gnuplot.info/docs_5.2/Gnuplot_5.2.pdf#section*.231).
+    #
+    def show_border(show : Bool)
+      @chart.show_border(show)
+      self
+    end
+
     # Shows the chart.
     #
     def show(**options)
