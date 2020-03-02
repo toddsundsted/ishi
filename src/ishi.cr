@@ -161,6 +161,16 @@ module Ishi
       self
     end
 
+    # Shows/hides the chart xtics.
+    #
+    # For information on setting/unsetting the xtics, see:
+    # [Xtics](http://www.gnuplot.info/docs_5.2/Gnuplot_5.2.pdf#section*.402).
+    #
+    def show_xtics(show : Bool)
+      @chart.show_xtics(show)
+      self
+    end
+
     # Shows the chart.
     #
     def show(**options)

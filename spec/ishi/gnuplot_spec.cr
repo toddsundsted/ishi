@@ -197,6 +197,18 @@ Spectator.describe Ishi::Gnuplot do
     end
   end
 
+  describe "#show_xtics" do
+    it "shows the xtics" do
+      output = subject.show(chart.show_xtics(true))
+      expect(output).to have("set xtics")
+    end
+
+    it "hides the xtics" do
+      output = subject.show(chart.show_xtics(false))
+      expect(output).to have("unset xtics")
+    end
+  end
+
   describe "#show" do
     it "displays the chart" do
       output = subject.show(chart.plot(Ishi::Gnuplot::PlotExp.new("2 * x + 1")))

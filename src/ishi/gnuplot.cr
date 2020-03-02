@@ -78,6 +78,14 @@ module Ishi
 
       getter show_border
 
+      # Shows/hides the chart xtics.
+      #
+      def show_xtics(@show_xtics : Bool)
+        self
+      end
+
+      getter show_xtics
+
       @plots = [] of Plot
 
       getter plots
@@ -460,6 +468,12 @@ module Ishi
         commands << "set border 31"
       when false
         commands << "unset border"
+      end
+      case show = chart.show_xtics
+      when true
+        commands << "set xtics"
+      when false
+        commands << "unset xtics"
       end
       unless chart.plots.empty?
         instruction = chart.dim? == 3 ? "splot " : "plot "
