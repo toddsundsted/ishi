@@ -62,6 +62,14 @@ module Ishi
 
       getter view
 
+      # Shows/hides the chart colorbox.
+      #
+      def show_colorbox(@show_colorbox : Bool)
+        self
+      end
+
+      getter show_colorbox
+
       # Shows/hides the chart border.
       #
       def show_border(@show_border : Bool)
@@ -440,6 +448,12 @@ module Ishi
       end
       if view = chart.view
         commands << "set view #{view[0]},#{view[1]}"
+      end
+      case show = chart.show_colorbox
+      when true
+        commands << "set colorbox"
+      when false
+        commands << "unset colorbox"
       end
       case show = chart.show_border
       when true

@@ -173,6 +173,18 @@ Spectator.describe Ishi::Gnuplot do
     end
   end
 
+  describe "#show_colorbox" do
+    it "shows the colorbox" do
+      output = subject.show(chart.show_colorbox(true))
+      expect(output).to have("set colorbox")
+    end
+
+    it "hides the colorbox" do
+      output = subject.show(chart.show_colorbox(false))
+      expect(output).to have("unset colorbox")
+    end
+  end
+
   describe "#show_border" do
     it "shows the border" do
       output = subject.show(chart.show_border(true))

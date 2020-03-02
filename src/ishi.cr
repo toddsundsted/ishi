@@ -141,6 +141,16 @@ module Ishi
       self
     end
 
+    # Shows/hides the chart colorbox.
+    #
+    # For information on setting/unsetting the colorbox, see:
+    # [Colorbox](http://www.gnuplot.info/docs_5.2/Gnuplot_5.2.pdf#section*.240).
+    #
+    def show_colorbox(show : Bool)
+      @chart.show_colorbox(show)
+      self
+    end
+
     # Shows/hides the chart border.
     #
     # For information on setting/unsetting the border, see:
