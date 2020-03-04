@@ -83,6 +83,18 @@ module Ishi
       self
     end
 
+    # Displays an image.
+    #
+    # *data* is scalar image data.
+    #
+    # Data is visualized using a colormap.
+    #
+    def imshow(data : Indexable(Indexable(D)), **options) forall D
+      {% raise "data must be numeric" unless D < Number %}
+      @chart.plot(Ishi::Gnuplot::Plot2D.new(data, **options.merge({style: :image})))
+      self
+    end
+
     # Sets the label of the `x` axis.
     #
     def xlabel(xlabel : String)

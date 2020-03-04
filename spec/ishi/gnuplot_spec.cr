@@ -122,6 +122,20 @@ Spectator.describe Ishi::Gnuplot do
         end
       end
     end
+
+    context "given an array of values" do
+      it "invokes 'splot...matrix'" do
+        output = subject.show(chart.plot(Ishi::Gnuplot::Plot2D.new([[1, 2], [3, 4]])))
+        expect(output).to have(/^splot '-' matrix/)
+      end
+
+      sample EXAMPLES do |example|
+        it "generates commands" do
+          commands = subject.show(chart.plot(Ishi::Gnuplot::Plot2D.new([[1, 2], [3, 4]], **options(example[0]))))
+          expect(commands).to have(example[1])
+        end
+      end
+    end
   end
 
   describe "#xlabel" do

@@ -244,8 +244,8 @@ module Ishi
       end
 
       private def make_style
-        s = _style
-        @style = s ? " with #{s}" : nil
+        @style = _style
+        @style = @style ? "with #{@style}" : nil
         if @dashtype || @linecolor || @linewidth || @pointsize || @pointtype
           @style = String.build do |io|
             io << @style || ""
@@ -437,7 +437,45 @@ module Ishi
       end
 
       def dim
-        @style == :circles ? 2 : 3
+        @style =~ /circle/ ? 2 : 3
+      end
+    end
+
+    class Plot2D(D) < Plot
+      @@styles = [:image, :lines, :points]
+
+      def initialize(@data : D,
+                     @title : String? = nil, @style : Symbol | String | Nil = nil,
+                     @format : String? = nil,
+                     @dashtype : Array(Int32) | Int32 | String | Nil = nil,
+                     @linecolor : String? = nil,
+                     @linewidth : Int32 | Float64 | Nil = nil,
+                     @pointsize : Int32 | Float64 | Nil = nil,
+                     @pointtype : Int32 | String | Nil = nil,
+                     **options
+                    )
+        super(options)
+      end
+
+      def inst
+        String.build do |io|
+          io << "'-' matrix"
+          io << " title '#{@title}'" if @title
+          io << " #{@style}" if @style
+        end
+      end
+
+      def data
+        Array(String).new.tap do |arr|
+          (0...@data.size).reverse_each do |i|
+            arr << @data[i].join(" ")
+          end
+          arr << "e"
+        end
+      end
+
+      def dim
+        @style =~ /image/ ? 2 : 3
       end
     end
 

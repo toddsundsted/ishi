@@ -51,4 +51,12 @@ Spectator.describe Ishi do
       expect(subject.scatter([0, 1, 2], [1, 2, 3], [0, 1, 0]).show).to have(/^splot .* with dots$/, "0 1 0", "1 2 1", "2 3 0")
     end
   end
+
+  describe "#imshow" do
+    subject { described_class.new }
+
+    it "displays an image" do
+      expect(subject.imshow([[1, 2], [3, 4]]).show).to have(/^plot .* matrix with image$/, "1 2", "3 4")
+    end
+  end
 end
