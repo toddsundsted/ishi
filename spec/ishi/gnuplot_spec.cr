@@ -7,11 +7,13 @@ alias Options = NamedTuple(
   dashtype: Array(Int32) | Int32 | String | Nil,
   linecolor: String | Nil,
   linewidth: Int32 | Float64 | Nil,
+  linestyle: Int32 | Nil,
   pointsize: Int32 | Float64 | Nil,
   pointtype: Int32 | String | Nil,
   dt: Array(Int32) | Int32 | String | Nil,
   lc: String | Nil,
   lw: Int32 | Float64 | Nil,
+  ls: Int32 | Nil,
   ps: Int32 | Float64 | Nil,
   pt: Int32 | Nil
 )
@@ -24,11 +26,13 @@ def options(options)
     "dashtype" => options["dashtype"]?,
     "linecolor" => options["linecolor"]?,
     "linewidth" => options["linewidth"]?,
+    "linestyle" => options["linestyle"]?,
     "pointsize" => options["pointsize"]?,
     "pointtype" => options["pointtype"]?,
     "dt" => options["dt"]?,
     "lc" => options["lc"]?,
     "lw" => options["lw"]?,
+    "ls" => options["ls"]?,
     "ps" => options["ps"]?,
     "pt" => options["pt"]?
   })
@@ -46,6 +50,7 @@ Spectator.describe Ishi::Gnuplot do
       { {dashtype: "--  "}, /dt "--  "/ },
       { {linecolor: "red"}, /lc rgb "red"/ },
       { {linewidth: 2.3}, /lw 2.3/ },
+      { {linestyle: 1}, /ls 1/ },
       { {pointsize: 1.3}, /ps 1.3/ },
       { {pointtype: 1}, /pt 1/ },
       { {pointtype: "+"}, /pt 1/ },
@@ -63,6 +68,7 @@ Spectator.describe Ishi::Gnuplot do
       { {dt: 1}, /dt 1/ },
       { {lc: "#80ff00ee"}, /lc rgb "#80ff00ee"/ },
       { {lw: 3}, /lw 3/ },
+      { {ls: 1}, /ls 1/ },
       { {ps: 2}, /ps 2/ },
       { {pt: 2}, /pt 2/ }
     ]

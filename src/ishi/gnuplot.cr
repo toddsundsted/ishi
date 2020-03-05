@@ -161,6 +161,7 @@ module Ishi
       @dashtype : Array(Int32) | Int32 | String | Nil = nil
       @linecolor : String? = nil
       @linewidth : Int32 | Float64 | Nil = nil
+      @linestyle : Int32? = nil
       @pointsize : Int32 | Float64 | Nil = nil
       @pointtype : Int32 | String | Nil = nil
 
@@ -183,6 +184,7 @@ module Ishi
         @dashtype ||= options[:dt]?
         @linecolor ||= options[:lc]?
         @linewidth ||= options[:lw]?
+        @linestyle ||= options[:ls]?
         @pointsize ||= options[:ps]?
         @pointtype ||= options[:pt]?
       end
@@ -254,12 +256,13 @@ module Ishi
       private def make_style
         @style = _style
         @style = @style ? "with #{@style}" : nil
-        if @dashtype || @linecolor || @linewidth || @pointsize || @pointtype
+        if @dashtype || @linecolor || @linewidth || @linestyle || @pointsize || @pointtype
           @style = String.build do |io|
             io << @style || ""
             io << " dt #{_dashtype}" if @dashtype
             io << " lc #{_linecolor}" if @linecolor
             io << " lw #{@linewidth}" if @linewidth
+            io << " ls #{@linestyle}" if @linestyle
             io << " ps #{@pointsize}" if @pointsize
             io << " pt #{_pointtype}" if @pointtype
           end
@@ -312,6 +315,7 @@ module Ishi
                      @dashtype : Array(Int32) | Int32 | String | Nil = nil,
                      @linecolor : String? = nil,
                      @linewidth : Int32 | Float64 | Nil = nil,
+                     @linestyle : Int32? = nil,
                      @pointsize : Int32 | Float64 | Nil = nil,
                      @pointtype : Int32 | String | Nil = nil,
                      **options
@@ -344,6 +348,7 @@ module Ishi
                      @dashtype : Array(Int32) | Int32 | String | Nil = nil,
                      @linecolor : String? = nil,
                      @linewidth : Int32 | Float64 | Nil = nil,
+                     @linestyle : Int32? = nil,
                      @pointsize : Int32 | Float64 | Nil = nil,
                      @pointtype : Int32 | String | Nil = nil,
                      **options
@@ -382,6 +387,7 @@ module Ishi
                      @dashtype : Array(Int32) | Int32 | String | Nil = nil,
                      @linecolor : String? = nil,
                      @linewidth : Int32 | Float64 | Nil = nil,
+                     @linestyle : Int32? = nil,
                      @pointsize : Int32 | Float64 | Nil = nil,
                      @pointtype : Int32 | String | Nil = nil,
                      **options
@@ -420,6 +426,7 @@ module Ishi
                      @dashtype : Array(Int32) | Int32 | String | Nil = nil,
                      @linecolor : String? = nil,
                      @linewidth : Int32 | Float64 | Nil = nil,
+                     @linestyle : Int32? = nil,
                      @pointsize : Int32 | Float64 | Nil = nil,
                      @pointtype : Int32 | String | Nil = nil,
                      **options
@@ -458,6 +465,7 @@ module Ishi
                      @dashtype : Array(Int32) | Int32 | String | Nil = nil,
                      @linecolor : String? = nil,
                      @linewidth : Int32 | Float64 | Nil = nil,
+                     @linestyle : Int32? = nil,
                      @pointsize : Int32 | Float64 | Nil = nil,
                      @pointtype : Int32 | String | Nil = nil,
                      **options
