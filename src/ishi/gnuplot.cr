@@ -504,6 +504,7 @@ module Ishi
     #
     def show(chart)
       commands = [] of String
+      commands += @prologue.to_a
       commands << "set xlabel '#{chart.xlabel}'" if chart.xlabel
       commands << "set ylabel '#{chart.ylabel}'" if chart.ylabel
       commands << "set zlabel '#{chart.zlabel}'" if chart.zlabel
@@ -569,6 +570,7 @@ module Ishi
         commands << instruction
         chart.plots.each { |plot| commands += plot.data }
       end
+      commands += @epilogue.to_a
       run(commands)
     ensure
       chart.clear
@@ -582,13 +584,7 @@ module Ishi
       Process.run("gnuplot") do |process|
         input = process.input
         output = process.output
-        @prologue.each do |command|
-          input.puts command
-        end
         commands.each do |command|
-          input.puts command
-        end
-        @epilogue.each do |command|
           input.puts command
         end
         IO::Memory.new.tap do |memory|
