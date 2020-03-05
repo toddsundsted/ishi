@@ -1,0 +1,10 @@
+set palette rgb 21,22,23
+set style line 1 palette fraction 0.1
+set style line 2 palette fraction 0.2
+set style line 3 palette fraction 0.3
+set style line 4 palette fraction 0.4
+set style line 5 palette fraction 0.5
+set style line 6 palette fraction 0.6
+set style line 7 palette fraction 0.7
+set style line 8 palette fraction 0.8
+set style line 9 palette fraction 0.9

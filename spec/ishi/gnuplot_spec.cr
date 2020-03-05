@@ -187,6 +187,13 @@ Spectator.describe Ishi::Gnuplot do
     end
   end
 
+  describe "#palette" do
+    it "sets the palette" do
+      output = subject.show(chart.palette(:gray))
+      expect(output).to have("set palette gray")
+    end
+  end
+
   describe "#show_colorbox" do
     it "shows the colorbox" do
       output = subject.show(chart.show_colorbox(true))

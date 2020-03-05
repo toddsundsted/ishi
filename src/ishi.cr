@@ -1,3 +1,5 @@
+require "./ishi/gnuplot"
+
 # Graph plotting package with a small API powered by gnuplot.
 #
 # See `Base` for documentation on supported methods.
@@ -153,6 +155,18 @@ module Ishi
       self
     end
 
+    {% begin %}
+      # Sets the palette.
+      #
+      # *name* is `:gray` or one of the available color palettes:
+      # {% palettes = Ishi::Gnuplot::PALETTES.keys.sort.map { |k| "`#{k.symbolize}`" } %} {{palettes[0..-2].join(", ").id}} or {{palettes[-1].id}}
+      #
+      def palette(name : Symbol)
+        @chart.palette(name)
+        self
+      end
+    {% end %}
+
     # Shows/hides the chart colorbox.
     #
     # For information on setting/unsetting the colorbox, see:
@@ -233,5 +247,3 @@ module Ishi
     end
   end
 end
-
-require "./ishi/gnuplot"

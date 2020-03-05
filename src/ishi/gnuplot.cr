@@ -62,6 +62,14 @@ module Ishi
 
       getter view
 
+      # Sets the palette.
+      #
+      def palette(@palette_name : Symbol)
+        self
+      end
+
+      getter :palette_name
+
       # Shows/hides the chart colorbox.
       #
       def show_colorbox(@show_colorbox : Bool)
@@ -503,6 +511,26 @@ module Ishi
       if view = chart.view
         commands << "set view #{view[0]},#{view[1]}"
       end
+      case name = chart.palette_name
+      when :gray
+        commands <<
+          "set palette gray" <<
+          "set style line 1 palette fraction 0.1" <<
+          "set style line 2 palette fraction 0.2" <<
+          "set style line 3 palette fraction 0.3" <<
+          "set style line 4 palette fraction 0.4" <<
+          "set style line 5 palette fraction 0.5" <<
+          "set style line 6 palette fraction 0.6" <<
+          "set style line 7 palette fraction 0.7" <<
+          "set style line 8 palette fraction 0.8" <<
+          "set style line 9 palette fraction 0.9" <<
+          "unset colorbox"
+      else
+        if name
+          commands += PALETTES[name].split("\n")
+          commands << "unset colorbox"
+        end
+      end
       case show = chart.show_colorbox
       when true
         commands << "set colorbox"
@@ -561,5 +589,16 @@ module Ishi
         end
       end
     end
+
+    {% begin %}
+      # :nodoc:
+      PALETTES = {
+        {% palettes = `ls "#{__DIR__}"/../../etc/palettes/*.pal`.chomp.split("\n").sort %}
+        {% for palette in (palettes) %}
+          {% name = palette.split("/").last.split(".").first %}
+          {{name.id}}: {{read_file(palette)}},
+        {% end %}
+      }
+    {% end %}
   end
 end
