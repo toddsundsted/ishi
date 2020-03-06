@@ -22,7 +22,11 @@ module Ishi
     end
 
     def show(**options)
-      Gnuplot.new(["set term dumb"]).show(@chart, **options)
+      term =
+        (size = @chart.canvas_size) ?
+        "set term dumb size #{size[0]},#{size[1]}" :
+        "set term dumb"
+      Gnuplot.new([term]).show(@chart, **options)
     end
   end
 

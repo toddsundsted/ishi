@@ -62,6 +62,21 @@ module Ishi
 
       getter view
 
+      # Sets the size of the chart canvas.
+      #
+      def canvas_size(x : Float64, y : Float64)
+        @canvas_size = {x, y}
+        self
+      end
+
+      # :ditto:
+      def canvas_size(x : Int32, y : Int32)
+        @canvas_size = {x, y}
+        self
+      end
+
+      getter canvas_size
+
       # Sets the palette.
       #
       def palette(@palette_name : Symbol)

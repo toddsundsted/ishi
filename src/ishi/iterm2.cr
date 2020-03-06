@@ -6,7 +6,11 @@ module Ishi
   #
   class ITerm2 < Base
     def show(**options)
-      Gnuplot.new(["set term pngcairo enhanced"]).show(@chart, **options)
+      term =
+        (size = @chart.canvas_size) ?
+        "set term pngcairo enhanced size #{size[0]},#{size[1]}" :
+        "set term pngcairo enhanced"
+      Gnuplot.new([term]).show(@chart, **options)
     end
   end
 

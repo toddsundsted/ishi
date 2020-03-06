@@ -155,6 +155,19 @@ module Ishi
       self
     end
 
+    # Sets the size of the chart canvas.
+    #
+    def canvas_size(x : Float64, y : Float64)
+      @chart.canvas_size(x, y)
+      self
+    end
+
+    # :ditto:
+    def canvas_size(x : Int32, y : Int32)
+      @chart.canvas_size(x, y)
+      self
+    end
+
     {% begin %}
       # Sets the palette.
       #
@@ -210,7 +223,11 @@ module Ishi
     # Shows the chart.
     #
     def show(**options)
-      Gnuplot.new(["set term qt persist"]).show(@chart, **options)
+      term =
+        (size = @chart.canvas_size) ?
+        "set term qt persist size #{size[0]},#{size[1]}" :
+        "set term qt persist"
+      Gnuplot.new([term]).show(@chart, **options)
     end
   end
 

@@ -59,4 +59,12 @@ Spectator.describe Ishi do
       expect(subject.imshow([[1, 2], [3, 4]]).show).to have(/^plot .* matrix with image$/, "1 2", "3 4")
     end
   end
+
+  describe "#canvas_size" do
+    subject { described_class.new }
+
+    it "sets the size of the chart canvas" do
+      expect(subject.canvas_size(320, 200).show).to have(/size 320,200/)
+    end
+  end
 end
