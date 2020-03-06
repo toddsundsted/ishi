@@ -220,6 +220,16 @@ module Ishi
       self
     end
 
+    # Shows/hides the chart key.
+    #
+    # For information on setting/unsetting the key, see:
+    # [Key](http://www.gnuplot.info/docs_5.2/Gnuplot_5.2.pdf#section*.272).
+    #
+    def show_key(show : Bool)
+      @chart.show_key(show)
+      self
+    end
+
     # Shows the chart.
     #
     def show(**options)

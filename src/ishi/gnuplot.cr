@@ -117,6 +117,14 @@ module Ishi
 
       getter show_ytics
 
+      # Shows/hides the chart key.
+      #
+      def show_key(@show_key : Bool)
+        self
+      end
+
+      getter show_key
+
       @plots = [] of Plot
 
       getter plots
@@ -578,6 +586,12 @@ module Ishi
         commands << "set ytics"
       when false
         commands << "unset ytics"
+      end
+      case show = chart.show_key
+      when true
+        commands << "set key"
+      when false
+        commands << "unset key"
       end
       unless chart.plots.empty?
         instruction = chart.dim? == 3 ? "splot " : "plot "

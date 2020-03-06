@@ -248,6 +248,18 @@ Spectator.describe Ishi::Gnuplot do
     end
   end
 
+  describe "#show_key" do
+    it "shows the key" do
+      output = subject.show(chart.show_key(true))
+      expect(output).to have("set key")
+    end
+
+    it "hides the key" do
+      output = subject.show(chart.show_key(false))
+      expect(output).to have("unset key")
+    end
+  end
+
   describe "#show" do
     it "displays the chart" do
       output = subject.show(chart.plot(Ishi::Gnuplot::PlotExp.new("2 * x + 1")))
