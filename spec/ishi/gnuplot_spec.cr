@@ -198,6 +198,11 @@ Spectator.describe Ishi::Gnuplot do
       output = subject.show(chart.palette(:gray))
       expect(output).to have("set palette gray")
     end
+
+    it "hides the colorbox" do
+      output = subject.show(chart.palette(:gray, colorbox: false))
+      expect(output).to have("unset colorbox")
+    end
   end
 
   describe "#show_colorbox" do

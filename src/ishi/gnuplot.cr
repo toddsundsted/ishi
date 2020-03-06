@@ -79,7 +79,7 @@ module Ishi
 
       # Sets the palette.
       #
-      def palette(@palette_name : Symbol)
+      def palette(@palette_name : Symbol, colorbox @show_colorbox = true)
         self
       end
 
@@ -555,12 +555,10 @@ module Ishi
           "set style line 6 palette fraction 0.6" <<
           "set style line 7 palette fraction 0.7" <<
           "set style line 8 palette fraction 0.8" <<
-          "set style line 9 palette fraction 0.9" <<
-          "unset colorbox"
+          "set style line 9 palette fraction 0.9"
       else
         if name
           commands += PALETTES[name].split("\n")
-          commands << "unset colorbox"
         end
       end
       case show = chart.show_colorbox
