@@ -23,7 +23,7 @@ module Ishi
 
     def show(**options)
       term =
-        (size = @chart.canvas_size) ?
+        (size = @canvas_size) ?
         "set term canvas size #{size[0]},#{size[1]}" :
         "set term canvas"
       Gnuplot.new([term]).show(@chart, **options)
