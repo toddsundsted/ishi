@@ -5,6 +5,7 @@ require "./ishi/gnuplot"
 # See `Base` for documentation on supported methods.
 #
 module Ishi
+  # :nodoc:
   VERSION = {{ `shards version "#{__DIR__}"`.chomp.stringify }}
 
   class Base
@@ -266,6 +267,7 @@ module Ishi
     end
   end
 
+  # :nodoc:
   @@default = Base
 
   # Creates a new instance.

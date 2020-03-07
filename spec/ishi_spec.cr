@@ -19,7 +19,7 @@ Spectator.describe Ishi do
     end
   end
 
-  describe ".plot" do
+  describe "#plot" do
     subject { described_class.new }
 
     it "plots y values" do
@@ -40,7 +40,7 @@ Spectator.describe Ishi do
     end
   end
 
-  describe ".scatter" do
+  describe "#scatter" do
     subject { described_class.new }
 
     it "scatter plots x and y values" do
