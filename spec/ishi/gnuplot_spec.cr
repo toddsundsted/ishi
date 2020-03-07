@@ -278,8 +278,15 @@ Spectator.describe Ishi::Gnuplot do
       expect(output).to have("plot 2 * x + 1")
     end
 
+    it "displays the charts" do
+      chart1 = Ishi::Gnuplot::Chart.new.plot(Ishi::Gnuplot::PlotExp.new("sin(x)"))
+      chart2 = Ishi::Gnuplot::Chart.new.plot(Ishi::Gnuplot::PlotExp.new("cos(x)"))
+      output = subject.show([chart1, chart2], 2, 1)
+      expect(output).to have("plot sin(x)", "plot cos(x)")
+    end
+
     it "clears the chart" do
-      subject.show(chart.plot(Ishi::Gnuplot::PlotExp.new("2 * x + 1")))
+      subject.show(chart.plot(Ishi::Gnuplot::PlotExp.new("x")))
       expect(chart.size).to eq(0)
     end
   end

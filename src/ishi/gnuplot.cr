@@ -534,7 +534,7 @@ module Ishi
 
     # Creates a new instance of the gnuplot engine.
     #
-    def initialize(@prologue : Enumerable(String) = [] of String, @epilogue : Enumerable(String) = ["exit"])
+    def initialize(@prologue : Enumerable(String) = [] of String, @epilogue : Enumerable(String) = [] of String)
     end
 
     # Shows the chart.
@@ -542,6 +542,36 @@ module Ishi
     def show(chart)
       commands = [] of String
       commands += @prologue.to_a
+      commands += _chart(chart)
+      commands += @epilogue.to_a
+      commands << "exit"
+      run(commands)
+    ensure
+      chart.clear
+    end
+
+    # Shows the charts.
+    #
+    def show(charts, rows, cols)
+      if charts.size != rows * cols
+        raise ArgumentError.new("incompatible layout: rows * cols != number of charts")
+      end
+      commands = [] of String
+      commands += @prologue.to_a
+      commands << "set multiplot layout #{rows},#{cols}"
+      charts.each do |chart|
+        commands += _chart(chart)
+      end
+      commands << "unset multiplot"
+      commands += @epilogue.to_a
+      commands << "exit"
+      run(commands)
+    ensure
+      charts.each(&.clear)
+    end
+
+    private def _chart(chart)
+      commands = [] of String
       commands << "set xlabel '#{chart.xlabel}'" if chart.xlabel
       commands << "set ylabel '#{chart.ylabel}'" if chart.ylabel
       commands << "set zlabel '#{chart.zlabel}'" if chart.zlabel
@@ -633,12 +663,11 @@ module Ishi
         instruction = chart.dim? == 3 ? "splot " : "plot "
         instruction += chart.plots.map(&.inst).join(",")
         commands << instruction
-        chart.plots.each { |plot| commands += plot.data }
+        chart.plots.each do |plot|
+          commands += plot.data
+        end
       end
-      commands += @epilogue.to_a
-      run(commands)
-    ensure
-      chart.clear
+      commands
     end
 
     # Runs a "gnuplot" process and feeds it `commands`.
