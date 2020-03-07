@@ -4,7 +4,7 @@
 [![Build Status](https://travis-ci.org/toddsundsted/ishi.svg?branch=master)](https://travis-ci.org/toddsundsted/ishi)
 [![Documentation](https://img.shields.io/badge/docs-available-brightgreen.svg)](https://toddsundsted.github.io/ishi/)
 
-Graph plotting package with a small API powered by gnuplot.
+Graph plotting package with a small API and sensible defaults powered by gnuplot.
 
 Requires [gnuplot](http://www.gnuplot.info/).
 

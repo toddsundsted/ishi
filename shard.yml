@@ -2,7 +2,7 @@ name: ishi
 version: 0.3.0
 
 description: |
-  Graph plotting package with a small API powered by gnuplot.
+  Graph plotting package with a small API and sensible defaults powered by gnuplot.
 
 authors:
   - Todd Sundsted
