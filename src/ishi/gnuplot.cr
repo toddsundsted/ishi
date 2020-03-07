@@ -545,6 +545,8 @@ module Ishi
       end
     end
 
+    @@debug : Bool = false
+
     # Creates a new instance of the gnuplot engine.
     #
     def initialize(@prologue : Enumerable(String) = [] of String, @epilogue : Enumerable(String) = ["exit"])
@@ -663,6 +665,7 @@ module Ishi
         input = process.input
         output = process.output
         commands.each do |command|
+          STDERR.puts command if @@debug
           input.puts command
         end
         IO::Memory.new.tap do |memory|
