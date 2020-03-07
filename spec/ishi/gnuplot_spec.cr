@@ -193,6 +193,13 @@ Spectator.describe Ishi::Gnuplot do
     end
   end
 
+  describe "#margin" do
+    it "sets the margin" do
+      output = subject.show(chart.margin(left: 6, right: 6, top: true, bottom: false))
+      expect(output).to have("set lmargin 6", "set rmargin 6", "set tmargin -1")
+    end
+  end
+
   describe "#palette" do
     it "sets the palette" do
       output = subject.show(chart.palette(:gray))

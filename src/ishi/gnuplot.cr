@@ -62,6 +62,33 @@ module Ishi
 
       getter view
 
+      # Sets the margin.
+      #
+      def margin(
+           left : Float64 | Bool, right : Float64 | Bool,
+           top : Float64 | Bool, bottom : Float64 | Bool
+         )
+        @left = left if left
+        @right = right if right
+        @top = top if top
+        @bottom = bottom if bottom
+        self
+      end
+
+      # :ditto:
+      def margin(
+           left : Int32 | Bool, right : Int32 | Bool,
+           top : Int32 | Bool, bottom : Int32 | Bool
+         )
+        @left = left if left
+        @right = right if right
+        @top = top if top
+        @bottom = bottom if bottom
+        self
+      end
+
+      getter left, right, top, bottom
+
       # Sets the size of the chart canvas.
       #
       def canvas_size(x : Float64, y : Float64)
@@ -542,6 +569,30 @@ module Ishi
       end
       if view = chart.view
         commands << "set view #{view[0]},#{view[1]}"
+      end
+      case left = chart.left
+      when Number
+        commands << "set lmargin #{left}"
+      when true
+        commands << "set lmargin -1"
+      end
+      case right = chart.right
+      when Number
+        commands << "set rmargin #{right}"
+      when true
+        commands << "set rmargin -1"
+      end
+      case top = chart.top
+      when Number
+        commands << "set tmargin #{top}"
+      when true
+        commands << "set tmargin -1"
+      end
+      case bottom = chart.bottom
+      when Number
+        commands << "set bmargin #{bottom}"
+      when true
+        commands << "set bmargin -1"
       end
       case name = chart.palette_name
       when :gray

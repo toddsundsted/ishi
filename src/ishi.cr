@@ -168,6 +168,28 @@ module Ishi
       self
     end
 
+    # Sets the margin.
+    #
+    # For information on setting/unsetting the margin, see:
+    # [Margin](http://www.gnuplot.info/docs_5.2/Gnuplot_5.2.pdf#section*.291).
+    #
+    def margin(
+         left : Float64 | Bool = false, right : Float64 | Bool = false,
+         top : Float64 | Bool = false, bottom : Float64 | Bool = false
+       )
+      @chart.margin(left, right, top, bottom)
+      self
+    end
+
+    # :ditto:
+    def margin(
+         left : Int32 | Bool = false, right : Int32 | Bool = false,
+         top : Int32 | Bool = false, bottom : Int32 | Bool = false
+       )
+      @chart.margin(left, right, top, bottom)
+      self
+    end
+
     {% begin %}
       # Sets the palette.
       #
