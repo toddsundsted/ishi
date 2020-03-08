@@ -10,13 +10,21 @@ module Ishi
         (size = @canvas_size) ?
         "set term pngcairo enhanced size #{size[0]},#{size[1]}" :
         "set term pngcairo enhanced"
-      Gnuplot.new([term]).show(@chart, **options)
+      if (rows = @rows) && (cols = @cols)
+        Gnuplot.new([term]).show(@charts, rows, cols, **options)
+      else
+        Gnuplot.new([term]).show(@charts.first, **options)
+      end
     end
   end
 
   class Gnuplot
     def show(chart, **options)
       Iterm2.new.display(previous_def(chart), **options)
+    end
+
+    def show(chart, rows, cols, **options)
+      Iterm2.new.display(previous_def(chart, rows, cols), **options)
     end
   end
 

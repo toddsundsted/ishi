@@ -19,6 +19,49 @@ Spectator.describe Ishi do
     end
   end
 
+  describe "#charts" do
+    subject { described_class.new }
+
+    it "creates multiple subcharts" do
+      expect(subject.charts(2, 1).size).to eq(2)
+    end
+
+    it "engages multiplot mode" do
+      subject.charts(2, 1)
+      expect(subject.show).to have("set multiplot layout 2,1", "unset multiplot")
+    end
+
+    it "extends subcharts" do
+      plots = ["sin(x)", "cos(x)"]
+      subject.charts(2, 1) do
+        plot(plots.shift)
+      end
+      subject.charts(3, 1)
+      expect(subject.show).to have("plot sin(x)", "plot cos(x)")
+      expect(subject.size).to eq(3)
+    end
+
+    it "truncates subcharts" do
+      plots = ["sin(x)", "cos(x)", "tan(x)"]
+      subject.charts(3, 1) do
+        plot(plots.shift)
+      end
+      subject.charts(2, 1)
+      expect(subject.show).to have("plot sin(x)", "plot cos(x)")
+      expect(subject.size).to eq(2)
+    end
+
+    it "forbids invoking #charts on a subchart" do
+      chart = subject.charts(1, 1).first
+      expect{chart.charts(1, 1)}.to raise_error(NotImplementedError)
+    end
+
+    it "forbids invoking #show on a subchart" do
+      chart = subject.charts(1, 1).first
+      expect{chart.show}.to raise_error(NotImplementedError)
+    end
+  end
+
   describe "#plot" do
     subject { described_class.new }
 

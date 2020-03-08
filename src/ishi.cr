@@ -10,8 +10,93 @@ module Ishi
 
   class Base
     # :nodoc:
+    class Proxy < Base
+      def initialize
+        super
+      end
+
+      def initialize(chart : Ishi::Gnuplot::Chart)
+        @charts = [chart]
+      end
+
+      def charts(rows : Int32, cols : Int32)
+        raise NotImplementedError.new("not supported on proxies")
+      end
+
+      def show(**options)
+        raise NotImplementedError.new("not supported on proxies")
+      end
+    end
+
+    # :nodoc:
     def initialize
-      @chart = Ishi::Gnuplot::Chart.new
+      @charts = [Ishi::Gnuplot::Chart.new]
+    end
+
+    # Changes the number of charts in the figure.
+    #
+    # By default a figure has one chart. This call changes the number
+    # of charts in the figure. The original chart is preserved and
+    # becomes the chart in the first row, first column of the new
+    # layout.
+    #
+    # Returns the charts.
+    #
+    #     figure = Ishi.new
+    #     charts = figure.charts(2, 2)
+    #     charts[0].plot([1, 2, 3, 4])
+    #     charts[1].plot([2, 3, 4, 1])
+    #       ...
+    #     figure.show
+    #
+    def charts(rows : Int32, cols : Int32)
+      raise ArgumentError.new("rows must be greater than zero") if rows < 1
+      raise ArgumentError.new("cols must be greater than zero") if cols < 1
+      if (delta = rows * cols - @charts.size) > 0
+        delta.times { @charts << Ishi::Gnuplot::Chart.new }
+      elsif delta < 0
+        @charts = @charts[0..delta - 1]
+      end
+      @rows = rows
+      @cols = cols
+      @charts.map do |chart|
+        Proxy.new(chart)
+      end
+    end
+
+    # Changes the number of charts in the figure.
+    #
+    # By default a figure has one chart. This call changes the number
+    # of charts in the figure. The original chart is preserved and
+    # becomes the chart in the first row, first column of the new
+    # layout.
+    #
+    # Yields each chart as the default receiver of the supplied
+    # block. Block arguments are *i* (the i-th chart in the figure),
+    # *row* and *col* (the row and column of the chart).
+    #
+    #     figure = Ishi.new
+    #     figure.charts(2, 2) do |i|
+    #       plot([1, 2, 3, 4].rotate(i))
+    #         ...
+    #     end
+    #     figure.show
+    #
+    def charts(rows : Int32, cols : Int32)
+      temp = charts(rows, cols)
+      i = 0
+      rows.times do |r|
+        cols.times do |c|
+          with temp[i] yield i, r, c
+          i += 1
+        end
+      end
+    end
+
+    # Returns the number of charts in the figure.
+    #
+    def size
+      @charts.size
     end
 
     # Plots a mathematical expression.
@@ -26,7 +111,7 @@ module Ishi
     # style. Supported styles include `:lines` and `:points`.
     #
     def plot(expression : String, format : String? = nil, *, title : String? = nil, style : Symbol? = nil, **options)
-      @chart.plot(Ishi::Gnuplot::PlotExp.new(expression, title, style, format, **options))
+      @charts.first.plot(Ishi::Gnuplot::PlotExp.new(expression, title, style, format, **options))
       self
     end
 
@@ -38,7 +123,7 @@ module Ishi
     #
     def plot(ydata : Indexable(Y), format : String? = nil, *, title : String? = nil, style : Symbol = :lines, **options) forall Y
       {% raise "data must be numeric" unless Y < Number %}
-      @chart.plot(Ishi::Gnuplot::PlotY.new(ydata, title, style, format, **options))
+      @charts.first.plot(Ishi::Gnuplot::PlotY.new(ydata, title, style, format, **options))
       self
     end
 
@@ -50,7 +135,7 @@ module Ishi
     #
     def plot(xdata : Indexable(M), ydata : Indexable(N), format : String? = nil, *, title : String? = nil, style : Symbol = :points, **options) forall M, N
       {% raise "data must be numeric" unless M < Number && N < Number %}
-      @chart.plot(Ishi::Gnuplot::PlotXY.new(xdata, ydata, title, style, format, **options))
+      @charts.first.plot(Ishi::Gnuplot::PlotXY.new(xdata, ydata, title, style, format, **options))
       self
     end
 
@@ -62,7 +147,7 @@ module Ishi
     #
     def plot(xdata : Indexable(T), ydata : Indexable(U), zdata : Indexable(V), format : String? = nil, *, title : String? = nil, style : Symbol = :points, **options) forall T, U, V
       {% raise "data must be numeric" unless T < Number && U < Number && V < Number %}
-      @chart.plot(Ishi::Gnuplot::PlotXYZ.new(xdata, ydata, zdata, title, style, format, **options))
+      @charts.first.plot(Ishi::Gnuplot::PlotXYZ.new(xdata, ydata, zdata, title, style, format, **options))
       self
     end
 
@@ -72,7 +157,7 @@ module Ishi
     #
     def scatter(xdata : Indexable(M), ydata : Indexable(N), format : String? = nil, *, title : String? = nil, style : Symbol = :dots, **options) forall M, N
       {% raise "data must be numeric" unless M < Number && N < Number %}
-      @chart.plot(Ishi::Gnuplot::PlotXY.new(xdata, ydata, title, style, format, **options))
+      @charts.first.plot(Ishi::Gnuplot::PlotXY.new(xdata, ydata, title, style, format, **options))
       self
     end
 
@@ -82,7 +167,7 @@ module Ishi
     #
     def scatter(xdata : Indexable(T), ydata : Indexable(U), zdata : Indexable(V), format : String? = nil, *, title : String? = nil, style : Symbol = :dots, **options) forall T, U, V
       {% raise "data must be numeric" unless T < Number && U < Number && V < Number %}
-      @chart.plot(Ishi::Gnuplot::PlotXYZ.new(xdata, ydata, zdata, title, style, format, **options))
+      @charts.first.plot(Ishi::Gnuplot::PlotXYZ.new(xdata, ydata, zdata, title, style, format, **options))
       self
     end
 
@@ -94,49 +179,49 @@ module Ishi
     #
     def imshow(data : Indexable(Indexable(D)), **options) forall D
       {% raise "data must be numeric" unless D < Number %}
-      @chart.plot(Ishi::Gnuplot::Plot2D.new(data, **options.merge({style: :image})))
+      @charts.first.plot(Ishi::Gnuplot::Plot2D.new(data, **options.merge({style: :image})))
       self
     end
 
     # Sets the label of the `x` axis.
     #
     def xlabel(xlabel : String)
-      @chart.xlabel(xlabel)
+      @charts.first.xlabel(xlabel)
       self
     end
 
     # Sets the label of the `y` axis.
     #
     def ylabel(ylabel : String)
-      @chart.ylabel(ylabel)
+      @charts.first.ylabel(ylabel)
       self
     end
 
     # Sets the label of the `z` axis.
     #
     def zlabel(zlabel : String)
-      @chart.zlabel(zlabel)
+      @charts.first.zlabel(zlabel)
       self
     end
 
     # Sets the range of the `x` axis.
     #
     def xrange(xrange : Range(Float64, Float64) | Range(Int32, Int32))
-      @chart.xrange(xrange)
+      @charts.first.xrange(xrange)
       self
     end
 
     # Sets the range of the `y` axis.
     #
     def yrange(yrange : Range(Float64, Float64) | Range(Int32, Int32))
-      @chart.yrange(yrange)
+      @charts.first.yrange(yrange)
       self
     end
 
     # Sets the range of the `z` axis.
     #
     def zrange(zrange : Range(Float64, Float64) | Range(Int32, Int32))
-      @chart.zrange(zrange)
+      @charts.first.zrange(zrange)
       self
     end
 
@@ -146,13 +231,13 @@ module Ishi
     # [View](http://www.gnuplot.info/docs_5.2/Gnuplot_5.2.pdf#section*.385).
     #
     def view(xrot : Float64, zrot : Float64)
-      @chart.view(xrot, zrot)
+      @charts.first.view(xrot, zrot)
       self
     end
 
     # :ditto:
     def view(xrot : Int32, zrot : Int32)
-      @chart.view(xrot, zrot)
+      @charts.first.view(xrot, zrot)
       self
     end
 
@@ -178,7 +263,7 @@ module Ishi
          left : Float64 | Bool = false, right : Float64 | Bool = false,
          top : Float64 | Bool = false, bottom : Float64 | Bool = false
        )
-      @chart.margin(left, right, top, bottom)
+      @charts.first.margin(left, right, top, bottom)
       self
     end
 
@@ -187,7 +272,7 @@ module Ishi
          left : Int32 | Bool = false, right : Int32 | Bool = false,
          top : Int32 | Bool = false, bottom : Int32 | Bool = false
        )
-      @chart.margin(left, right, top, bottom)
+      @charts.first.margin(left, right, top, bottom)
       self
     end
 
@@ -201,7 +286,7 @@ module Ishi
       # of *colorbox*.
       #
       def palette(name : Symbol, colorbox : Bool = true)
-        @chart.palette(name, colorbox)
+        @charts.first.palette(name, colorbox)
         self
       end
     {% end %}
@@ -212,7 +297,7 @@ module Ishi
     # [Colorbox](http://www.gnuplot.info/docs_5.2/Gnuplot_5.2.pdf#section*.240).
     #
     def show_colorbox(show : Bool)
-      @chart.show_colorbox(show)
+      @charts.first.show_colorbox(show)
       self
     end
 
@@ -222,7 +307,7 @@ module Ishi
     # [Border](http://www.gnuplot.info/docs_5.2/Gnuplot_5.2.pdf#section*.231).
     #
     def show_border(show : Bool)
-      @chart.show_border(show)
+      @charts.first.show_border(show)
       self
     end
 
@@ -232,7 +317,7 @@ module Ishi
     # [Xtics](http://www.gnuplot.info/docs_5.2/Gnuplot_5.2.pdf#section*.402).
     #
     def show_xtics(show : Bool)
-      @chart.show_xtics(show)
+      @charts.first.show_xtics(show)
       self
     end
 
@@ -242,7 +327,7 @@ module Ishi
     # [Ytics](http://www.gnuplot.info/docs_5.2/Gnuplot_5.2.pdf#section*.423).
     #
     def show_ytics(show : Bool)
-      @chart.show_ytics(show)
+      @charts.first.show_ytics(show)
       self
     end
 
@@ -252,18 +337,22 @@ module Ishi
     # [Key](http://www.gnuplot.info/docs_5.2/Gnuplot_5.2.pdf#section*.272).
     #
     def show_key(show : Bool)
-      @chart.show_key(show)
+      @charts.first.show_key(show)
       self
     end
 
-    # Shows the chart.
+    # Shows the chart(s).
     #
     def show(**options)
       term =
         (size = @canvas_size) ?
         "set term qt persist size #{size[0]},#{size[1]}" :
         "set term qt persist"
-      Gnuplot.new([term]).show(@chart, **options)
+      if (rows = @rows) && (cols = @cols)
+        Gnuplot.new([term]).show(@charts, rows, cols, **options)
+      else
+        Gnuplot.new([term]).show(@charts.first, **options)
+      end
     end
   end
 
