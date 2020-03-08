@@ -1,6 +1,7 @@
 require "../ishi"
 
 module Ishi
+  # :nodoc:
   @@io : IO = STDOUT
 
   # :nodoc:

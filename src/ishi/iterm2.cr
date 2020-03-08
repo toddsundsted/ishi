@@ -2,9 +2,27 @@ require "../ishi"
 require "iterm2"
 
 module Ishi
+  # :nodoc:
+  @@io : IO = STDOUT
+
+  # :nodoc:
+  def self.io
+    @@io
+  end
+
+  # :nodoc:
+  def self.io=(io)
+    @@io = io
+  end
+
   # Renders chart as image to the ITerm2 console.
   #
-  class ITerm2 < Base
+  class Iterm2 < Base
+    def initialize(io : IO = STDOUT)
+      Ishi.io = io
+      super()
+    end
+
     def show(**options)
       term =
         (size = @canvas_size) ?
@@ -20,13 +38,13 @@ module Ishi
 
   class Gnuplot
     def show(chart, **options)
-      Iterm2.new.display(previous_def(chart), **options)
+      ::Iterm2.new(Ishi.io).display(previous_def(chart), **options)
     end
 
     def show(chart, rows, cols, **options)
-      Iterm2.new.display(previous_def(chart, rows, cols), **options)
+      ::Iterm2.new(Ishi.io).display(previous_def(chart, rows, cols), **options)
     end
   end
 
-  @@default = ITerm2
+  @@default = Iterm2
 end
