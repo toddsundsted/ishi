@@ -58,9 +58,11 @@ end
 
 ![two plots](https://raw.githubusercontent.com/toddsundsted/ishi/ca9055ef481b4f6ed114fa623d420683ffb1b7c8/etc/examples/1.png)
 
+The [etc/examples](https://github.com/toddsundsted/ishi/tree/master/etc/examples) directory contains examples of usage.
+
 ### plot
 
-`plot` takes data in several formats:
+`plot` plots points and lines. It takes data in several formats:
 * `plot(ydata)` - y values in *ydata* with x values ranging from `0` to `ydata.size - 1`
 * `plot(xdata, ydata)` - x values in *xdata* and corresponding y values in *ydata*
 * `plot(xdata, ydata, zdata)` - x values in *xdata*, y values in *ydata*, and z values in *zdata*
@@ -171,6 +173,96 @@ end
 The *format* "ko" could also be expressed explicitly (and much more
 verbosely) with the named arguments `linecolor: "black", pointtype: 7`,
 and the *format* "b--" with `linecolor: "blue", dashtype: 2`.
+
+### scatter
+
+`scatter` draws scatter plots. It takes data in several formats:
+* `scatter(xdata, ydata)` - x values in *xdata* and corresponding y values in *ydata*
+* `scatter(xdata, ydata, zdata)` - x values in *xdata*, y values in *ydata*, and z values in *zdata*
+
+Chart dimensionality (2D or 3D) is inferred from the data. By default,
+`scatter` places a . (dot) at each point.
+
+All `scatter` methods/commands accept the optional named arguments
+*title*, *style*, *dashtype* (*dt*), *linecolor* (*lc*), *linewidth*
+(*lw*), *pointsize* (*ps*), *pointtype* (*pt*), *linestyle* (*ls*) and
+*format*.
+
+The following code demonstrates the use of *scatter*:
+
+```crystal
+require "ishi"
+
+Ishi.new do
+  view(80, 20)
+  scatter(xdata, ydata, zdata)
+end
+```
+
+![scatter](https://raw.githubusercontent.com/toddsundsted/ishi/21418efb485b54fbcde56b0999cd5ad81c2410cb/etc/examples/4.png)
+
+### imshow
+
+`imshow` displays data as a pseudocolor, heatmapped image:
+* `imshow(data)` - *data* is two-dimensional scalar data, which will be rendered as an image
+
+The following code demonstrates the use of *imshow*:
+
+```crystal
+require "ishi"
+
+Ishi.new do
+  palette(:inferno)
+  imshow(data)
+  margin(0, 0, 0, 0)
+  show_colorbox(false)
+  show_border(false)
+  show_xtics(false)
+  show_ytics(false)
+  show_key(false)
+end
+```
+
+![imshow](https://raw.githubusercontent.com/toddsundsted/ishi/21418efb485b54fbcde56b0999cd5ad81c2410cb/etc/examples/5.png)
+
+### charts
+
+`charts` changes the number of charts in the figure:
+* `charts(rows, cols)` - *rows* and *cols* are the number of rows and columns in the figure
+
+By default a figure has one chart. This call changes the number of
+charts in the figure. The original chart is preserved and becomes the
+chart in the first row, first column of the new layout.
+
+When called without a block, `charts` returns the charts in the
+figure.
+
+```crystal
+require "ishi"
+
+figure = Ishi.new
+charts = figure.charts(2, 2)
+charts[0].plot([1, 2, 3, 4])
+charts[1].plot([1, 1, 3, 2])
+charts[2].plot([1, 1, 1, 1])
+charts[3].plot([4, 3, 2, 1])
+figure.show
+```
+
+When called with a block, `charts` Yields each chart as the default
+receiver of the supplied block. Block arguments are *i* (the i-th
+chart in the figure), *row* and *col* (the row and column of the
+chart).
+
+```crystal
+require "ishi"
+
+figure = Ishi.new
+figure.charts(2, 2) do |i, row, col|
+  plot([1, 2, 3, 4].rotate(i), title: "#{row},#{col}")
+end
+figure.show
+```
 
 ### Extensions
 
