@@ -1,27 +1,9 @@
 require "../ishi"
 
 module Ishi
-  # :nodoc:
-  @@io : IO = STDOUT
-
-  # :nodoc:
-  def self.io
-    @@io
-  end
-
-  # :nodoc:
-  def self.io=(io)
-    @@io = io
-  end
-
   # Renders chart as text to the console.
   #
-  class Text < Base
-    def initialize(io : IO = STDOUT)
-      Ishi.io = io
-      super()
-    end
-
+  class Text < Term
     def show(**options)
       term =
         (size = @canvas_size) ?
@@ -38,13 +20,13 @@ module Ishi
   class Gnuplot
     def show(chart)
       previous_def(chart).each_line do |line|
-        Ishi.io.puts line
+        Term.io.puts line
       end
     end
 
     def show(chart, rows, cols)
       previous_def(chart, rows, cols).each_line do |line|
-        Ishi.io.puts line
+        Term.io.puts line
       end
     end
   end

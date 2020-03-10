@@ -3,7 +3,7 @@ require "spectator"
 require "yaml"
 
 module Ishi
-  private class SpecHelper < Base
+  private class SpecHelper < Term
     def show(**options)
       term =
         (size = @canvas_size) ?

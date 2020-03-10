@@ -1,5 +1,5 @@
 require "./ishi/gnuplot"
-require "./ishi/base"
+require "./ishi/term"
 
 # Graph plotting package with a small API powered by gnuplot.
 #
@@ -10,7 +10,7 @@ module Ishi
   VERSION = {{ `shards version "#{__DIR__}"`.chomp.stringify }}
 
   # :nodoc:
-  class Term < Base
+  class Qt < Term
     def show(**options)
       term =
         (size = @canvas_size) ?
@@ -25,7 +25,7 @@ module Ishi
   end
 
   # :nodoc:
-  @@default = Term
+  @@default = Qt
 
   # Creates a new instance.
   #
