@@ -11,16 +11,8 @@ module Ishi
 
   # :nodoc:
   class Qt < Term
-    def show(**options)
-      term =
-        (size = @canvas_size) ?
-        "set term qt persist size #{size[0]},#{size[1]}" :
-        "set term qt persist"
-      if (rows = @rows) && (cols = @cols)
-        Gnuplot.new([term]).show(@charts, rows, cols, **options)
-      else
-        Gnuplot.new([term]).show(@charts.first, **options)
-      end
+    def initialize
+      super("qt persist")
     end
   end
 

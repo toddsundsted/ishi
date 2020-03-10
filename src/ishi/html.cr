@@ -4,16 +4,8 @@ module Ishi
   # Renders chart as HTML to the console.
   #
   class Html < Term
-    def show(**options)
-      term =
-        (size = @canvas_size) ?
-        "set term canvas size #{size[0]},#{size[1]}" :
-        "set term canvas"
-      if (rows = @rows) && (cols = @cols)
-        Gnuplot.new([term]).show(@charts, rows, cols, **options)
-      else
-        Gnuplot.new([term]).show(@charts.first, **options)
-      end
+    def initialize(io : IO = STDOUT)
+      super("canvas", io)
     end
   end
 
