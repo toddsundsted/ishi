@@ -1,4 +1,8 @@
-require "../../src/ishi"
+{% if flag?(:png) %}
+  require "../../src/ishi/png"
+{% else %}
+  require "../../src/ishi"
+{% end %}
 require "yaml"
 
 class Points
@@ -12,10 +16,11 @@ end
 # Scatter plot.
 #
 Ishi.new do
-  canvas_size(480, 360)
-  view(80, 20)
+  canvas_size(820, 300)
   File.open(File.join(__DIR__, "4.yml")) do |file|
     points = Points.from_yaml(file)
-    scatter(points.x, points.y, points.z)
+    plots = charts(1, 2)
+    plots[0].scatter(points.x, points.z, lc: "#4b03a1")
+    plots[1].scatter(points.y, points.z, lc: "#b5367a")
   end
 end

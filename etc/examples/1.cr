@@ -1,4 +1,8 @@
-require "../../src/ishi"
+{% if flag?(:png) %}
+  require "../../src/ishi/png"
+{% else %}
+  require "../../src/ishi"
+{% end %}
 
 # Plot data points and the equation of a line.
 #

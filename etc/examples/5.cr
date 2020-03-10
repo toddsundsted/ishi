@@ -1,4 +1,8 @@
-require "../../src/ishi"
+{% if flag?(:png) %}
+  require "../../src/ishi/png"
+{% else %}
+  require "../../src/ishi"
+{% end %}
 require "yaml"
 
 class Data
