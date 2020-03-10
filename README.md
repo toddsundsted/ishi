@@ -56,7 +56,7 @@ Ishi.new do
 end
 ```
 
-![two plots](https://raw.githubusercontent.com/toddsundsted/ishi/ca9055ef481b4f6ed114fa623d420683ffb1b7c8/etc/examples/1.png)
+![two plots](https://raw.githubusercontent.com/toddsundsted/ishi/e277adfe71bf8ad3ead70fab9b3736ed969608d7/etc/examples/1.png)
 
 The [etc/examples](https://github.com/toddsundsted/ishi/tree/master/etc/examples) directory contains examples of usage.
 
@@ -108,15 +108,15 @@ The following code demonstrates the use of *dashtype*, *linecolor* and
 require "ishi"
 
 Ishi.new do
-  plot("x + 0.0", dashtype: "-", linewidth: 2)
-  plot("x - 1.0", dashtype: "_", linewidth: 2)
-  plot("x - 2.0", dashtype: ".", linewidth: 2)
-  plot("x - 3.0", dashtype: "..._", linewidth: 2)
-  plot("x - 4.0", dashtype: [30, 10, 50, 20], linewidth: 2, linecolor: "#88001100")
+  plot("x + 4.0", dashtype: "-", linewidth: 2)
+  plot("x + 3.0", dashtype: "_", linewidth: 2)
+  plot("x + 2.0", dashtype: ".", linewidth: 2)
+  plot("x + 1.0", dashtype: "..._", linewidth: 2)
+  plot("x + 0.0", dashtype: [30, 10, 50, 10], linewidth: 2, linecolor: "#88001100")
 end
 ```
 
-![lines](https://raw.githubusercontent.com/toddsundsted/ishi/ca9055ef481b4f6ed114fa623d420683ffb1b7c8/etc/examples/2.png)
+![lines](https://raw.githubusercontent.com/toddsundsted/ishi/e277adfe71bf8ad3ead70fab9b3736ed969608d7/etc/examples/2.png)
 
 *pointtype* selects the type of point to render. Available types
 depend on the gnuplot terminal device used, but commonly supported
@@ -131,15 +131,15 @@ The following code demonstrates the use of *pointtype* and
 require "ishi"
 
 Ishi.new do
-  plot([5, 6, 7, 8], pointtype: 1, pointsize: 2)
-  plot([4, 5, 6, 7], pointtype: "o", pointsize: 2)
-  plot([3, 4, 5, 6], pointtype: "s", pointsize: 2)
-  plot([2, 3, 4, 5], pointtype: "^", pointsize: 2)
-  plot([1, 2, 3, 4], pointtype: "v", pointsize: 2)
+  plot([1, 2, 3, 4], [5, 6, 7, 8], pointtype: 1, pointsize: 2)
+  plot([1, 2, 3, 4], [4, 5, 6, 7], pointtype: "o", pointsize: 2)
+  plot([1, 2, 3, 4], [3, 4, 5, 6], pointtype: "s", pointsize: 2)
+  plot([1, 2, 3, 4], [2, 3, 4, 5], pointtype: "^", pointsize: 2)
+  plot([1, 2, 3, 4], [1, 2, 3, 4], pointtype: "v", pointsize: 2, linecolor: "#88001100")
 end
 ```
 
-![points](https://raw.githubusercontent.com/toddsundsted/ishi/ca9055ef481b4f6ed114fa623d420683ffb1b7c8/etc/examples/3.png)
+![points](https://raw.githubusercontent.com/toddsundsted/ishi/e277adfe71bf8ad3ead70fab9b3736ed969608d7/etc/examples/3.png)
 
 The *format* argument is a short string used to specify color, point
 and line, simultaneously.
@@ -194,12 +194,12 @@ The following code demonstrates the use of *scatter*:
 require "ishi"
 
 Ishi.new do
-  view(80, 20)
-  scatter(xdata, ydata, zdata)
+  scatter(xdata, zdata, lc: "#4b03a1")
+  scatter(ydata, zdata, lc: "#b5367a")
 end
 ```
 
-![scatter](https://raw.githubusercontent.com/toddsundsted/ishi/21418efb485b54fbcde56b0999cd5ad81c2410cb/etc/examples/4.png)
+![scatter](https://raw.githubusercontent.com/toddsundsted/ishi/e277adfe71bf8ad3ead70fab9b3736ed969608d7/etc/examples/4.png)
 
 ### imshow
 
@@ -223,7 +223,7 @@ Ishi.new do
 end
 ```
 
-![imshow](https://raw.githubusercontent.com/toddsundsted/ishi/21418efb485b54fbcde56b0999cd5ad81c2410cb/etc/examples/5.png)
+![imshow](https://raw.githubusercontent.com/toddsundsted/ishi/e277adfe71bf8ad3ead70fab9b3736ed969608d7/etc/examples/5.png)
 
 ### charts
 
