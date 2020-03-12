@@ -264,6 +264,36 @@ end
 figure.show
 ```
 
+### MXNet::NDArray
+
+`MXNet::NDArray` is an indexable, multi-dimensional array that
+efficiently supports numerical operations (transposition, matrix
+multiplication, etc.).
+
+All appropriate methods/commands accept instances of `MXNet::NDArray`
+with the correct shape (1-dimensional vectors for x-values, for
+example).
+
+```crystal
+require "ishi"
+require "mxnet"
+
+m = MXNet::NDArray.array(
+  [[0, 0, 1, 1],
+   [1, 2, 3, 4],
+   [1, 1, 2, 2]]
+)
+
+figure = Ishi.new
+charts = figure.charts(1, 2)
+charts[0].plot(m[0], m[1], m[2])
+charts[1].plot(m[.., 0], m[.., 1], m[.., 2])
+figure.show
+```
+
+See [MXNet.cr](https://github.com/toddsundsted/mxnet.cr) for more
+information on the complete library.
+
 ### Extensions
 
 By default, Ishi pops open a window to display charts. However, Ishi
