@@ -1,3 +1,8 @@
+# supports MXNet::NDArray
+private def as_scalar(v)
+  v.responds_to?(:as_scalar) ? v.as_scalar : v
+end
+
 module Ishi
   # Gnuplot rendering engine.
   #
@@ -401,8 +406,8 @@ module Ishi
 
       def data
         Array(String).new.tap do |arr|
-          @ydata.each_with_index do |num, i|
-            arr << "#{i} #{num}"
+          @ydata.each_with_index do |y, i|
+            arr << "#{i} #{as_scalar(y)}"
           end
           arr << "e"
         end
@@ -441,7 +446,7 @@ module Ishi
       def data
         Array(String).new.tap do |arr|
           @xdata.zip(@ydata).each do |x, y|
-            arr << "#{x} #{y}"
+            arr << "#{as_scalar(x)} #{as_scalar(y)}"
           end
           arr << "e"
         end
@@ -480,7 +485,7 @@ module Ishi
       def data
         Array(String).new.tap do |arr|
           @xdata.zip(@ydata, @zdata).each do |x, y, z|
-            arr << "#{x} #{y} #{z}"
+            arr << "#{as_scalar(x)} #{as_scalar(y)} #{as_scalar(z)}"
           end
           arr << "e"
         end
@@ -519,7 +524,7 @@ module Ishi
       def data
         Array(String).new.tap do |arr|
           (0...@data.size).reverse_each do |i|
-            arr << @data[i].join(" ")
+            arr << @data[i].to_a.join(" ")
           end
           arr << "e"
         end

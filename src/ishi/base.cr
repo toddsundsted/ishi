@@ -108,6 +108,11 @@ module Ishi
       self
     end
 
+    # compatible extensions
+    private SUPPORTED = [
+      "MXNet::NDArray"
+    ]
+
     # Plots `y` using `x` ranging from `0` to `N-1`.
     #
     # *title* is the title of the plot. *style* is the drawing
@@ -115,7 +120,7 @@ module Ishi
     # `:linespoints` and `:dots`.
     #
     def plot(ydata : Indexable(Y), format : String? = nil, *, title : String? = nil, style : Symbol = :lines, **options) forall Y
-      {% raise "data must be numeric" unless Y < Number %}
+      {% raise "type must be numeric" unless [Y].all? { |a| SUPPORTED.includes?(a.stringify) || a < Number } %}
       @charts.first.plot(Ishi::Gnuplot::PlotY.new(ydata, title, style, format, **options))
       self
     end
@@ -127,7 +132,7 @@ module Ishi
     # `:linespoints` and `:dots`.
     #
     def plot(xdata : Indexable(M), ydata : Indexable(N), format : String? = nil, *, title : String? = nil, style : Symbol = :points, **options) forall M, N
-      {% raise "data must be numeric" unless M < Number && N < Number %}
+      {% raise "type must be numeric" unless [M, N].all? { |a| SUPPORTED.includes?(a.stringify) || a < Number } %}
       @charts.first.plot(Ishi::Gnuplot::PlotXY.new(xdata, ydata, title, style, format, **options))
       self
     end
@@ -139,7 +144,7 @@ module Ishi
     # `:lines`, `:points` and `:dots`.
     #
     def plot(xdata : Indexable(T), ydata : Indexable(U), zdata : Indexable(V), format : String? = nil, *, title : String? = nil, style : Symbol = :points, **options) forall T, U, V
-      {% raise "data must be numeric" unless T < Number && U < Number && V < Number %}
+      {% raise "type must be numeric" unless [T, U, V].all? { |a| SUPPORTED.includes?(a.stringify) || a < Number } %}
       @charts.first.plot(Ishi::Gnuplot::PlotXYZ.new(xdata, ydata, zdata, title, style, format, **options))
       self
     end
@@ -149,7 +154,7 @@ module Ishi
     # *title* is the title of the plot.
     #
     def scatter(xdata : Indexable(M), ydata : Indexable(N), format : String? = nil, *, title : String? = nil, style : Symbol = :dots, **options) forall M, N
-      {% raise "data must be numeric" unless M < Number && N < Number %}
+      {% raise "type must be numeric" unless [M, N].all? { |a| SUPPORTED.includes?(a.stringify) || a < Number } %}
       @charts.first.plot(Ishi::Gnuplot::PlotXY.new(xdata, ydata, title, style, format, **options))
       self
     end
@@ -159,7 +164,7 @@ module Ishi
     # *title* is the title of the plot.
     #
     def scatter(xdata : Indexable(T), ydata : Indexable(U), zdata : Indexable(V), format : String? = nil, *, title : String? = nil, style : Symbol = :dots, **options) forall T, U, V
-      {% raise "data must be numeric" unless T < Number && U < Number && V < Number %}
+      {% raise "type must be numeric" unless [T, U, V].all? { |a| SUPPORTED.includes?(a.stringify) || a < Number } %}
       @charts.first.plot(Ishi::Gnuplot::PlotXYZ.new(xdata, ydata, zdata, title, style, format, **options))
       self
     end
@@ -171,7 +176,7 @@ module Ishi
     # Data is visualized using a colormap.
     #
     def imshow(data : Indexable(Indexable(D)), **options) forall D
-      {% raise "data must be numeric" unless D < Number %}
+      {% raise "type must be numeric" unless [D].all? { |a| SUPPORTED.includes?(a.stringify) || a < Number } %}
       @charts.first.plot(Ishi::Gnuplot::Plot2D.new(data, **options.merge({style: :image})))
       self
     end
