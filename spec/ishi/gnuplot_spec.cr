@@ -6,33 +6,33 @@ Spectator.describe Ishi::Gnuplot do
 
   describe "#plot" do
     EXAMPLES = [
-      { {title: "foobar"}, /title 'foobar'/ },
-      { {style: :lines}, /with lines/ },
-      { {dashtype: [2, 2]}, /dt \(2,2\)/ },
-      { {dashtype: "--  "}, /dt "--  "/ },
-      { {linecolor: "red"}, /lc rgb "red"/ },
-      { {linewidth: 2.3}, /lw 2.3/ },
-      { {linestyle: 1}, /ls 1/ },
-      { {pointsize: 1.3}, /ps 1.3/ },
-      { {pointtype: 1}, /pt 1/ },
-      { {pointtype: "+"}, /pt 1/ },
-      { {style: :points, dashtype: ".. "}, /with linespoints/ },
-      { {style: :points, linewidth: 1.3}, /with linespoints/ },
-      { {style: :lines, pointsize: 1.3}, /with linespoints/ },
-      { {style: :lines, pointtype: 1}, /with linespoints/ },
-      { {pointsize: 1.3}, /with linespoints/ },
-      { {pointtype: 1}, /with linespoints/ },
-      { {format: "red"}, /lc rgb "red"/ },
-      { {format: "#ff0000"}, /lc rgb "#ff0000"/ },
-      { {format: "r"}, /lc rgb "red"/ },
-      { {format: "+"}, /pt 1/ },
-      { {format: ":"}, /dt 3/ },
-      { {dt: 1}, /dt 1/ },
-      { {lc: "#80ff00ee"}, /lc rgb "#80ff00ee"/ },
-      { {lw: 3}, /lw 3/ },
-      { {ls: 1}, /ls 1/ },
-      { {ps: 2}, /ps 2/ },
-      { {pt: 2}, /pt 2/ }
+      { {title: "foobar"}, /title 'foobar'/ },                   # sets title
+      { {style: :lines}, /with lines/ },                         # sets style
+      { {dashtype: [2, 2]}, /dt \(2,2\)/ },                      # sets dashtype
+      { {dashtype: "--  "}, /dt "--  "/ },                       # sets dashtype
+      { {linecolor: "red"}, /lc rgb "red"/ },                    # sets linecolor
+      { {linewidth: 2.3}, /lw 2.3/ },                            # sets linewidth
+      { {linestyle: 1}, /ls 1/ },                                # sets linestyle
+      { {pointsize: 1.3}, /ps 1.3/ },                            # sets pointsize
+      { {pointtype: 1}, /pt 1/ },                                # sets pointtype
+      { {pointtype: "+"}, /pt 1/ },                              # sets pointtype
+      { {style: :points, dashtype: ".. "}, /with linespoints/ }, # infers linespoints
+      { {style: :points, linewidth: 1.3}, /with linespoints/ },  # infers linespoints
+      { {style: :lines, pointsize: 1.3}, /with linespoints/ },   # infers linespoints
+      { {style: :lines, pointtype: 1}, /with linespoints/ },     # infers linespoints
+      { {pointsize: 1.3}, /with linespoints/ },                  # infers linespoints
+      { {pointtype: 1}, /with linespoints/ },                    # infers linespoints
+      { {format: "red"}, /lc rgb "red"/ },                       # sets linecolor
+      { {format: "#ff0000"}, /lc rgb "#ff0000"/ },               # sets linecolor
+      { {format: "r"}, /lc rgb "red"/ },                         # sets linecolor
+      { {format: "+"}, /pt 1/ },                                 # sets pointtype
+      { {format: ":"}, /dt 3/ },                                 # sets dashtype
+      { {dt: 1}, /dt 1/ },                                       # sets dashtype
+      { {lc: "#80ff00ee"}, /lc rgb "#80ff00ee"/ },               # sets linecolor
+      { {lw: 3}, /lw 3/ },                                       # sets linewidth
+      { {ls: 1}, /ls 1/ },                                       # sets linestyle
+      { {ps: 2}, /ps 2/ },                                       # sets pointsize
+      { {pt: 2}, /pt 2/ }                                        # sets pointtype
     ]
 
     context "given a mathematical expression" do
