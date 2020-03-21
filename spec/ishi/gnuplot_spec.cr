@@ -1,43 +1,5 @@
 require "../spec_helper"
 
-alias Options = NamedTuple(
-  title: String | Nil,
-  style: Symbol | String | Nil,
-  format: String | Nil,
-  dashtype: Array(Int32) | Int32 | String | Nil,
-  linecolor: String | Nil,
-  linewidth: Int32 | Float64 | Nil,
-  linestyle: Int32 | Nil,
-  pointsize: Int32 | Float64 | Nil,
-  pointtype: Int32 | String | Nil,
-  dt: Array(Int32) | Int32 | String | Nil,
-  lc: String | Nil,
-  lw: Int32 | Float64 | Nil,
-  ls: Int32 | Nil,
-  ps: Int32 | Float64 | Nil,
-  pt: Int32 | Nil
-)
-
-def options(options)
-  Options.from({
-    "title" => options["title"]?,
-    "style" => options["style"]?,
-    "format" => options["format"]?,
-    "dashtype" => options["dashtype"]?,
-    "linecolor" => options["linecolor"]?,
-    "linewidth" => options["linewidth"]?,
-    "linestyle" => options["linestyle"]?,
-    "pointsize" => options["pointsize"]?,
-    "pointtype" => options["pointtype"]?,
-    "dt" => options["dt"]?,
-    "lc" => options["lc"]?,
-    "lw" => options["lw"]?,
-    "ls" => options["ls"]?,
-    "ps" => options["ps"]?,
-    "pt" => options["pt"]?
-  })
-end
-
 Spectator.describe Ishi::Gnuplot do
   subject { described_class.new(["set term dumb"]) }
   let(:chart) { Ishi::Gnuplot::Chart.new }
@@ -79,12 +41,12 @@ Spectator.describe Ishi::Gnuplot do
         expect(commands).to have(/^plot sin\(x\)/)
       end
 
-      sample EXAMPLES do |example|
+      {% for example in EXAMPLES %}
         it "generates commands" do
-          commands = subject.show(chart.plot(Ishi::Gnuplot::PlotExp.new("sin(x)", **options(example[0]))))
-          expect(commands).to have(example[1])
+          commands = subject.show(chart.plot(Ishi::Gnuplot::PlotExp.new("sin(x)", **{{example[0]}})))
+          expect(commands).to have({{example[1]}})
         end
-      end
+      {% end %}
     end
 
     context "given one array of data" do
@@ -93,12 +55,12 @@ Spectator.describe Ishi::Gnuplot do
         expect(output).to have(/^plot '-'/)
       end
 
-      sample EXAMPLES do |example|
+      {% for example in EXAMPLES %}
         it "generates commands" do
-          commands = subject.show(chart.plot(Ishi::Gnuplot::PlotY.new([1, 2], **options(example[0]))))
-          expect(commands).to have(example[1])
+          commands = subject.show(chart.plot(Ishi::Gnuplot::PlotY.new([1, 2], **{{example[0]}})))
+          expect(commands).to have({{example[1]}})
         end
-      end
+      {% end %}
     end
 
     context "given two arrays of data" do
@@ -107,12 +69,12 @@ Spectator.describe Ishi::Gnuplot do
         expect(output).to have(/^plot '-'/)
       end
 
-      sample EXAMPLES do |example|
+      {% for example in EXAMPLES %}
         it "generates commands" do
-          commands = subject.show(chart.plot(Ishi::Gnuplot::PlotXY.new([1, 2], [0, 1], **options(example[0]))))
-          expect(commands).to have(example[1])
+          commands = subject.show(chart.plot(Ishi::Gnuplot::PlotXY.new([1, 2], [0, 1], **{{example[0]}})))
+          expect(commands).to have({{example[1]}})
         end
-      end
+      {% end %}
     end
 
     context "given three arrays of data" do
@@ -121,12 +83,12 @@ Spectator.describe Ishi::Gnuplot do
         expect(output).to have(/^splot '-'/)
       end
 
-      sample EXAMPLES do |example|
+      {% for example in EXAMPLES %}
         it "generates commands" do
-          commands = subject.show(chart.plot(Ishi::Gnuplot::PlotXYZ.new([1, 2], [0, 1], [0, 0], **options(example[0]))))
-          expect(commands).to have(example[1])
+          commands = subject.show(chart.plot(Ishi::Gnuplot::PlotXYZ.new([1, 2], [0, 1], [0, 0], **{{example[0]}})))
+          expect(commands).to have({{example[1]}})
         end
-      end
+      {% end %}
     end
 
     context "given an array of values" do
@@ -135,12 +97,12 @@ Spectator.describe Ishi::Gnuplot do
         expect(output).to have(/^splot '-' matrix/)
       end
 
-      sample EXAMPLES do |example|
+      {% for example in EXAMPLES %}
         it "generates commands" do
-          commands = subject.show(chart.plot(Ishi::Gnuplot::Plot2D.new([[1, 2], [3, 4]], **options(example[0]))))
-          expect(commands).to have(example[1])
+          commands = subject.show(chart.plot(Ishi::Gnuplot::Plot2D.new([[1, 2], [3, 4]], **{{example[0]}})))
+          expect(commands).to have({{example[1]}})
         end
-      end
+      {% end %}
     end
   end
 
