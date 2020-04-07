@@ -223,6 +223,13 @@ module Ishi
       self
     end
 
+    # set the default width of boxes in the boxes, boxerrorbars, candlesticks
+    # and histograms styles.
+    def boxwidth(boxwidth : Float64)
+      @charts.first.boxwidth(boxwidth)
+      self
+    end
+
     # Sets the viewing angle for 3D charts.
     #
     # For information on setting the viewing angle, see:

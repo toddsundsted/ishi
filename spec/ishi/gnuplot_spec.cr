@@ -148,6 +148,13 @@ Spectator.describe Ishi::Gnuplot do
     end
   end
 
+  describe "#boxwidth" do
+    it "adds a label to the x axis" do
+      output = subject.show(chart.boxwidth(1.55))
+      expect(output).to have("set boxwidth 1.55")
+    end
+  end
+
   describe "#view" do
     it "sets the viewing angle for 3D charts" do
       output = subject.show(chart.view(60, 30))
