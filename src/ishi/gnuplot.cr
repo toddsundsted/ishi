@@ -52,6 +52,14 @@ module Ishi
 
       getter xrange, yrange, zrange
 
+      # Sets the default width of boxes.
+      #
+      def boxwidth(@boxwidth : Float64)
+        self
+      end
+
+      getter boxwidth
+
       # Sets the viewing angle for 3D charts.
       #
       def view(xrot : Float64, zrot : Float64)
@@ -580,6 +588,7 @@ module Ishi
       commands << "set xlabel '#{chart.xlabel}'" if chart.xlabel
       commands << "set ylabel '#{chart.ylabel}'" if chart.ylabel
       commands << "set zlabel '#{chart.zlabel}'" if chart.zlabel
+      commands << "set boxwidth #{chart.boxwidth}" if chart.boxwidth
       if xrange = chart.xrange
         commands << "set xrange[#{xrange.begin}:#{xrange.end}]"
       end
