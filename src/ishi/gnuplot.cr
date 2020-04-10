@@ -197,6 +197,53 @@ module Ishi
     end
 
     abstract class Plot
+      # The `FillStyle` is used to set the style of boxes,
+      # histograms, candlesticks and filledcurves. The default is `Empty`.
+      #
+      # For information on setting the style fill, see 
+      # [Set style fill](http://www.gnuplot.info/docs_5.2/Gnuplot_5.2.pdf#section*.357)
+      module FillStyle
+        abstract class FillStyle; end
+
+        # For fillstyle `Solid` the box is filled with a solid
+        # rectangle of the current drawing color.
+        class Solid < FillStyle
+          # Creates a solid fill style with the given `density`.
+          #
+          # The `density` parameter specifies the intensity of the fill color.
+          # It must be a number between 0 and 1 (inclusive).
+          # A `density` of 0 is equivalent to `Fillstyle::Empty`. Default is 1.
+          def initialize(@density : Int32 | Float64 = 1)
+            unless (0..1).includes?(@density)
+              raise ArgumentError.new("Density must in the range [0,1]")
+            end
+          end
+
+          def to_s(io)
+            io << "fs solid #{@density}"
+          end
+        end
+
+        # For fillstyle `Pattern` the box is filled in the current drawing color with a pattern, if supported by the terminal driver.
+        class Pattern < FillStyle
+          def initialize(@id : Int32)
+          end
+
+          def to_s(io)
+            io << "fs pattern #{@id}"
+          end
+        end
+
+        private class EmptyClass < FillStyle
+          def to_s(io)
+            io << "fs empty"
+          end
+        end
+
+        # For fillstyle `Empty` the box is filled with the background color.
+        Empty = EmptyClass.new
+      end
+
       abstract def inst
       abstract def data
       abstract def dim
@@ -210,6 +257,7 @@ module Ishi
       @linecolor : String? = nil
       @linewidth : Int32 | Float64 | Nil = nil
       @linestyle : Int32? = nil
+      @fillstyle : FillStyle::FillStyle? = nil
       @pointsize : Int32 | Float64 | Nil = nil
       @pointtype : Int32 | String | Nil = nil
 
@@ -230,6 +278,7 @@ module Ishi
 
       private def expand_abbreviations(options)
         @dashtype ||= options[:dt]?
+        @fillstyle ||= options[:fs]?
         @linecolor ||= options[:lc]?
         @linewidth ||= options[:lw]?
         @linestyle ||= options[:ls]?
@@ -304,10 +353,11 @@ module Ishi
       private def make_style
         @style = _style
         @style = @style ? "with #{@style}" : nil
-        if @dashtype || @linecolor || @linewidth || @linestyle || @pointsize || @pointtype
+        if @dashtype || @linecolor || @linewidth || @linestyle || @pointsize || @pointtype || @fillstyle
           @style = String.build do |io|
             io << @style || ""
             io << " dt #{_dashtype}" if @dashtype
+            io << " " << @fillstyle if @fillstyle
             io << " lc #{_linecolor}" if @linecolor
             io << " lw #{@linewidth}" if @linewidth
             io << " ls #{@linestyle}" if @linestyle
@@ -361,6 +411,7 @@ module Ishi
                      @title : String? = nil, @style : Symbol | String | Nil = nil,
                      @format : String? = nil,
                      @dashtype : Array(Int32) | Int32 | String | Nil = nil,
+                     @fillstyle : FillStyle::FillStyle? = nil,
                      @linecolor : String? = nil,
                      @linewidth : Int32 | Float64 | Nil = nil,
                      @linestyle : Int32? = nil,
@@ -394,6 +445,7 @@ module Ishi
                      @title : String? = nil, @style : Symbol | String | Nil = nil,
                      @format : String? = nil,
                      @dashtype : Array(Int32) | Int32 | String | Nil = nil,
+                     @fillstyle : FillStyle::FillStyle? = nil,
                      @linecolor : String? = nil,
                      @linewidth : Int32 | Float64 | Nil = nil,
                      @linestyle : Int32? = nil,
@@ -433,6 +485,7 @@ module Ishi
                      @title : String? = nil, @style : Symbol | String | Nil = nil,
                      @format : String? = nil,
                      @dashtype : Array(Int32) | Int32 | String | Nil = nil,
+                     @fillstyle : FillStyle::FillStyle? = nil,
                      @linecolor : String? = nil,
                      @linewidth : Int32 | Float64 | Nil = nil,
                      @linestyle : Int32? = nil,
@@ -472,6 +525,7 @@ module Ishi
                      @title : String? = nil, @style : Symbol | String | Nil = nil,
                      @format : String? = nil,
                      @dashtype : Array(Int32) | Int32 | String | Nil = nil,
+                     @fillstyle : FillStyle::FillStyle? = nil,
                      @linecolor : String? = nil,
                      @linewidth : Int32 | Float64 | Nil = nil,
                      @linestyle : Int32? = nil,
@@ -511,6 +565,7 @@ module Ishi
                      @title : String? = nil, @style : Symbol | String | Nil = nil,
                      @format : String? = nil,
                      @dashtype : Array(Int32) | Int32 | String | Nil = nil,
+                     @fillstyle : FillStyle::FillStyle? = nil,
                      @linecolor : String? = nil,
                      @linewidth : Int32 | Float64 | Nil = nil,
                      @linestyle : Int32? = nil,
@@ -713,5 +768,9 @@ module Ishi
         {% end %}
       }
     {% end %}
+  end
+
+  module FillStyle
+    include Gnuplot::Plot::FillStyle
   end
 end

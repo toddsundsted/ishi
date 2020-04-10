@@ -1,4 +1,5 @@
 require "../spec_helper"
+include Ishi
 
 Spectator.describe Ishi::Gnuplot do
   subject { described_class.new(["set term dumb"]) }
@@ -32,7 +33,8 @@ Spectator.describe Ishi::Gnuplot do
       { {lw: 3}, /lw 3/ },                                       # sets linewidth
       { {ls: 1}, /ls 1/ },                                       # sets linestyle
       { {ps: 2}, /ps 2/ },                                       # sets pointsize
-      { {pt: 2}, /pt 2/ }                                        # sets pointtype
+      { {pt: 2}, /pt 2/ },                                       # sets pointtype
+      { {fs: FillStyle::Solid.new(0.75)}, /fs solid 0.75/ }      # sets fillstyle
     ]
 
     context "given a mathematical expression" do
