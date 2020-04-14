@@ -13,6 +13,6 @@ development_dependencies:
   iterm2:
     github: toddsundsted/iterm2
 
-crystal: 0.33.0
+crystal: 0.34.0
 
 license: Apache License, Version 2.0
