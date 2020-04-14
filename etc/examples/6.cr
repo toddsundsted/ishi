@@ -3,7 +3,6 @@
 {% else %}
   require "../../src/ishi"
 {% end %}
-include Ishi
 
 # Bar chart with fixed box width and custom fill style
 Ishi.new do
@@ -16,6 +15,6 @@ Ishi.new do
   plot(x, y,
     title: "a box plot!",
     style: :boxes,
-    fs: FillStyle::Solid.new(0.2)
+    fs: 0.25
   ).boxwidth(step).show_border(true)
 end
