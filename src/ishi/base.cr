@@ -228,6 +228,7 @@ module Ishi
     #
     # For information on setting the box width, see:
     # [Boxwidth](http://www.gnuplot.info/docs_5.2/Gnuplot_5.2.pdf#section*.232).
+    #
     def boxwidth(boxwidth : Float64)
       @charts.first.boxwidth(boxwidth)
       self
