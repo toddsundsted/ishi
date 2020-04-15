@@ -342,3 +342,4 @@ This produces:
 ## Contributors
 
 - [Todd Sundsted](https://github.com/toddsundsted) - creator and maintainer
+- [lbarasti](https://github.com/lbarasti) - contributor
