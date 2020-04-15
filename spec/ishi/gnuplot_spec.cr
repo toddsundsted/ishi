@@ -32,7 +32,9 @@ Spectator.describe Ishi::Gnuplot do
       { {lw: 3}, /lw 3/ },                                       # sets linewidth
       { {ls: 1}, /ls 1/ },                                       # sets linestyle
       { {ps: 2}, /ps 2/ },                                       # sets pointsize
-      { {pt: 2}, /pt 2/ }                                        # sets pointtype
+      { {pt: 2}, /pt 2/ },                                       # sets pointtype
+      { {fs: 2}, /fs pattern 2/ },                               # sets fillstyle
+      { {fs: 0.1}, /fs solid 0.1/ }                              # sets fillstyle
     ]
 
     context "given a mathematical expression" do

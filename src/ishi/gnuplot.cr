@@ -197,6 +197,7 @@ module Ishi
     end
 
     abstract class Plot
+
       abstract def inst
       abstract def data
       abstract def dim
@@ -210,6 +211,7 @@ module Ishi
       @linecolor : String? = nil
       @linewidth : Int32 | Float64 | Nil = nil
       @linestyle : Int32? = nil
+      @fillstyle : Int32 | Float64 | Nil = nil
       @pointsize : Int32 | Float64 | Nil = nil
       @pointtype : Int32 | String | Nil = nil
 
@@ -230,6 +232,7 @@ module Ishi
 
       private def expand_abbreviations(options)
         @dashtype ||= options[:dt]?
+        @fillstyle ||= options[:fs]?
         @linecolor ||= options[:lc]?
         @linewidth ||= options[:lw]?
         @linestyle ||= options[:ls]?
@@ -304,10 +307,11 @@ module Ishi
       private def make_style
         @style = _style
         @style = @style ? "with #{@style}" : nil
-        if @dashtype || @linecolor || @linewidth || @linestyle || @pointsize || @pointtype
+        if @dashtype || @linecolor || @linewidth || @linestyle || @pointsize || @pointtype || @fillstyle
           @style = String.build do |io|
             io << @style || ""
             io << " dt #{_dashtype}" if @dashtype
+            io << " fs #{_fillstyle}" if @fillstyle
             io << " lc #{_linecolor}" if @linecolor
             io << " lw #{@linewidth}" if @linewidth
             io << " ls #{@linestyle}" if @linestyle
@@ -340,6 +344,17 @@ module Ishi
         end
       end
 
+      private def _fillstyle
+        case (fillstyle = @fillstyle)
+        when Int32
+          "pattern #{fillstyle}"
+        when Float64
+          "solid #{fillstyle}"
+        else
+          "empty"
+        end
+      end
+
       private def _linecolor
         "rgb \"#{@linecolor}\""
       end
@@ -361,6 +376,7 @@ module Ishi
                      @title : String? = nil, @style : Symbol | String | Nil = nil,
                      @format : String? = nil,
                      @dashtype : Array(Int32) | Int32 | String | Nil = nil,
+                     @fillstyle : Int32 | Float64 | Nil = nil,
                      @linecolor : String? = nil,
                      @linewidth : Int32 | Float64 | Nil = nil,
                      @linestyle : Int32? = nil,
@@ -394,6 +410,7 @@ module Ishi
                      @title : String? = nil, @style : Symbol | String | Nil = nil,
                      @format : String? = nil,
                      @dashtype : Array(Int32) | Int32 | String | Nil = nil,
+                     @fillstyle : Int32 | Float64 | Nil = nil,
                      @linecolor : String? = nil,
                      @linewidth : Int32 | Float64 | Nil = nil,
                      @linestyle : Int32? = nil,
@@ -433,6 +450,7 @@ module Ishi
                      @title : String? = nil, @style : Symbol | String | Nil = nil,
                      @format : String? = nil,
                      @dashtype : Array(Int32) | Int32 | String | Nil = nil,
+                     @fillstyle : Int32 | Float64 | Nil = nil,
                      @linecolor : String? = nil,
                      @linewidth : Int32 | Float64 | Nil = nil,
                      @linestyle : Int32? = nil,
@@ -472,6 +490,7 @@ module Ishi
                      @title : String? = nil, @style : Symbol | String | Nil = nil,
                      @format : String? = nil,
                      @dashtype : Array(Int32) | Int32 | String | Nil = nil,
+                     @fillstyle : Int32 | Float64 | Nil = nil,
                      @linecolor : String? = nil,
                      @linewidth : Int32 | Float64 | Nil = nil,
                      @linestyle : Int32? = nil,
@@ -511,6 +530,7 @@ module Ishi
                      @title : String? = nil, @style : Symbol | String | Nil = nil,
                      @format : String? = nil,
                      @dashtype : Array(Int32) | Int32 | String | Nil = nil,
+                     @fillstyle : Int32 | Float64 | Nil = nil,
                      @linecolor : String? = nil,
                      @linewidth : Int32 | Float64 | Nil = nil,
                      @linestyle : Int32? = nil,
