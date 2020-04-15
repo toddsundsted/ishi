@@ -606,24 +606,28 @@ module Ishi
         commands << "set lmargin #{left}"
       when true
         commands << "set lmargin -1"
+      else
       end
       case right = chart.right
       when Number
         commands << "set rmargin #{right}"
       when true
         commands << "set rmargin -1"
+      else
       end
       case top = chart.top
       when Number
         commands << "set tmargin #{top}"
       when true
         commands << "set tmargin -1"
+      else
       end
       case bottom = chart.bottom
       when Number
         commands << "set bmargin #{bottom}"
       when true
         commands << "set bmargin -1"
+      else
       end
       case name = chart.palette_name
       when :gray
@@ -643,34 +647,29 @@ module Ishi
           commands += PALETTES[name].split("\n")
         end
       end
-      case show = chart.show_colorbox
-      when true
+      if show = chart.show_colorbox
         commands << "set colorbox"
-      when false
+      elsif show == false
         commands << "unset colorbox"
       end
-      case show = chart.show_border
-      when true
+      if show = chart.show_border
         commands << "set border 31"
-      when false
+      elsif show == false
         commands << "unset border"
       end
-      case show = chart.show_xtics
-      when true
+      if show = chart.show_xtics
         commands << "set xtics"
-      when false
+      elsif show == false
         commands << "unset xtics"
       end
-      case show = chart.show_ytics
-      when true
+      if show = chart.show_ytics
         commands << "set ytics"
-      when false
+      elsif show == false
         commands << "unset ytics"
       end
-      case show = chart.show_key
-      when true
+      if show = chart.show_key
         commands << "set key"
-      when false
+      elsif show == false
         commands << "unset key"
       end
       unless chart.plots.empty?
