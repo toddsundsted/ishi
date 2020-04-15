@@ -149,7 +149,7 @@ Spectator.describe Ishi::Gnuplot do
   end
 
   describe "#boxwidth" do
-    it "adds a label to the x axis" do
+    it "sets the default width of boxes" do
       output = subject.show(chart.boxwidth(1.55))
       expect(output).to have("set boxwidth 1.55")
     end
