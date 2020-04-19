@@ -157,6 +157,13 @@ Spectator.describe Ishi::Gnuplot do
     end
   end
 
+  describe "#xtics" do
+    it "sets non-numeric tic labels on the x-axis" do
+      output = subject.show(chart.xtics({1.0 => "A", 3.0 => "C"}))
+      expect(output).to have("set xtics (\"A\" 1.0, \"C\" 3.0)")
+    end
+  end
+
   describe "#view" do
     it "sets the viewing angle for 3D charts" do
       output = subject.show(chart.view(60, 30))

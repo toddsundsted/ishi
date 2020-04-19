@@ -60,6 +60,13 @@ module Ishi
 
       getter boxwidth
 
+      # Sets non-numeric tic labels on the x-axis.
+      def xtics(@xtics : Hash(Float64, String))
+        self
+      end
+
+      getter xtics
+
       # Sets the viewing angle for 3D charts.
       #
       def view(xrot : Float64, zrot : Float64)
@@ -681,6 +688,10 @@ module Ishi
         commands << "set xtics"
       elsif show == false
         commands << "unset xtics"
+      end
+      if labels = chart.xtics
+        label_point_pair = labels.map{ |k, v| "\"#{v}\" #{k}" }.join(", ")
+        commands << "set xtics (#{label_point_pair})"
       end
       if show = chart.show_ytics
         commands << "set ytics"
