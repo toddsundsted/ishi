@@ -234,6 +234,20 @@ module Ishi
       self
     end
 
+    # Sets non-numeric labels on the x-axis.
+    #
+    # This translates to `set xtics ({"<label>"} <pos> {<level>} {,{"<label>"}...) }`,
+    # see: [Xtics list](http://www.gnuplot.info/docs_5.2/Gnuplot_5.2.pdf#section*.405)
+    #
+    # Example:
+    # ```crystal
+    # plot(x, y).xtics({1.0 => "Jan", 6.0 => "Jun", 12.0 => "Dec"})
+    # ```
+    def xtics(xtics : Hash(Float64, String))
+      @charts.first.xtics(xtics)
+      self
+    end
+
     # Sets the viewing angle for 3D charts.
     #
     # For information on setting the viewing angle, see:
