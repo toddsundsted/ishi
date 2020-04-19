@@ -237,7 +237,7 @@ module Ishi
     # Sets non-numeric labels on the x-axis.
     #
     # This translates to `set xtics ({"<label>"} <pos> {<level>} {,{"<label>"}...) }`,
-    # see: [Xtics list](http://www.gnuplot.info/docs_5.2/Gnuplot_5.2.pdf#section*.405)
+    # see: [Xtics list](http://www.gnuplot.info/docs_5.2/Gnuplot_5.2.pdf#section*.404)
     #
     # Example:
     # ```crystal
