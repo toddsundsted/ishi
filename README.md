@@ -74,8 +74,8 @@ the data.
 
 All `plot` methods/commands accept the optional named arguments
 *title*, *style*, *dashtype* (*dt*), *linecolor* (*lc*), *linewidth*
-(*lw*), *pointsize* (*ps*), *pointtype* (*pt*), *linestyle* (*ls*) and
-*format*.
+(*lw*), *pointsize* (*ps*), *pointtype* (*pt*), *linestyle* (*ls*),
+*fillstyle* (*fs*) and *format*.
 
 *title* specifies the title of the plot in the chart key.
 
@@ -263,6 +263,32 @@ figure.charts(2, 2) do |i, row, col|
 end
 figure.show
 ```
+
+### Non-numeric labels on the x-axis
+
+`xtics` sets non-numeric labels for positions on the x-axis.
+
+The following code demonstrates the use of *xtics*:
+
+```crystal
+require "ishi"
+
+Ishi.new do
+  x = [1, 2, 3]
+  y = [65, 30, 5]
+  plot(x, y, title: "Visits", style: :boxes, fs: 0.25)
+    .boxwidth(0.5)
+    .ylabel("Visits (%)")
+    .xlabel("Device")
+    .xtics({
+      1.0 => "mobile",
+      2.0 => "desktop",
+      3.0 => "tablet"
+    })
+end
+```
+
+![xtics](https://raw.githubusercontent.com/toddsundsted/ishi/c3326585b3c4c406f47938e64e76797ea8f8af29/etc/examples/7.png)
 
 ### MXNet::NDArray
 
