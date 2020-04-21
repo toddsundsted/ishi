@@ -219,7 +219,7 @@ module Ishi
       @linewidth : Int32 | Float64 | Nil = nil
       @linestyle : Int32? = nil
       @fillstyle : Int32 | Float64 | Nil = nil
-      @pointsize : Int32 | Float64 | Nil = nil
+      @pointsize : Int32 | Float64 | Array(Float64) | Nil = nil
       @pointtype : Int32 | String | Nil = nil
 
       def initialize(options = nil)
@@ -322,8 +322,13 @@ module Ishi
             io << " lc #{_linecolor}" if @linecolor
             io << " lw #{@linewidth}" if @linewidth
             io << " ls #{@linestyle}" if @linestyle
-            io << " ps #{@pointsize}" if @pointsize
             io << " pt #{_pointtype}" if @pointtype
+            case @pointsize
+            when Array
+              io << " ps var"
+            else
+              io << " ps #{@pointsize}" if @pointsize
+            end
           end
         end
       end
@@ -461,7 +466,7 @@ module Ishi
                      @linecolor : String? = nil,
                      @linewidth : Int32 | Float64 | Nil = nil,
                      @linestyle : Int32? = nil,
-                     @pointsize : Int32 | Float64 | Nil = nil,
+                     @pointsize : Int32 | Float64 | Array(Float64) | Nil = nil,
                      @pointtype : Int32 | String | Nil = nil,
                      **options
                     )
@@ -478,8 +483,15 @@ module Ishi
 
       def data
         Array(String).new.tap do |arr|
-          @xdata.zip(@ydata).each do |x, y|
-            arr << "#{as_scalar(x)} #{as_scalar(y)}"
+          case sizes = @pointsize
+          when Array
+            @xdata.zip(@ydata, sizes).each do |x, y, size|
+              arr << "#{as_scalar(x)} #{as_scalar(y)} #{as_scalar(size)}"
+            end
+          else
+            @xdata.zip(@ydata).each do |x, y|
+              arr << "#{as_scalar(x)} #{as_scalar(y)}"
+            end
           end
           arr << "e"
         end
