@@ -61,6 +61,7 @@ module Ishi
       getter boxwidth
 
       # Sets non-numeric tic labels on the x-axis.
+      #
       def xtics(@xtics : Hash(Float64, String))
         self
       end
@@ -215,10 +216,10 @@ module Ishi
       @style : Symbol | String | Nil = nil
       @format : String? = nil
       @dashtype : Array(Int32) | Int32 | String | Nil = nil
+      @fillstyle : Int32 | Float64 | Nil = nil
       @linecolor : String? = nil
       @linewidth : Int32 | Float64 | Nil = nil
       @linestyle : Int32? = nil
-      @fillstyle : Int32 | Float64 | Nil = nil
       @pointsize : Int32 | Float64 | Nil = nil
       @pointtype : Int32 | String | Nil = nil
 
@@ -314,7 +315,7 @@ module Ishi
       private def make_style
         @style = _style
         @style = @style ? "with #{@style}" : nil
-        if @dashtype || @linecolor || @linewidth || @linestyle || @pointsize || @pointtype || @fillstyle
+        if @dashtype || @fillstyle || @linecolor || @linewidth || @linestyle || @pointsize || @pointtype
           @style = String.build do |io|
             io << @style || ""
             io << " dt #{_dashtype}" if @dashtype
