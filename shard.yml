@@ -1,5 +1,5 @@
 name: ishi
-version: 0.7.0
+version: 0.7.1
 
 description: |
   Graph plotting package with a small API and sensible defaults powered by gnuplot.
