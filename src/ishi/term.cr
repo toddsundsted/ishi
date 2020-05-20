@@ -11,6 +11,10 @@ module Ishi
       @@io
     end
 
+    def self.io=(io)
+      @@io = io
+    end
+
     def initialize(@term : String, @@io : IO = STDOUT)
       super()
     end

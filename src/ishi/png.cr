@@ -6,6 +6,7 @@ module Ishi
   class Png < Term
     def initialize(io : IO = STDOUT)
       super("pngcairo enhanced", io)
+      Term.io = io
     end
   end
 
