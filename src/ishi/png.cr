@@ -11,11 +11,11 @@ module Ishi
 
   class Gnuplot
     def show(chart)
-      IO.copy(previous_def(chart), Png.io)
+      IO.copy(previous_def(chart), @io)
     end
 
     def show(chart, rows, cols)
-      IO.copy(previous_def(chart, rows, cols), Png.io)
+      IO.copy(previous_def(chart, rows, cols), @io)
     end
   end
 

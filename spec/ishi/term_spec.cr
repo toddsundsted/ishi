@@ -11,7 +11,7 @@ class FooBar < Ishi::Term
   def show(**options)
     super(**options).tap do |lines|
       lines.each do |line|
-        FooBar.io.puts line
+        io.puts line
       end
     end
   end

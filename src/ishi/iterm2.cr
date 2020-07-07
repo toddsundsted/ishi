@@ -12,11 +12,11 @@ module Ishi
 
   class Gnuplot
     def show(chart, **options)
-      ::Iterm2.new(Iterm2.io).display(previous_def(chart), **options)
+      ::Iterm2.new(@io).display(previous_def(chart), **options)
     end
 
     def show(chart, rows, cols, **options)
-      ::Iterm2.new(Iterm2.io).display(previous_def(chart, rows, cols), **options)
+      ::Iterm2.new(@io).display(previous_def(chart, rows, cols), **options)
     end
   end
 
