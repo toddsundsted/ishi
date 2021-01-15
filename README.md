@@ -323,9 +323,9 @@ information on the complete library.
 ### Extensions
 
 By default, Ishi pops open a window to display charts. However, Ishi
-comes with extensions that display charts as text, HTML or inline
-images in the terminal; or that render charts to other `IO`
-destinations. Note: inline image display only works with
+comes with extensions that render charts as text, HTML, PNG or inline
+images in the terminal; or that write to other `IO` destinations.
+Note: terminal image display only works with
 [ITerm2](https://www.iterm2.com/).
 
 To plot the *sin(x)* function as text:
@@ -363,6 +363,19 @@ This produces:
       |     *  *       +         **  *   +             *  *                |
    -1 +--------------------------------------------------------------------+
      -10              -5                 0                5                10
+```
+
+You can pass in an `IO` instance. Chart data will be written to the
+`IO` instance instead of `STDOUT`.
+
+```crystal
+require "ishi/text" # or "ishi/html" or "ishi/png"
+
+io = IO::Memory.new
+
+Ishi.new(io) do
+  plot("sin(x)")
+end
 ```
 
 ## Contributors
