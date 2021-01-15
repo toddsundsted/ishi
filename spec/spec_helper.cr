@@ -3,7 +3,7 @@ require "spectator"
 require "yaml"
 
 module Ishi
-  private class SpecHelper < Term
+  class SpecHelper < Term
     def initialize
       super("dumb")
     end

@@ -1,7 +1,7 @@
 require "../spec_helper"
 
 Spectator.describe Ishi::Gnuplot do
-  subject { described_class.new(["set term dumb"]) }
+  subject { described_class.new(Ishi::SpecHelper.new, ["set term dumb"]) }
   let(:chart) { Ishi::Gnuplot::Chart.new }
 
   describe "#plot" do

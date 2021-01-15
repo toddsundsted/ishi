@@ -575,7 +575,7 @@ module Ishi
 
     # Creates a new instance of the gnuplot engine.
     #
-    def initialize(@prologue : Enumerable(String) = [] of String, @epilogue : Enumerable(String) = [] of String, @io : IO = STDOUT)
+    def initialize(@term : Term, @prologue : Enumerable(String) = [] of String, @epilogue : Enumerable(String) = [] of String)
     end
 
     # Shows the chart.

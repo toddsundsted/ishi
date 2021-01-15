@@ -12,13 +12,13 @@ module Ishi
   class Gnuplot
     def show(chart)
       previous_def(chart).each_line do |line|
-        @io.puts line
+        @term.io.puts line
       end
     end
 
     def show(chart, rows, cols)
       previous_def(chart, rows, cols).each_line do |line|
-        @io.puts line
+        @term.io.puts line
       end
     end
   end
