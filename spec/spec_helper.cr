@@ -4,7 +4,7 @@ require "yaml"
 
 module Ishi
   class SpecHelper < Term
-    def initialize
+    def initialize(**ignored)
       super("dumb")
     end
   end

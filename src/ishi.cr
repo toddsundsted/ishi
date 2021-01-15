@@ -11,7 +11,7 @@ module Ishi
 
   # :nodoc:
   class Qt < Term
-    def initialize
+    def initialize(**ignored)
       super("qt persist")
     end
   end
@@ -19,7 +19,7 @@ module Ishi
   # :nodoc:
   @@default = Qt
 
-  # Creates a new instance.
+  # Creates a new instance. An `IO` for output may be specified.
   #
   # ```
   # ishi = Ishi.new
@@ -27,15 +27,15 @@ module Ishi
   # ishi.show
   # ```
   #
-  def self.new
-    @@default.new
+  def self.new(io : IO = STDOUT)
+    @@default.new(io: io)
   end
 
   # Creates a new instance.
   #
   # Yields to the supplied block with the new instance as the implicit
-  # receiver. Automatically invokes `#show` before returning.  Any
-  # *options* are passed to `#show`.
+  # receiver. Automatically invokes `#show` before returning. An `IO`
+  # for output may be specified. Any *options* are passed to `#show`.
   #
   # ```
   # Ishi.new do
@@ -43,8 +43,8 @@ module Ishi
   # end
   # ```
   #
-  def self.new(**options)
-    @@default.new.tap do |instance|
+  def self.new(io : IO = STDOUT, **options)
+    @@default.new(io: io).tap do |instance|
       with instance yield
       instance.show(**options)
     end
