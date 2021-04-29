@@ -1,0 +1,1328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Crystal Docs 0.36.1">
+<meta name="crystal_docs.project_version" content="0.7.4">
+<meta name="crystal_docs.project_name" content="ishi">
+
+
+
+<link href="../../css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../../js/doc.js"></script>
+
+  <meta name="repository-name" content="ishi">
+  <title>Ishi::Gnuplot::Chart - ishi 0.7.4</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "../../";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<div class="sidebar">
+  <div class="sidebar-header">
+    <div class="search-box">
+      <input type="search" class="search-input" placeholder="Search..." spellcheck="false" aria-label="Search">
+    </div>
+
+    <div class="project-summary">
+      <h1 class="project-name">
+        <a href="../../index.html">
+          ishi
+        </a>
+      </h1>
+
+      <span class="project-version">
+        0.7.4
+      </span>
+    </div>
+  </div>
+
+  <div class="search-results hidden">
+    <ul class="search-list"></ul>
+  </div>
+
+  <div class="types-list">
+    <ul>
+  
+  <li class="parent open current" data-id="ishi/Ishi" data-name="ishi">
+      <a href="../../Ishi.html">Ishi</a>
+      
+        <ul>
+  
+  <li class=" " data-id="ishi/Ishi/Base" data-name="ishi::base">
+      <a href="../../Ishi/Base.html">Base</a>
+      
+    </li>
+  
+  <li class="parent open current" data-id="ishi/Ishi/Gnuplot" data-name="ishi::gnuplot">
+      <a href="../../Ishi/Gnuplot.html">Gnuplot</a>
+      
+        <ul>
+  
+  <li class=" current" data-id="ishi/Ishi/Gnuplot/Chart" data-name="ishi::gnuplot::chart">
+      <a href="../../Ishi/Gnuplot/Chart.html">Chart</a>
+      
+    </li>
+  
+  <li class=" " data-id="ishi/Ishi/Gnuplot/Plot" data-name="ishi::gnuplot::plot">
+      <a href="../../Ishi/Gnuplot/Plot.html">Plot</a>
+      
+    </li>
+  
+  <li class=" " data-id="ishi/Ishi/Gnuplot/Plot2D" data-name="ishi::gnuplot::plot2d(d)">
+      <a href="../../Ishi/Gnuplot/Plot2D.html">Plot2D</a>
+      
+    </li>
+  
+  <li class=" " data-id="ishi/Ishi/Gnuplot/PlotExp" data-name="ishi::gnuplot::plotexp">
+      <a href="../../Ishi/Gnuplot/PlotExp.html">PlotExp</a>
+      
+    </li>
+  
+  <li class=" " data-id="ishi/Ishi/Gnuplot/PlotXY" data-name="ishi::gnuplot::plotxy(x, y)">
+      <a href="../../Ishi/Gnuplot/PlotXY.html">PlotXY</a>
+      
+    </li>
+  
+  <li class=" " data-id="ishi/Ishi/Gnuplot/PlotXYZ" data-name="ishi::gnuplot::plotxyz(x, y, z)">
+      <a href="../../Ishi/Gnuplot/PlotXYZ.html">PlotXYZ</a>
+      
+    </li>
+  
+  <li class=" " data-id="ishi/Ishi/Gnuplot/PlotY" data-name="ishi::gnuplot::ploty(y)">
+      <a href="../../Ishi/Gnuplot/PlotY.html">PlotY</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="ishi/Ishi/Html" data-name="ishi::html">
+      <a href="../../Ishi/Html.html">Html</a>
+      
+    </li>
+  
+  <li class=" " data-id="ishi/Ishi/Iterm2" data-name="ishi::iterm2">
+      <a href="../../Ishi/Iterm2.html">Iterm2</a>
+      
+    </li>
+  
+  <li class=" " data-id="ishi/Ishi/Png" data-name="ishi::png">
+      <a href="../../Ishi/Png.html">Png</a>
+      
+    </li>
+  
+  <li class=" " data-id="ishi/Ishi/Term" data-name="ishi::term">
+      <a href="../../Ishi/Term.html">Term</a>
+      
+    </li>
+  
+  <li class=" " data-id="ishi/Ishi/Text" data-name="ishi::text">
+      <a href="../../Ishi/Text.html">Text</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+  </div>
+</div>
+
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">class</span> Ishi::Gnuplot::Chart
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../Ishi/Gnuplot/Chart.html">Ishi::Gnuplot::Chart</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+
+
+
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>A chart is a collection of plots and related metadata.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/toddsundsted/ishi/blob/v0.7.4/src/ishi/gnuplot.cr#L14" target="_blank">
+        ishi/gnuplot.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#bottom:Bool%7CFloat64%7CInt32%7CNil-instance-method" class="signature"><strong>#bottom</strong> : Bool | Float64 | Int32 | Nil</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#boxwidth:Float64?-instance-method" class="signature"><strong>#boxwidth</strong> : Float64?</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#boxwidth(boxwidth:Float64)-instance-method" class="signature"><strong>#boxwidth</strong>(boxwidth : Float64)</a>
+        
+          <div class="summary"><p>Sets the default width of boxes.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#clear-instance-method" class="signature"><strong>#clear</strong></a>
+        
+          <div class="summary"><p>Clears the chart.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#dim-instance-method" class="signature"><strong>#dim</strong></a>
+        
+          <div class="summary"><p>Returns the dimensionality of the chart.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#dim?-instance-method" class="signature"><strong>#dim?</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#left:Bool%7CFloat64%7CInt32%7CNil-instance-method" class="signature"><strong>#left</strong> : Bool | Float64 | Int32 | Nil</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#margin(left:Int32%7CBool,right:Int32%7CBool,top:Int32%7CBool,bottom:Int32%7CBool)-instance-method" class="signature"><strong>#margin</strong>(left : Int32 | Bool, right : Int32 | Bool, top : Int32 | Bool, bottom : Int32 | Bool)</a>
+        
+          <div class="summary"><p>Sets the margin.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#margin(left:Float64%7CBool,right:Float64%7CBool,top:Float64%7CBool,bottom:Float64%7CBool)-instance-method" class="signature"><strong>#margin</strong>(left : Float64 | Bool, right : Float64 | Bool, top : Float64 | Bool, bottom : Float64 | Bool)</a>
+        
+          <div class="summary"><p>Sets the margin.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#palette(palette_name:Symbol,colorboxshow_colorbox=true)-instance-method" class="signature"><strong>#palette</strong>(palette_name : Symbol, colorbox show_colorbox = <span class="n">true</span>)</a>
+        
+          <div class="summary"><p>Sets the palette.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#palette_name:Symbol?-instance-method" class="signature"><strong>#palette_name</strong> : Symbol?</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#plot(plot)-instance-method" class="signature"><strong>#plot</strong>(plot)</a>
+        
+          <div class="summary"><p>Adds a plot to the chart.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#plots:Array(Ishi::Gnuplot::Plot)-instance-method" class="signature"><strong>#plots</strong> : Array(Ishi::Gnuplot::Plot)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#right:Bool%7CFloat64%7CInt32%7CNil-instance-method" class="signature"><strong>#right</strong> : Bool | Float64 | Int32 | Nil</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#show_border:Bool?-instance-method" class="signature"><strong>#show_border</strong> : Bool?</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#show_border(show_border:Bool)-instance-method" class="signature"><strong>#show_border</strong>(show_border : Bool)</a>
+        
+          <div class="summary"><p>Shows/hides the chart border.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#show_colorbox(show_colorbox:Bool)-instance-method" class="signature"><strong>#show_colorbox</strong>(show_colorbox : Bool)</a>
+        
+          <div class="summary"><p>Shows/hides the chart colorbox.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#show_colorbox:Bool?-instance-method" class="signature"><strong>#show_colorbox</strong> : Bool?</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#show_key(show_key:Bool)-instance-method" class="signature"><strong>#show_key</strong>(show_key : Bool)</a>
+        
+          <div class="summary"><p>Shows/hides the chart key.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#show_key:Bool?-instance-method" class="signature"><strong>#show_key</strong> : Bool?</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#show_xtics:Bool?-instance-method" class="signature"><strong>#show_xtics</strong> : Bool?</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#show_xtics(show_xtics:Bool)-instance-method" class="signature"><strong>#show_xtics</strong>(show_xtics : Bool)</a>
+        
+          <div class="summary"><p>Shows/hides the chart xtics.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#show_ytics(show_ytics:Bool)-instance-method" class="signature"><strong>#show_ytics</strong>(show_ytics : Bool)</a>
+        
+          <div class="summary"><p>Shows/hides the chart ytics.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#show_ytics:Bool?-instance-method" class="signature"><strong>#show_ytics</strong> : Bool?</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#size-instance-method" class="signature"><strong>#size</strong></a>
+        
+          <div class="summary"><p>Returns the number of plots.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#top:Bool%7CFloat64%7CInt32%7CNil-instance-method" class="signature"><strong>#top</strong> : Bool | Float64 | Int32 | Nil</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#view(xrot:Float64,zrot:Float64)-instance-method" class="signature"><strong>#view</strong>(xrot : Float64, zrot : Float64)</a>
+        
+          <div class="summary"><p>Sets the viewing angle for 3D charts.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#view(xrot:Int32,zrot:Int32)-instance-method" class="signature"><strong>#view</strong>(xrot : Int32, zrot : Int32)</a>
+        
+          <div class="summary"><p>Sets the viewing angle for 3D charts.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#view:%7BFloat64%7CInt32,Float64%7CInt32%7D?-instance-method" class="signature"><strong>#view</strong> : {Float64 | Int32, Float64 | Int32}?</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#xlabel:String?-instance-method" class="signature"><strong>#xlabel</strong> : String?</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#xlabel(xlabel:String)-instance-method" class="signature"><strong>#xlabel</strong>(xlabel : String)</a>
+        
+          <div class="summary"><p>Sets the label of the <code>x</code> axis.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#xrange(xrange:Range(Float64,Float64)%7CRange(Int32,Int32))-instance-method" class="signature"><strong>#xrange</strong>(xrange : Range(Float64, Float64) | Range(Int32, Int32))</a>
+        
+          <div class="summary"><p>Sets the range of the <code>x</code> axis.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#xrange:Range(Float64,Float64)%7CRange(Int32,Int32)%7CNil-instance-method" class="signature"><strong>#xrange</strong> : Range(Float64, Float64) | Range(Int32, Int32) | Nil</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#xtics:Hash(Float64,String)?-instance-method" class="signature"><strong>#xtics</strong> : Hash(Float64, String)?</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#xtics(xtics:Hash(Float64,String))-instance-method" class="signature"><strong>#xtics</strong>(xtics : Hash(Float64, String))</a>
+        
+          <div class="summary"><p>Sets non-numeric tic labels on the x-axis.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#ylabel:String?-instance-method" class="signature"><strong>#ylabel</strong> : String?</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#ylabel(ylabel:String)-instance-method" class="signature"><strong>#ylabel</strong>(ylabel : String)</a>
+        
+          <div class="summary"><p>Sets the label of the <code>y</code> axis.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#yrange:Range(Float64,Float64)%7CRange(Int32,Int32)%7CNil-instance-method" class="signature"><strong>#yrange</strong> : Range(Float64, Float64) | Range(Int32, Int32) | Nil</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#yrange(yrange:Range(Float64,Float64)%7CRange(Int32,Int32))-instance-method" class="signature"><strong>#yrange</strong>(yrange : Range(Float64, Float64) | Range(Int32, Int32))</a>
+        
+          <div class="summary"><p>Sets the range of the <code>y</code> axis.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#zlabel(zlabel:String)-instance-method" class="signature"><strong>#zlabel</strong>(zlabel : String)</a>
+        
+          <div class="summary"><p>Sets the label of the <code>z</code> axis.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#zlabel:String?-instance-method" class="signature"><strong>#zlabel</strong> : String?</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#zrange:Range(Float64,Float64)%7CRange(Int32,Int32)%7CNil-instance-method" class="signature"><strong>#zrange</strong> : Range(Float64, Float64) | Range(Int32, Int32) | Nil</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#zrange(zrange:Range(Float64,Float64)%7CRange(Int32,Int32))-instance-method" class="signature"><strong>#zrange</strong>(zrange : Range(Float64, Float64) | Range(Int32, Int32))</a>
+        
+          <div class="summary"><p>Sets the range of the <code>z</code> axis.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+
+
+<div class="methods-inherited">
+  
+    
+
+
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+    
+
+
+  
+</div>
+
+
+
+
+
+
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="bottom:Bool|Float64|Int32|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>bottom</strong> : Bool | Float64 | Int32 | Nil
+
+        <a class="method-permalink" href="#bottom:Bool%7CFloat64%7CInt32%7CNil-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/toddsundsted/ishi/blob/v0.7.4/src/ishi/gnuplot.cr#L111" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="boxwidth:Float64?-instance-method">
+      <div class="signature">
+        
+        def <strong>boxwidth</strong> : Float64?
+
+        <a class="method-permalink" href="#boxwidth:Float64?-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/toddsundsted/ishi/blob/v0.7.4/src/ishi/gnuplot.cr#L61" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="boxwidth(boxwidth:Float64)-instance-method">
+      <div class="signature">
+        
+        def <strong>boxwidth</strong>(boxwidth : Float64)
+
+        <a class="method-permalink" href="#boxwidth(boxwidth:Float64)-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Sets the default width of boxes.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/toddsundsted/ishi/blob/v0.7.4/src/ishi/gnuplot.cr#L57" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="clear-instance-method">
+      <div class="signature">
+        
+        def <strong>clear</strong>
+
+        <a class="method-permalink" href="#clear-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Clears the chart.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/toddsundsted/ishi/blob/v0.7.4/src/ishi/gnuplot.cr#L180" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="dim-instance-method">
+      <div class="signature">
+        
+        def <strong>dim</strong>
+
+        <a class="method-permalink" href="#dim-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the dimensionality of the chart.</p>
+
+<p>All plots in a chart must have the same dimensionality (it's not
+currently possible to plot 2D and 3D data simultaneously).</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/toddsundsted/ishi/blob/v0.7.4/src/ishi/gnuplot.cr#L191" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="dim?-instance-method">
+      <div class="signature">
+        
+        def <strong>dim?</strong>
+
+        <a class="method-permalink" href="#dim?-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/toddsundsted/ishi/blob/v0.7.4/src/ishi/gnuplot.cr#L200" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="left:Bool|Float64|Int32|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>left</strong> : Bool | Float64 | Int32 | Nil
+
+        <a class="method-permalink" href="#left:Bool%7CFloat64%7CInt32%7CNil-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/toddsundsted/ishi/blob/v0.7.4/src/ishi/gnuplot.cr#L111" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="margin(left:Int32|Bool,right:Int32|Bool,top:Int32|Bool,bottom:Int32|Bool)-instance-method">
+      <div class="signature">
+        
+        def <strong>margin</strong>(left : Int32 | Bool, right : Int32 | Bool, top : Int32 | Bool, bottom : Int32 | Bool)
+
+        <a class="method-permalink" href="#margin(left:Int32%7CBool,right:Int32%7CBool,top:Int32%7CBool,bottom:Int32%7CBool)-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Sets the margin.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/toddsundsted/ishi/blob/v0.7.4/src/ishi/gnuplot.cr#L100" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="margin(left:Float64|Bool,right:Float64|Bool,top:Float64|Bool,bottom:Float64|Bool)-instance-method">
+      <div class="signature">
+        
+        def <strong>margin</strong>(left : Float64 | Bool, right : Float64 | Bool, top : Float64 | Bool, bottom : Float64 | Bool)
+
+        <a class="method-permalink" href="#margin(left:Float64%7CBool,right:Float64%7CBool,top:Float64%7CBool,bottom:Float64%7CBool)-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Sets the margin.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/toddsundsted/ishi/blob/v0.7.4/src/ishi/gnuplot.cr#L88" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="palette(palette_name:Symbol,colorboxshow_colorbox=true)-instance-method">
+      <div class="signature">
+        
+        def <strong>palette</strong>(palette_name : Symbol, colorbox show_colorbox = <span class="n">true</span>)
+
+        <a class="method-permalink" href="#palette(palette_name:Symbol,colorboxshow_colorbox=true)-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Sets the palette.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/toddsundsted/ishi/blob/v0.7.4/src/ishi/gnuplot.cr#L115" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="palette_name:Symbol?-instance-method">
+      <div class="signature">
+        
+        def <strong>palette_name</strong> : Symbol?
+
+        <a class="method-permalink" href="#palette_name:Symbol?-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/toddsundsted/ishi/blob/v0.7.4/src/ishi/gnuplot.cr#L119" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="plot(plot)-instance-method">
+      <div class="signature">
+        
+        def <strong>plot</strong>(plot)
+
+        <a class="method-permalink" href="#plot(plot)-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Adds a plot to the chart.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/toddsundsted/ishi/blob/v0.7.4/src/ishi/gnuplot.cr#L167" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="plots:Array(Ishi::Gnuplot::Plot)-instance-method">
+      <div class="signature">
+        
+        def <strong>plots</strong> : Array(<a href="../../Ishi/Gnuplot/Plot.html">Ishi::Gnuplot::Plot</a>)
+
+        <a class="method-permalink" href="#plots:Array(Ishi::Gnuplot::Plot)-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/toddsundsted/ishi/blob/v0.7.4/src/ishi/gnuplot.cr#L163" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="right:Bool|Float64|Int32|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>right</strong> : Bool | Float64 | Int32 | Nil
+
+        <a class="method-permalink" href="#right:Bool%7CFloat64%7CInt32%7CNil-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/toddsundsted/ishi/blob/v0.7.4/src/ishi/gnuplot.cr#L111" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="show_border:Bool?-instance-method">
+      <div class="signature">
+        
+        def <strong>show_border</strong> : Bool?
+
+        <a class="method-permalink" href="#show_border:Bool?-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/toddsundsted/ishi/blob/v0.7.4/src/ishi/gnuplot.cr#L135" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="show_border(show_border:Bool)-instance-method">
+      <div class="signature">
+        
+        def <strong>show_border</strong>(show_border : Bool)
+
+        <a class="method-permalink" href="#show_border(show_border:Bool)-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Shows/hides the chart border.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/toddsundsted/ishi/blob/v0.7.4/src/ishi/gnuplot.cr#L131" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="show_colorbox(show_colorbox:Bool)-instance-method">
+      <div class="signature">
+        
+        def <strong>show_colorbox</strong>(show_colorbox : Bool)
+
+        <a class="method-permalink" href="#show_colorbox(show_colorbox:Bool)-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Shows/hides the chart colorbox.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/toddsundsted/ishi/blob/v0.7.4/src/ishi/gnuplot.cr#L123" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="show_colorbox:Bool?-instance-method">
+      <div class="signature">
+        
+        def <strong>show_colorbox</strong> : Bool?
+
+        <a class="method-permalink" href="#show_colorbox:Bool?-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/toddsundsted/ishi/blob/v0.7.4/src/ishi/gnuplot.cr#L127" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="show_key(show_key:Bool)-instance-method">
+      <div class="signature">
+        
+        def <strong>show_key</strong>(show_key : Bool)
+
+        <a class="method-permalink" href="#show_key(show_key:Bool)-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Shows/hides the chart key.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/toddsundsted/ishi/blob/v0.7.4/src/ishi/gnuplot.cr#L155" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="show_key:Bool?-instance-method">
+      <div class="signature">
+        
+        def <strong>show_key</strong> : Bool?
+
+        <a class="method-permalink" href="#show_key:Bool?-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/toddsundsted/ishi/blob/v0.7.4/src/ishi/gnuplot.cr#L159" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="show_xtics:Bool?-instance-method">
+      <div class="signature">
+        
+        def <strong>show_xtics</strong> : Bool?
+
+        <a class="method-permalink" href="#show_xtics:Bool?-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/toddsundsted/ishi/blob/v0.7.4/src/ishi/gnuplot.cr#L143" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="show_xtics(show_xtics:Bool)-instance-method">
+      <div class="signature">
+        
+        def <strong>show_xtics</strong>(show_xtics : Bool)
+
+        <a class="method-permalink" href="#show_xtics(show_xtics:Bool)-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Shows/hides the chart xtics.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/toddsundsted/ishi/blob/v0.7.4/src/ishi/gnuplot.cr#L139" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="show_ytics(show_ytics:Bool)-instance-method">
+      <div class="signature">
+        
+        def <strong>show_ytics</strong>(show_ytics : Bool)
+
+        <a class="method-permalink" href="#show_ytics(show_ytics:Bool)-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Shows/hides the chart ytics.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/toddsundsted/ishi/blob/v0.7.4/src/ishi/gnuplot.cr#L147" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="show_ytics:Bool?-instance-method">
+      <div class="signature">
+        
+        def <strong>show_ytics</strong> : Bool?
+
+        <a class="method-permalink" href="#show_ytics:Bool?-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/toddsundsted/ishi/blob/v0.7.4/src/ishi/gnuplot.cr#L151" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="size-instance-method">
+      <div class="signature">
+        
+        def <strong>size</strong>
+
+        <a class="method-permalink" href="#size-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the number of plots.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/toddsundsted/ishi/blob/v0.7.4/src/ishi/gnuplot.cr#L174" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="top:Bool|Float64|Int32|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>top</strong> : Bool | Float64 | Int32 | Nil
+
+        <a class="method-permalink" href="#top:Bool%7CFloat64%7CInt32%7CNil-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/toddsundsted/ishi/blob/v0.7.4/src/ishi/gnuplot.cr#L111" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="view(xrot:Float64,zrot:Float64)-instance-method">
+      <div class="signature">
+        
+        def <strong>view</strong>(xrot : Float64, zrot : Float64)
+
+        <a class="method-permalink" href="#view(xrot:Float64,zrot:Float64)-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Sets the viewing angle for 3D charts.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/toddsundsted/ishi/blob/v0.7.4/src/ishi/gnuplot.cr#L73" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="view(xrot:Int32,zrot:Int32)-instance-method">
+      <div class="signature">
+        
+        def <strong>view</strong>(xrot : Int32, zrot : Int32)
+
+        <a class="method-permalink" href="#view(xrot:Int32,zrot:Int32)-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Sets the viewing angle for 3D charts.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/toddsundsted/ishi/blob/v0.7.4/src/ishi/gnuplot.cr#L79" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="view:{Float64|Int32,Float64|Int32}?-instance-method">
+      <div class="signature">
+        
+        def <strong>view</strong> : {Float64 | Int32, Float64 | Int32}?
+
+        <a class="method-permalink" href="#view:%7BFloat64%7CInt32,Float64%7CInt32%7D?-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/toddsundsted/ishi/blob/v0.7.4/src/ishi/gnuplot.cr#L84" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="xlabel:String?-instance-method">
+      <div class="signature">
+        
+        def <strong>xlabel</strong> : String?
+
+        <a class="method-permalink" href="#xlabel:String?-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/toddsundsted/ishi/blob/v0.7.4/src/ishi/gnuplot.cr#L33" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="xlabel(xlabel:String)-instance-method">
+      <div class="signature">
+        
+        def <strong>xlabel</strong>(xlabel : String)
+
+        <a class="method-permalink" href="#xlabel(xlabel:String)-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Sets the label of the <code>x</code> axis.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/toddsundsted/ishi/blob/v0.7.4/src/ishi/gnuplot.cr#L17" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="xrange(xrange:Range(Float64,Float64)|Range(Int32,Int32))-instance-method">
+      <div class="signature">
+        
+        def <strong>xrange</strong>(xrange : Range(Float64, Float64) | Range(Int32, Int32))
+
+        <a class="method-permalink" href="#xrange(xrange:Range(Float64,Float64)%7CRange(Int32,Int32))-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Sets the range of the <code>x</code> axis.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/toddsundsted/ishi/blob/v0.7.4/src/ishi/gnuplot.cr#L37" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="xrange:Range(Float64,Float64)|Range(Int32,Int32)|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>xrange</strong> : Range(Float64, Float64) | Range(Int32, Int32) | Nil
+
+        <a class="method-permalink" href="#xrange:Range(Float64,Float64)%7CRange(Int32,Int32)%7CNil-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/toddsundsted/ishi/blob/v0.7.4/src/ishi/gnuplot.cr#L53" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="xtics:Hash(Float64,String)?-instance-method">
+      <div class="signature">
+        
+        def <strong>xtics</strong> : Hash(Float64, String)?
+
+        <a class="method-permalink" href="#xtics:Hash(Float64,String)?-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/toddsundsted/ishi/blob/v0.7.4/src/ishi/gnuplot.cr#L69" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="xtics(xtics:Hash(Float64,String))-instance-method">
+      <div class="signature">
+        
+        def <strong>xtics</strong>(xtics : Hash(Float64, String))
+
+        <a class="method-permalink" href="#xtics(xtics:Hash(Float64,String))-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Sets non-numeric tic labels on the x-axis.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/toddsundsted/ishi/blob/v0.7.4/src/ishi/gnuplot.cr#L65" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="ylabel:String?-instance-method">
+      <div class="signature">
+        
+        def <strong>ylabel</strong> : String?
+
+        <a class="method-permalink" href="#ylabel:String?-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/toddsundsted/ishi/blob/v0.7.4/src/ishi/gnuplot.cr#L33" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="ylabel(ylabel:String)-instance-method">
+      <div class="signature">
+        
+        def <strong>ylabel</strong>(ylabel : String)
+
+        <a class="method-permalink" href="#ylabel(ylabel:String)-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Sets the label of the <code>y</code> axis.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/toddsundsted/ishi/blob/v0.7.4/src/ishi/gnuplot.cr#L23" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="yrange:Range(Float64,Float64)|Range(Int32,Int32)|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>yrange</strong> : Range(Float64, Float64) | Range(Int32, Int32) | Nil
+
+        <a class="method-permalink" href="#yrange:Range(Float64,Float64)%7CRange(Int32,Int32)%7CNil-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/toddsundsted/ishi/blob/v0.7.4/src/ishi/gnuplot.cr#L53" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="yrange(yrange:Range(Float64,Float64)|Range(Int32,Int32))-instance-method">
+      <div class="signature">
+        
+        def <strong>yrange</strong>(yrange : Range(Float64, Float64) | Range(Int32, Int32))
+
+        <a class="method-permalink" href="#yrange(yrange:Range(Float64,Float64)%7CRange(Int32,Int32))-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Sets the range of the <code>y</code> axis.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/toddsundsted/ishi/blob/v0.7.4/src/ishi/gnuplot.cr#L43" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="zlabel(zlabel:String)-instance-method">
+      <div class="signature">
+        
+        def <strong>zlabel</strong>(zlabel : String)
+
+        <a class="method-permalink" href="#zlabel(zlabel:String)-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Sets the label of the <code>z</code> axis.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/toddsundsted/ishi/blob/v0.7.4/src/ishi/gnuplot.cr#L29" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="zlabel:String?-instance-method">
+      <div class="signature">
+        
+        def <strong>zlabel</strong> : String?
+
+        <a class="method-permalink" href="#zlabel:String?-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/toddsundsted/ishi/blob/v0.7.4/src/ishi/gnuplot.cr#L33" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="zrange:Range(Float64,Float64)|Range(Int32,Int32)|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>zrange</strong> : Range(Float64, Float64) | Range(Int32, Int32) | Nil
+
+        <a class="method-permalink" href="#zrange:Range(Float64,Float64)%7CRange(Int32,Int32)%7CNil-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/toddsundsted/ishi/blob/v0.7.4/src/ishi/gnuplot.cr#L53" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="zrange(zrange:Range(Float64,Float64)|Range(Int32,Int32))-instance-method">
+      <div class="signature">
+        
+        def <strong>zrange</strong>(zrange : Range(Float64, Float64) | Range(Int32, Int32))
+
+        <a class="method-permalink" href="#zrange(zrange:Range(Float64,Float64)%7CRange(Int32,Int32))-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Sets the range of the <code>z</code> axis.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/toddsundsted/ishi/blob/v0.7.4/src/ishi/gnuplot.cr#L49" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+
+</div>
+
+</body>
+</html>

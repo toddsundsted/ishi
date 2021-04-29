@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Crystal Docs 0.36.1">
+<meta name="crystal_docs.project_version" content="0.7.4">
+<meta name="crystal_docs.project_name" content="ishi">
+
+
+
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/doc.js"></script>
+
+  <meta name="repository-name" content="ishi">
+  <title>Ishi::Html - ishi 0.7.4</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "../";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<div class="sidebar">
+  <div class="sidebar-header">
+    <div class="search-box">
+      <input type="search" class="search-input" placeholder="Search..." spellcheck="false" aria-label="Search">
+    </div>
+
+    <div class="project-summary">
+      <h1 class="project-name">
+        <a href="../index.html">
+          ishi
+        </a>
+      </h1>
+
+      <span class="project-version">
+        0.7.4
+      </span>
+    </div>
+  </div>
+
+  <div class="search-results hidden">
+    <ul class="search-list"></ul>
+  </div>
+
+  <div class="types-list">
+    <ul>
+  
+  <li class="parent open current" data-id="ishi/Ishi" data-name="ishi">
+      <a href="../Ishi.html">Ishi</a>
+      
+        <ul>
+  
+  <li class=" " data-id="ishi/Ishi/Base" data-name="ishi::base">
+      <a href="../Ishi/Base.html">Base</a>
+      
+    </li>
+  
+  <li class="parent " data-id="ishi/Ishi/Gnuplot" data-name="ishi::gnuplot">
+      <a href="../Ishi/Gnuplot.html">Gnuplot</a>
+      
+        <ul>
+  
+  <li class=" " data-id="ishi/Ishi/Gnuplot/Chart" data-name="ishi::gnuplot::chart">
+      <a href="../Ishi/Gnuplot/Chart.html">Chart</a>
+      
+    </li>
+  
+  <li class=" " data-id="ishi/Ishi/Gnuplot/Plot" data-name="ishi::gnuplot::plot">
+      <a href="../Ishi/Gnuplot/Plot.html">Plot</a>
+      
+    </li>
+  
+  <li class=" " data-id="ishi/Ishi/Gnuplot/Plot2D" data-name="ishi::gnuplot::plot2d(d)">
+      <a href="../Ishi/Gnuplot/Plot2D.html">Plot2D</a>
+      
+    </li>
+  
+  <li class=" " data-id="ishi/Ishi/Gnuplot/PlotExp" data-name="ishi::gnuplot::plotexp">
+      <a href="../Ishi/Gnuplot/PlotExp.html">PlotExp</a>
+      
+    </li>
+  
+  <li class=" " data-id="ishi/Ishi/Gnuplot/PlotXY" data-name="ishi::gnuplot::plotxy(x, y)">
+      <a href="../Ishi/Gnuplot/PlotXY.html">PlotXY</a>
+      
+    </li>
+  
+  <li class=" " data-id="ishi/Ishi/Gnuplot/PlotXYZ" data-name="ishi::gnuplot::plotxyz(x, y, z)">
+      <a href="../Ishi/Gnuplot/PlotXYZ.html">PlotXYZ</a>
+      
+    </li>
+  
+  <li class=" " data-id="ishi/Ishi/Gnuplot/PlotY" data-name="ishi::gnuplot::ploty(y)">
+      <a href="../Ishi/Gnuplot/PlotY.html">PlotY</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" current" data-id="ishi/Ishi/Html" data-name="ishi::html">
+      <a href="../Ishi/Html.html">Html</a>
+      
+    </li>
+  
+  <li class=" " data-id="ishi/Ishi/Iterm2" data-name="ishi::iterm2">
+      <a href="../Ishi/Iterm2.html">Iterm2</a>
+      
+    </li>
+  
+  <li class=" " data-id="ishi/Ishi/Png" data-name="ishi::png">
+      <a href="../Ishi/Png.html">Png</a>
+      
+    </li>
+  
+  <li class=" " data-id="ishi/Ishi/Term" data-name="ishi::term">
+      <a href="../Ishi/Term.html">Term</a>
+      
+    </li>
+  
+  <li class=" " data-id="ishi/Ishi/Text" data-name="ishi::text">
+      <a href="../Ishi/Text.html">Text</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+  </div>
+</div>
+
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">class</span> Ishi::Html
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../Ishi/Html.html">Ishi::Html</a></li><li class="superclass"><a href="../Ishi/Term.html">Ishi::Term</a></li><li class="superclass"><a href="../Ishi/Base.html">Ishi::Base</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+
+
+
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>Renders chart as HTML to the console.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/toddsundsted/ishi/blob/v0.7.4/src/ishi/html.cr#L6" target="_blank">
+        ishi/html.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+  <h2>
+    <a id="constructors" class="anchor" href="#constructors">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructors
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new(io:IO=STDOUT)-class-method" class="signature"><strong>.new</strong>(io : IO = <span class="t">STDOUT</span>)</a>
+        
+      </li>
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+<div class="methods-inherited">
+  
+    
+
+  <h3>Instance methods inherited from class <code><a href="../Ishi/Term.html">Ishi::Term</a></code></h3>
+  
+  
+    <a href="../Ishi/Term.html#show(**options)-instance-method" class="tooltip">
+      <span>show(**options)</span>
+    show</a>
+    
+  
+
+
+    
+
+  <h3>Constructor methods inherited from class <code><a href="../Ishi/Term.html">Ishi::Term</a></code></h3>
+  
+  
+    <a href="../Ishi/Term.html#new(term:String,io:IO=STDOUT)-class-method" class="tooltip">
+      <span>new(term : String, io : IO = <span class="t">STDOUT</span>)</span>
+    new</a>
+    
+  
+
+
+    
+
+
+  
+    
+
+  <h3>Instance methods inherited from class <code><a href="../Ishi/Base.html">Ishi::Base</a></code></h3>
+  
+  
+    <a href="../Ishi/Base.html#boxwidth(boxwidth:Float64)-instance-method" class="tooltip">
+      <span>boxwidth(boxwidth : Float64)</span>
+    boxwidth</a>, 
+    
+  
+    <a href="../Ishi/Base.html#canvas_size(width:Int32,height:Int32)-instance-method" class="tooltip">
+      <span>canvas_size(width : Int32, height : Int32)<br/>canvas_size(width : Float64, height : Float64)</span>
+    canvas_size</a>, 
+    
+  
+    <a href="../Ishi/Base.html#charts(rows:Int32,cols:Int32)-instance-method" class="tooltip">
+      <span>charts(rows : Int32, cols : Int32)<br/>charts(rows : Int32, cols : Int32, &)</span>
+    charts</a>, 
+    
+  
+    <a href="../Ishi/Base.html#imshow(data:Indexable(Indexable(D)),**options)forallD-instance-method" class="tooltip">
+      <span>imshow(data : Indexable(Indexable(D)), **options) forall D</span>
+    imshow</a>, 
+    
+  
+    <a href="../Ishi/Base.html#margin(left:Int32%7CBool=false,right:Int32%7CBool=false,top:Int32%7CBool=false,bottom:Int32%7CBool=false)-instance-method" class="tooltip">
+      <span>margin(left : Int32 | Bool = <span class="n">false</span>, right : Int32 | Bool = <span class="n">false</span>, top : Int32 | Bool = <span class="n">false</span>, bottom : Int32 | Bool = <span class="n">false</span>)<br/>margin(left : Float64 | Bool = <span class="n">false</span>, right : Float64 | Bool = <span class="n">false</span>, top : Float64 | Bool = <span class="n">false</span>, bottom : Float64 | Bool = <span class="n">false</span>)</span>
+    margin</a>, 
+    
+  
+    <a href="../Ishi/Base.html#palette(name:Symbol,colorbox:Bool=true)-instance-method" class="tooltip">
+      <span>palette(name : Symbol, colorbox : Bool = <span class="n">true</span>)</span>
+    palette</a>, 
+    
+  
+    <a href="../Ishi/Base.html#plot(xdata:Indexable(T),ydata:Indexable(U),zdata:Indexable(V),format:String?=nil,*,title:String?=nil,style:Symbol=:points,**options)forallT,U,V-instance-method" class="tooltip">
+      <span>plot(xdata : Indexable(T), ydata : Indexable(U), zdata : Indexable(V), format : String? = <span class="n">nil</span>, *, title : String? = <span class="n">nil</span>, style : Symbol = <span class="n">:points</span>, **options) forall T, U, V<br/>plot(ydata : Indexable(Y), format : String? = <span class="n">nil</span>, *, title : String? = <span class="n">nil</span>, style : Symbol = <span class="n">:lines</span>, **options) forall Y<br/>plot(xdata : Indexable(M), ydata : Indexable(N), format : String? = <span class="n">nil</span>, *, title : String? = <span class="n">nil</span>, style : Symbol = <span class="n">:points</span>, **options) forall M, N<br/>plot(expression : String, format : String? = <span class="n">nil</span>, *, title : String? = <span class="n">nil</span>, style : Symbol? = <span class="n">nil</span>, **options)</span>
+    plot</a>, 
+    
+  
+    <a href="../Ishi/Base.html#scatter(xdata:Indexable(M),ydata:Indexable(N),format:String?=nil,*,title:String?=nil,style:Symbol=:dots,**options)forallM,N-instance-method" class="tooltip">
+      <span>scatter(xdata : Indexable(M), ydata : Indexable(N), format : String? = <span class="n">nil</span>, *, title : String? = <span class="n">nil</span>, style : Symbol = <span class="n">:dots</span>, **options) forall M, N<br/>scatter(xdata : Indexable(T), ydata : Indexable(U), zdata : Indexable(V), format : String? = <span class="n">nil</span>, *, title : String? = <span class="n">nil</span>, style : Symbol = <span class="n">:dots</span>, **options) forall T, U, V</span>
+    scatter</a>, 
+    
+  
+    <a href="../Ishi/Base.html#show(**options)-instance-method" class="tooltip">
+      <span>show(**options)</span>
+    show</a>, 
+    
+  
+    <a href="../Ishi/Base.html#show_border(show:Bool)-instance-method" class="tooltip">
+      <span>show_border(show : Bool)</span>
+    show_border</a>, 
+    
+  
+    <a href="../Ishi/Base.html#show_colorbox(show:Bool)-instance-method" class="tooltip">
+      <span>show_colorbox(show : Bool)</span>
+    show_colorbox</a>, 
+    
+  
+    <a href="../Ishi/Base.html#show_key(show:Bool)-instance-method" class="tooltip">
+      <span>show_key(show : Bool)</span>
+    show_key</a>, 
+    
+  
+    <a href="../Ishi/Base.html#show_xtics(show:Bool)-instance-method" class="tooltip">
+      <span>show_xtics(show : Bool)</span>
+    show_xtics</a>, 
+    
+  
+    <a href="../Ishi/Base.html#show_ytics(show:Bool)-instance-method" class="tooltip">
+      <span>show_ytics(show : Bool)</span>
+    show_ytics</a>, 
+    
+  
+    <a href="../Ishi/Base.html#size-instance-method" class="tooltip">
+      <span>size</span>
+    size</a>, 
+    
+  
+    <a href="../Ishi/Base.html#view(xrot:Float64,zrot:Float64)-instance-method" class="tooltip">
+      <span>view(xrot : Float64, zrot : Float64)<br/>view(xrot : Int32, zrot : Int32)</span>
+    view</a>, 
+    
+  
+    <a href="../Ishi/Base.html#xlabel(xlabel:String)-instance-method" class="tooltip">
+      <span>xlabel(xlabel : String)</span>
+    xlabel</a>, 
+    
+  
+    <a href="../Ishi/Base.html#xrange(xrange:Range(Float64,Float64)%7CRange(Int32,Int32))-instance-method" class="tooltip">
+      <span>xrange(xrange : Range(Float64, Float64) | Range(Int32, Int32))</span>
+    xrange</a>, 
+    
+  
+    <a href="../Ishi/Base.html#xtics(xtics:Hash(Float64,String))-instance-method" class="tooltip">
+      <span>xtics(xtics : Hash(Float64, String))</span>
+    xtics</a>, 
+    
+  
+    <a href="../Ishi/Base.html#ylabel(ylabel:String)-instance-method" class="tooltip">
+      <span>ylabel(ylabel : String)</span>
+    ylabel</a>, 
+    
+  
+    <a href="../Ishi/Base.html#yrange(yrange:Range(Float64,Float64)%7CRange(Int32,Int32))-instance-method" class="tooltip">
+      <span>yrange(yrange : Range(Float64, Float64) | Range(Int32, Int32))</span>
+    yrange</a>, 
+    
+  
+    <a href="../Ishi/Base.html#zlabel(zlabel:String)-instance-method" class="tooltip">
+      <span>zlabel(zlabel : String)</span>
+    zlabel</a>, 
+    
+  
+    <a href="../Ishi/Base.html#zrange(zrange:Range(Float64,Float64)%7CRange(Int32,Int32))-instance-method" class="tooltip">
+      <span>zrange(zrange : Range(Float64, Float64) | Range(Int32, Int32))</span>
+    zrange</a>
+    
+  
+
+
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+    
+
+
+  
+</div>
+
+
+  <h2>
+    <a id="constructor-detail" class="anchor" href="#constructor-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructor Detail
+  </h2>
+  
+    <div class="entry-detail" id="new(io:IO=STDOUT)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(io : IO = <span class="t">STDOUT</span>)
+
+        <a class="method-permalink" href="#new(io:IO=STDOUT)-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/toddsundsted/ishi/blob/v0.7.4/src/ishi/html.cr#L7" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+
+
+
+
+
+</div>
+
+</body>
+</html>

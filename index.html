@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Crystal Docs 0.36.1">
+<meta name="crystal_docs.project_version" content="0.7.4">
+<meta name="crystal_docs.project_name" content="ishi">
+
+
+
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/doc.js"></script>
+
+  <meta name="repository-name" content="ishi">
+  <title>ishi 0.7.4</title>
+  <script type="text/javascript">
+  CrystalDocs.base_path = "";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<div class="sidebar">
+  <div class="sidebar-header">
+    <div class="search-box">
+      <input type="search" class="search-input" placeholder="Search..." spellcheck="false" aria-label="Search">
+    </div>
+
+    <div class="project-summary">
+      <h1 class="project-name">
+        <a href="index.html">
+          ishi
+        </a>
+      </h1>
+
+      <span class="project-version">
+        0.7.4
+      </span>
+    </div>
+  </div>
+
+  <div class="search-results hidden">
+    <ul class="search-list"></ul>
+  </div>
+
+  <div class="types-list">
+    <ul>
+  
+  <li class="parent " data-id="ishi/Ishi" data-name="ishi">
+      <a href="Ishi.html">Ishi</a>
+      
+        <ul>
+  
+  <li class=" " data-id="ishi/Ishi/Base" data-name="ishi::base">
+      <a href="Ishi/Base.html">Base</a>
+      
+    </li>
+  
+  <li class="parent " data-id="ishi/Ishi/Gnuplot" data-name="ishi::gnuplot">
+      <a href="Ishi/Gnuplot.html">Gnuplot</a>
+      
+        <ul>
+  
+  <li class=" " data-id="ishi/Ishi/Gnuplot/Chart" data-name="ishi::gnuplot::chart">
+      <a href="Ishi/Gnuplot/Chart.html">Chart</a>
+      
+    </li>
+  
+  <li class=" " data-id="ishi/Ishi/Gnuplot/Plot" data-name="ishi::gnuplot::plot">
+      <a href="Ishi/Gnuplot/Plot.html">Plot</a>
+      
+    </li>
+  
+  <li class=" " data-id="ishi/Ishi/Gnuplot/Plot2D" data-name="ishi::gnuplot::plot2d(d)">
+      <a href="Ishi/Gnuplot/Plot2D.html">Plot2D</a>
+      
+    </li>
+  
+  <li class=" " data-id="ishi/Ishi/Gnuplot/PlotExp" data-name="ishi::gnuplot::plotexp">
+      <a href="Ishi/Gnuplot/PlotExp.html">PlotExp</a>
+      
+    </li>
+  
+  <li class=" " data-id="ishi/Ishi/Gnuplot/PlotXY" data-name="ishi::gnuplot::plotxy(x, y)">
+      <a href="Ishi/Gnuplot/PlotXY.html">PlotXY</a>
+      
+    </li>
+  
+  <li class=" " data-id="ishi/Ishi/Gnuplot/PlotXYZ" data-name="ishi::gnuplot::plotxyz(x, y, z)">
+      <a href="Ishi/Gnuplot/PlotXYZ.html">PlotXYZ</a>
+      
+    </li>
+  
+  <li class=" " data-id="ishi/Ishi/Gnuplot/PlotY" data-name="ishi::gnuplot::ploty(y)">
+      <a href="Ishi/Gnuplot/PlotY.html">PlotY</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="ishi/Ishi/Html" data-name="ishi::html">
+      <a href="Ishi/Html.html">Html</a>
+      
+    </li>
+  
+  <li class=" " data-id="ishi/Ishi/Iterm2" data-name="ishi::iterm2">
+      <a href="Ishi/Iterm2.html">Iterm2</a>
+      
+    </li>
+  
+  <li class=" " data-id="ishi/Ishi/Png" data-name="ishi::png">
+      <a href="Ishi/Png.html">Png</a>
+      
+    </li>
+  
+  <li class=" " data-id="ishi/Ishi/Term" data-name="ishi::term">
+      <a href="Ishi/Term.html">Term</a>
+      
+    </li>
+  
+  <li class=" " data-id="ishi/Ishi/Text" data-name="ishi::text">
+      <a href="Ishi/Text.html">Text</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+  </div>
+</div>
+
+
+<div class="main-content">
+<h1><a id="" class="anchor" href="#">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>石の上にも三年</h1>
+
+<p><a href="https://github.com/toddsundsted/ishi/releases"><img src="https://img.shields.io/github/release/toddsundsted/ishi.svg" alt="GitHub Release"/></a>
+<a href="https://travis-ci.org/toddsundsted/ishi"><img src="https://travis-ci.org/toddsundsted/ishi.svg?branch=master" alt="Build Status"/></a>
+<a href="https://toddsundsted.github.io/ishi/"><img src="https://img.shields.io/badge/docs-available-brightgreen.svg" alt="Documentation"/></a></p>
+
+<p>Graph plotting package with a small API and sensible defaults powered by gnuplot.</p>
+
+<p>Requires <a href="http://www.gnuplot.info/">gnuplot</a>.</p>
+
+<h2><a id="installation" class="anchor" href="#installation">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Installation</h2>
+
+<ol><li>Add the dependency to your <code>shard.yml</code>:</li></ol>
+
+<pre><code class="language-yaml">dependencies:
+  ishi:
+    github: toddsundsted/ishi</code></pre>
+
+<ol><li>Run <code>shards install</code></li></ol>
+
+<h2><a id="usage" class="anchor" href="#usage">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Usage</h2>
+
+<p>To display a line chart of the data points in <code>xdata</code> (the x values)
+and <code>ydata</code> (the corresponding y values):</p>
+
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;ishi&quot;</span>
+
+ishi <span class="o">=</span> <span class="t">Ishi</span>.<span class="k">new</span>
+ishi.plot(xdata, ydata)
+ishi.show</code></pre>
+
+<p>Or, if you prefer command-style syntax:</p>
+
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;ishi&quot;</span>
+
+<span class="t">Ishi</span>.<span class="k">new</span> <span class="k">do</span>
+  plot(xdata, ydata)
+<span class="k">end</span></code></pre>
+
+<p>A chart can display multiple plots. The following code displays two
+plots in one chart: one derived from discrete data points and the
+other from the equation of a line.</p>
+
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;ishi&quot;</span>
+
+<span class="t">Ishi</span>.<span class="k">new</span> <span class="k">do</span>
+  plot([<span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>, <span class="n">4</span>, <span class="n">5</span>], [<span class="n">1.0</span>, <span class="n">1.4</span>, <span class="n">1.9</span>, <span class="n">2.4</span>, <span class="n">2.6</span>], <span class="s">&quot;ko&quot;</span>, title: <span class="s">&quot;data&quot;</span>)
+  plot(<span class="s">&quot;0.4 * x + 0.7&quot;</span>, <span class="s">&quot;b--&quot;</span>)
+<span class="k">end</span></code></pre>
+
+<p><img src="https://raw.githubusercontent.com/toddsundsted/ishi/e277adfe71bf8ad3ead70fab9b3736ed969608d7/etc/examples/1.png" alt="two plots"/></p>
+
+<p>The <a href="https://github.com/toddsundsted/ishi/tree/master/etc/examples">etc/examples</a> directory contains examples of usage.</p>
+
+<h3><a id="plot" class="anchor" href="#plot">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>plot</h3>
+
+<p><code>plot</code> plots points and lines. It takes data in several formats:</p>
+
+<ul><li><code>plot(ydata)</code> - y values in <em>ydata</em> with x values ranging from <code>0</code> to <code>ydata.size - 1</code></li><li><code>plot(xdata, ydata)</code> - x values in <em>xdata</em> and corresponding y values in <em>ydata</em></li><li><code>plot(xdata, ydata, zdata)</code> - x values in <em>xdata</em>, y values in <em>ydata</em>, and z values in <em>zdata</em></li><li><code>plot(expression)</code> - any gnuplot-supported mathematical expression</li></ul>
+
+<p><em>xdata</em>, <em>ydata</em> and <em>zdata</em> may be any type that implements
+<code>Indexable(Number)</code>. Chart dimensionality (2D or 3D) is inferred from
+the data.</p>
+
+<p>All <code>plot</code> methods/commands accept the optional named arguments
+<em>title</em>, <em>style</em>, <em>dashtype</em> (<em>dt</em>), <em>linecolor</em> (<em>lc</em>), <em>linewidth</em>
+(<em>lw</em>), <em>pointsize</em> (<em>ps</em>), <em>pointtype</em> (<em>pt</em>), <em>linestyle</em> (<em>ls</em>),
+<em>fillstyle</em> (<em>fs</em>) and <em>format</em>.</p>
+
+<p><em>title</em> specifies the title of the plot in the chart key.</p>
+
+<p><em>style</em> explicitly specifies the style of the plot (<code>:lines</code>,
+<code>:points</code>, etc.). Ishi will try to infer the style from the data and
+the other named arguments (for example, if both <em>linewidth</em> and
+<em>pointsize</em> are provided, the style will be <code>:linespoints</code>).</p>
+
+<p>By default, plots are rendered with solid lines. <em>dashtype</em> (<em>dt</em>)
+specifies the pattern of dashes to use instead. <em>dashtype</em> may be an
+array of pairs of numbers that specify the length of a solid line
+followed by the length of an empty space (e.g. <code>[2, 3, 5, 7]</code>), or it
+may be a string composed of . (dot), - (hyphen), \_ (underscore) and
+(space), which is then converted into an array as follows: each "."
+becomes <code>[2, 5]</code>, "-" becomes <code>[10, 10]</code>, "\_" becomes <code>[20, 10]</code> and
+" " adds 10 to the previous empty value.</p>
+
+<p><em>linecolor</em> specifies the color to use for lines and points. Colors
+may be specified by name (e.g. "red", "blue", or "green") or by
+hexadecimal color value (e.g. "#AARRGGBB" or "#RRGGBB").</p>
+
+<p><em>linewidth</em> and <em>pointsize</em> scale the width of lines and the size of
+points, respectively. A value of 2.0 is twice as big as the default
+width or size.</p>
+
+<p>The following code demonstrates the use of <em>dashtype</em>, <em>linecolor</em> and
+<em>linewidth</em>:</p>
+
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;ishi&quot;</span>
+
+<span class="t">Ishi</span>.<span class="k">new</span> <span class="k">do</span>
+  plot(<span class="s">&quot;x + 4.0&quot;</span>, dashtype: <span class="s">&quot;-&quot;</span>, linewidth: <span class="n">2</span>)
+  plot(<span class="s">&quot;x + 3.0&quot;</span>, dashtype: <span class="s">&quot;_&quot;</span>, linewidth: <span class="n">2</span>)
+  plot(<span class="s">&quot;x + 2.0&quot;</span>, dashtype: <span class="s">&quot;.&quot;</span>, linewidth: <span class="n">2</span>)
+  plot(<span class="s">&quot;x + 1.0&quot;</span>, dashtype: <span class="s">&quot;..._&quot;</span>, linewidth: <span class="n">2</span>)
+  plot(<span class="s">&quot;x + 0.0&quot;</span>, dashtype: [<span class="n">30</span>, <span class="n">10</span>, <span class="n">50</span>, <span class="n">10</span>], linewidth: <span class="n">2</span>, linecolor: <span class="s">&quot;#88001100&quot;</span>)
+<span class="k">end</span></code></pre>
+
+<p><img src="https://raw.githubusercontent.com/toddsundsted/ishi/e277adfe71bf8ad3ead70fab9b3736ed969608d7/etc/examples/2.png" alt="lines"/></p>
+
+<p><em>pointtype</em> selects the type of point to render. Available types
+depend on the gnuplot terminal device used, but commonly supported
+values are . (dot), + (plus sign), x (multiplication sign), *
+(asterisk), s (square), o (circle), ^ (up triangle), and v (down
+triangle) and d (diamond).</p>
+
+<p>The following code demonstrates the use of <em>pointtype</em> and
+<em>pointsize</em>:</p>
+
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;ishi&quot;</span>
+
+<span class="t">Ishi</span>.<span class="k">new</span> <span class="k">do</span>
+  plot([<span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>, <span class="n">4</span>], [<span class="n">5</span>, <span class="n">6</span>, <span class="n">7</span>, <span class="n">8</span>], pointtype: <span class="n">1</span>, pointsize: <span class="n">2</span>)
+  plot([<span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>, <span class="n">4</span>], [<span class="n">4</span>, <span class="n">5</span>, <span class="n">6</span>, <span class="n">7</span>], pointtype: <span class="s">&quot;o&quot;</span>, pointsize: <span class="n">2</span>)
+  plot([<span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>, <span class="n">4</span>], [<span class="n">3</span>, <span class="n">4</span>, <span class="n">5</span>, <span class="n">6</span>], pointtype: <span class="s">&quot;s&quot;</span>, pointsize: <span class="n">2</span>)
+  plot([<span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>, <span class="n">4</span>], [<span class="n">2</span>, <span class="n">3</span>, <span class="n">4</span>, <span class="n">5</span>], pointtype: <span class="s">&quot;^&quot;</span>, pointsize: <span class="n">2</span>)
+  plot([<span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>, <span class="n">4</span>], [<span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>, <span class="n">4</span>], pointtype: <span class="s">&quot;v&quot;</span>, pointsize: <span class="n">2</span>, linecolor: <span class="s">&quot;#88001100&quot;</span>)
+<span class="k">end</span></code></pre>
+
+<p><img src="https://raw.githubusercontent.com/toddsundsted/ishi/e277adfe71bf8ad3ead70fab9b3736ed969608d7/etc/examples/3.png" alt="points"/></p>
+
+<p>The <em>format</em> argument is a short string used to specify color, point
+and line, simultaneously.</p>
+
+<p>Color is a letter from the set b (blue), g (green), r (red), c (cyan),
+m (magenta), y (yellow), k (black) or w (white). Point is a letter
+from the set . (dot), + (plus sign), x (multiplication sign), *
+(asterisk), s (square), c (circle), ^ (up triangle), v (down triangle)
+or d (diamond). Line may be - (solid line), -- (dashed line), !
+(dash-dot line) and : (dotted line).</p>
+
+<p>Given these rules, the format string "b" is a solid blue line, "or" is
+red circles, "^k:" is black triangles connected by dotted black lines,
+"g-" is a solid green line and "--" is a dashed line.</p>
+
+<p><em>format</em> may also be a single word color name or hexadecimal color
+value, in which case point and line may not be specified.</p>
+
+<p>Returning to the first example, the code uses <em>format</em> to customize
+the plots:</p>
+
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;ishi&quot;</span>
+
+<span class="t">Ishi</span>.<span class="k">new</span> <span class="k">do</span>
+  plot([<span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>, <span class="n">4</span>, <span class="n">5</span>], [<span class="n">1.0</span>, <span class="n">1.4</span>, <span class="n">1.9</span>, <span class="n">2.4</span>, <span class="n">2.6</span>], <span class="s">&quot;ko&quot;</span>, title: <span class="s">&quot;data&quot;</span>)
+  plot(<span class="s">&quot;0.4 * x + 0.7&quot;</span>, <span class="s">&quot;b--&quot;</span>)
+<span class="k">end</span></code></pre>
+
+<p>The <em>format</em> "ko" could also be expressed explicitly (and much more
+verbosely) with the named arguments <code>linecolor: "black", pointtype: 7</code>,
+and the <em>format</em> "b--" with <code>linecolor: "blue", dashtype: 2</code>.</p>
+
+<h3><a id="scatter" class="anchor" href="#scatter">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>scatter</h3>
+
+<p><code>scatter</code> draws scatter plots. It takes data in several formats:</p>
+
+<ul><li><code>scatter(xdata, ydata)</code> - x values in <em>xdata</em> and corresponding y values in <em>ydata</em></li><li><code>scatter(xdata, ydata, zdata)</code> - x values in <em>xdata</em>, y values in <em>ydata</em>, and z values in <em>zdata</em></li></ul>
+
+<p>Chart dimensionality (2D or 3D) is inferred from the data. By default,
+<code>scatter</code> places a . (dot) at each point.</p>
+
+<p>All <code>scatter</code> methods/commands accept the optional named arguments
+<em>title</em>, <em>style</em>, <em>dashtype</em> (<em>dt</em>), <em>linecolor</em> (<em>lc</em>), <em>linewidth</em>
+(<em>lw</em>), <em>pointsize</em> (<em>ps</em>), <em>pointtype</em> (<em>pt</em>), <em>linestyle</em> (<em>ls</em>) and
+<em>format</em>.</p>
+
+<p>The following code demonstrates the use of <em>scatter</em>:</p>
+
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;ishi&quot;</span>
+
+<span class="t">Ishi</span>.<span class="k">new</span> <span class="k">do</span>
+  scatter(xdata, zdata, lc: <span class="s">&quot;#4b03a1&quot;</span>)
+  scatter(ydata, zdata, lc: <span class="s">&quot;#b5367a&quot;</span>)
+<span class="k">end</span></code></pre>
+
+<p><img src="https://raw.githubusercontent.com/toddsundsted/ishi/e277adfe71bf8ad3ead70fab9b3736ed969608d7/etc/examples/4.png" alt="scatter"/></p>
+
+<h3><a id="imshow" class="anchor" href="#imshow">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>imshow</h3>
+
+<p><code>imshow</code> displays data as a pseudocolor, heatmapped image:</p>
+
+<ul><li><code>imshow(data)</code> - <em>data</em> is two-dimensional scalar data, which will be rendered as an image</li></ul>
+
+<p>The following code demonstrates the use of <em>imshow</em>:</p>
+
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;ishi&quot;</span>
+
+<span class="t">Ishi</span>.<span class="k">new</span> <span class="k">do</span>
+  palette(<span class="n">:inferno</span>)
+  imshow(data)
+  margin(<span class="n">0</span>, <span class="n">0</span>, <span class="n">0</span>, <span class="n">0</span>)
+  show_colorbox(<span class="n">false</span>)
+  show_border(<span class="n">false</span>)
+  show_xtics(<span class="n">false</span>)
+  show_ytics(<span class="n">false</span>)
+  show_key(<span class="n">false</span>)
+<span class="k">end</span></code></pre>
+
+<p><img src="https://raw.githubusercontent.com/toddsundsted/ishi/e277adfe71bf8ad3ead70fab9b3736ed969608d7/etc/examples/5.png" alt="imshow"/></p>
+
+<h3><a id="charts" class="anchor" href="#charts">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>charts</h3>
+
+<p><code>charts</code> changes the number of charts in the figure:</p>
+
+<ul><li><code>charts(rows, cols)</code> - <em>rows</em> and <em>cols</em> are the number of rows and columns in the figure</li></ul>
+
+<p>By default a figure has one chart. This call changes the number of
+charts in the figure. The original chart is preserved and becomes the
+chart in the first row, first column of the new layout.</p>
+
+<p>When called without a block, <code>charts</code> returns the charts in the
+figure.</p>
+
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;ishi&quot;</span>
+
+figure <span class="o">=</span> <span class="t">Ishi</span>.<span class="k">new</span>
+charts <span class="o">=</span> figure.charts(<span class="n">2</span>, <span class="n">2</span>)
+charts[<span class="n">0</span>].plot([<span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>, <span class="n">4</span>])
+charts[<span class="n">1</span>].plot([<span class="n">1</span>, <span class="n">1</span>, <span class="n">3</span>, <span class="n">2</span>])
+charts[<span class="n">2</span>].plot([<span class="n">1</span>, <span class="n">1</span>, <span class="n">1</span>, <span class="n">1</span>])
+charts[<span class="n">3</span>].plot([<span class="n">4</span>, <span class="n">3</span>, <span class="n">2</span>, <span class="n">1</span>])
+figure.show</code></pre>
+
+<p>When called with a block, <code>charts</code> Yields each chart as the default
+receiver of the supplied block. Block arguments are <em>i</em> (the i-th
+chart in the figure), <em>row</em> and <em>col</em> (the row and column of the
+chart).</p>
+
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;ishi&quot;</span>
+
+figure <span class="o">=</span> <span class="t">Ishi</span>.<span class="k">new</span>
+figure.charts(<span class="n">2</span>, <span class="n">2</span>) <span class="k">do</span> <span class="o">|</span>i, row, col<span class="o">|</span>
+  plot([<span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>, <span class="n">4</span>].rotate(i), title: <span class="s">&quot;</span><span class="i">#{</span>row<span class="i">}</span><span class="s">,</span><span class="i">#{</span>col<span class="i">}</span><span class="s">&quot;</span>)
+<span class="k">end</span>
+figure.show</code></pre>
+
+<h3><a id="non-numeric-labels-on-the-x-axis" class="anchor" href="#non-numeric-labels-on-the-x-axis">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Non-numeric labels on the x-axis</h3>
+
+<p><code>xtics</code> sets non-numeric labels for positions on the x-axis.</p>
+
+<p>The following code demonstrates the use of <em>xtics</em>:</p>
+
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;ishi&quot;</span>
+
+<span class="t">Ishi</span>.<span class="k">new</span> <span class="k">do</span>
+  x <span class="o">=</span> [<span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>]
+  y <span class="o">=</span> [<span class="n">65</span>, <span class="n">30</span>, <span class="n">5</span>]
+  plot(x, y, title: <span class="s">&quot;Visits&quot;</span>, style: <span class="n">:boxes</span>, fs: <span class="n">0.25</span>)
+    .boxwidth(<span class="n">0.5</span>)
+    .ylabel(<span class="s">&quot;Visits (%)&quot;</span>)
+    .xlabel(<span class="s">&quot;Device&quot;</span>)
+    .xtics({
+      <span class="n">1.0</span> => <span class="s">&quot;mobile&quot;</span>,
+      <span class="n">2.0</span> => <span class="s">&quot;desktop&quot;</span>,
+      <span class="n">3.0</span> => <span class="s">&quot;tablet&quot;</span>
+    })
+<span class="k">end</span></code></pre>
+
+<p><img src="https://raw.githubusercontent.com/toddsundsted/ishi/c3326585b3c4c406f47938e64e76797ea8f8af29/etc/examples/7.png" alt="xtics"/></p>
+
+<h3><a id="mx-netnd-array" class="anchor" href="#mx-netnd-array">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>MXNet::NDArray</h3>
+
+<p><code>MXNet::NDArray</code> is an indexable, multi-dimensional array that
+efficiently supports numerical operations (transposition, matrix
+multiplication, etc.).</p>
+
+<p>All appropriate methods/commands accept instances of <code>MXNet::NDArray</code>
+with the correct shape (1-dimensional vectors for x-values, for
+example).</p>
+
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;ishi&quot;</span>
+<span class="k">require</span> <span class="s">&quot;mxnet&quot;</span>
+
+m <span class="o">=</span> <span class="t">MXNet</span><span class="t">::</span><span class="t">NDArray</span>.array(
+  [[<span class="n">0</span>, <span class="n">0</span>, <span class="n">1</span>, <span class="n">1</span>],
+   [<span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>, <span class="n">4</span>],
+   [<span class="n">1</span>, <span class="n">1</span>, <span class="n">2</span>, <span class="n">2</span>]]
+)
+
+figure <span class="o">=</span> <span class="t">Ishi</span>.<span class="k">new</span>
+charts <span class="o">=</span> figure.charts(<span class="n">1</span>, <span class="n">2</span>)
+charts[<span class="n">0</span>].plot(m[<span class="n">0</span>], m[<span class="n">1</span>], m[<span class="n">2</span>])
+charts[<span class="n">1</span>].plot(m[.., <span class="n">0</span>], m[.., <span class="n">1</span>], m[.., <span class="n">2</span>])
+figure.show</code></pre>
+
+<p>See <a href="https://github.com/toddsundsted/mxnet.cr">MXNet.cr</a> for more
+information on the complete library.</p>
+
+<h3><a id="extensions" class="anchor" href="#extensions">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Extensions</h3>
+
+<p>By default, Ishi pops open a window to display charts. However, Ishi
+comes with extensions that render charts as text, HTML, PNG or inline
+images in the terminal; or that write to other <code>IO</code> destinations.
+Note: terminal image display only works with
+<a href="https://www.iterm2.com/">ITerm2</a>.</p>
+
+<p>To plot the <em>sin(x)</em> function as text:</p>
+
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;ishi/text&quot;</span> <span class="c"># or &quot;ishi/html&quot; or &quot;ishi/iterm2&quot;</span>
+
+<span class="t">Ishi</span>.<span class="k">new</span> <span class="k">do</span>
+  plot(<span class="s">&quot;sin(x)&quot;</span>)
+<span class="k">end</span></code></pre>
+
+<p>This produces:</p>
+
+<pre><code class="language-crystal">    1 +--------------------------------------------------------------------+
+      |                *  *              +  *  **         +       *  *     |
+  0.8 |-+             *   *                 *    *          sin(x* *******-|
+      |              *     *                *    *               *    *    |
+  0.6 |-+            *      *              *     *               *     * +-|
+      |              *      *             *       *             *       *  |
+  0.4 |*+            *      *             *       *             *       *+-|
+      |*            *        *            *        *           *        *  |
+  0.2 |*+           *        *            *        *           *        *+-|
+      | *          *          *          *         *          *          * |
+    0 |-*          *          *          *         *          *          *-|
+      |  *         *          *         *           *         *           *|
+ -0.2 |-+*         *          *         *           *         *          +*|
+      |  *        *            *       *             *       *            *|
+ -0.4 |-+*        *            *       *             *       *           +*|
+      |   *      *              *      *             *      *              |
+ -0.6 |-+ *     *               *     *              *      *            +-|
+      |    *    *               *     *               *     *              |
+ -0.8 |-+   *   *                *   *                 *   *             +-|
+      |     *  *       +         **  *   +             *  *                |
+   -1 +--------------------------------------------------------------------+
+     -10              -5                 0                5                10</code></pre>
+
+<p>You can pass in an <code>IO</code> instance. Chart data will be written to the
+<code>IO</code> instance instead of <code>STDOUT</code>.</p>
+
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;ishi/text&quot;</span> <span class="c"># or &quot;ishi/html&quot; or &quot;ishi/png&quot;</span>
+
+io <span class="o">=</span> <span class="t">IO</span><span class="t">::</span><span class="t">Memory</span>.<span class="k">new</span>
+
+<span class="t">Ishi</span>.<span class="k">new</span>(io) <span class="k">do</span>
+  plot(<span class="s">&quot;sin(x)&quot;</span>)
+<span class="k">end</span></code></pre>
+
+<h2><a id="contributors" class="anchor" href="#contributors">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Contributors</h2>
+
+<ul><li><a href="https://github.com/toddsundsted">Todd Sundsted</a> - creator and maintainer</li><li><a href="https://github.com/lbarasti">lbarasti</a> - contributor</li></ul>
+</div>
+</body>
+</html>

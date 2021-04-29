@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Crystal Docs 0.36.1">
+<meta name="crystal_docs.project_version" content="0.7.4">
+<meta name="crystal_docs.project_name" content="ishi">
+
+
+
+<link href="../../css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../../js/doc.js"></script>
+
+  <meta name="repository-name" content="ishi">
+  <title>Ishi::Gnuplot::PlotExp - ishi 0.7.4</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "../../";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<div class="sidebar">
+  <div class="sidebar-header">
+    <div class="search-box">
+      <input type="search" class="search-input" placeholder="Search..." spellcheck="false" aria-label="Search">
+    </div>
+
+    <div class="project-summary">
+      <h1 class="project-name">
+        <a href="../../index.html">
+          ishi
+        </a>
+      </h1>
+
+      <span class="project-version">
+        0.7.4
+      </span>
+    </div>
+  </div>
+
+  <div class="search-results hidden">
+    <ul class="search-list"></ul>
+  </div>
+
+  <div class="types-list">
+    <ul>
+  
+  <li class="parent open current" data-id="ishi/Ishi" data-name="ishi">
+      <a href="../../Ishi.html">Ishi</a>
+      
+        <ul>
+  
+  <li class=" " data-id="ishi/Ishi/Base" data-name="ishi::base">
+      <a href="../../Ishi/Base.html">Base</a>
+      
+    </li>
+  
+  <li class="parent open current" data-id="ishi/Ishi/Gnuplot" data-name="ishi::gnuplot">
+      <a href="../../Ishi/Gnuplot.html">Gnuplot</a>
+      
+        <ul>
+  
+  <li class=" " data-id="ishi/Ishi/Gnuplot/Chart" data-name="ishi::gnuplot::chart">
+      <a href="../../Ishi/Gnuplot/Chart.html">Chart</a>
+      
+    </li>
+  
+  <li class=" " data-id="ishi/Ishi/Gnuplot/Plot" data-name="ishi::gnuplot::plot">
+      <a href="../../Ishi/Gnuplot/Plot.html">Plot</a>
+      
+    </li>
+  
+  <li class=" " data-id="ishi/Ishi/Gnuplot/Plot2D" data-name="ishi::gnuplot::plot2d(d)">
+      <a href="../../Ishi/Gnuplot/Plot2D.html">Plot2D</a>
+      
+    </li>
+  
+  <li class=" current" data-id="ishi/Ishi/Gnuplot/PlotExp" data-name="ishi::gnuplot::plotexp">
+      <a href="../../Ishi/Gnuplot/PlotExp.html">PlotExp</a>
+      
+    </li>
+  
+  <li class=" " data-id="ishi/Ishi/Gnuplot/PlotXY" data-name="ishi::gnuplot::plotxy(x, y)">
+      <a href="../../Ishi/Gnuplot/PlotXY.html">PlotXY</a>
+      
+    </li>
+  
+  <li class=" " data-id="ishi/Ishi/Gnuplot/PlotXYZ" data-name="ishi::gnuplot::plotxyz(x, y, z)">
+      <a href="../../Ishi/Gnuplot/PlotXYZ.html">PlotXYZ</a>
+      
+    </li>
+  
+  <li class=" " data-id="ishi/Ishi/Gnuplot/PlotY" data-name="ishi::gnuplot::ploty(y)">
+      <a href="../../Ishi/Gnuplot/PlotY.html">PlotY</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="ishi/Ishi/Html" data-name="ishi::html">
+      <a href="../../Ishi/Html.html">Html</a>
+      
+    </li>
+  
+  <li class=" " data-id="ishi/Ishi/Iterm2" data-name="ishi::iterm2">
+      <a href="../../Ishi/Iterm2.html">Iterm2</a>
+      
+    </li>
+  
+  <li class=" " data-id="ishi/Ishi/Png" data-name="ishi::png">
+      <a href="../../Ishi/Png.html">Png</a>
+      
+    </li>
+  
+  <li class=" " data-id="ishi/Ishi/Term" data-name="ishi::term">
+      <a href="../../Ishi/Term.html">Term</a>
+      
+    </li>
+  
+  <li class=" " data-id="ishi/Ishi/Text" data-name="ishi::text">
+      <a href="../../Ishi/Text.html">Text</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+  </div>
+</div>
+
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">class</span> Ishi::Gnuplot::PlotExp
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../Ishi/Gnuplot/PlotExp.html">Ishi::Gnuplot::PlotExp</a></li><li class="superclass"><a href="../../Ishi/Gnuplot/Plot.html">Ishi::Gnuplot::Plot</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/toddsundsted/ishi/blob/v0.7.4/src/ishi/gnuplot.cr#L380" target="_blank">
+        ishi/gnuplot.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+  <h2>
+    <a id="constructors" class="anchor" href="#constructors">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructors
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new(expression:String,title:String?=nil,style:Symbol%7CString%7CNil=nil,format:String?=nil,dashtype:Array(Int32)%7CInt32%7CString%7CNil=nil,fillstyle:Int32%7CFloat64%7CNil=nil,linecolor:String?=nil,linewidth:Int32%7CFloat64%7CNil=nil,linestyle:Int32?=nil,pointsize:Int32%7CFloat64%7CNil=nil,pointtype:Int32%7CString%7CNil=nil,**options)-class-method" class="signature"><strong>.new</strong>(expression : String, title : String? = <span class="n">nil</span>, style : Symbol | String | Nil = <span class="n">nil</span>, format : String? = <span class="n">nil</span>, dashtype : Array(Int32) | Int32 | String | Nil = <span class="n">nil</span>, fillstyle : Int32 | Float64 | Nil = <span class="n">nil</span>, linecolor : String? = <span class="n">nil</span>, linewidth : Int32 | Float64 | Nil = <span class="n">nil</span>, linestyle : Int32? = <span class="n">nil</span>, pointsize : Int32 | Float64 | Nil = <span class="n">nil</span>, pointtype : Int32 | String | Nil = <span class="n">nil</span>, **options)</a>
+        
+      </li>
+    
+  </ul>
+
+
+
+
+
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#data-instance-method" class="signature"><strong>#data</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#dim-instance-method" class="signature"><strong>#dim</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#inst-instance-method" class="signature"><strong>#inst</strong></a>
+        
+      </li>
+    
+  </ul>
+
+
+
+
+
+<div class="methods-inherited">
+  
+    
+
+  <h3>Instance methods inherited from class <code><a href="../../Ishi/Gnuplot/Plot.html">Ishi::Gnuplot::Plot</a></code></h3>
+  
+  
+    <a href="../../Ishi/Gnuplot/Plot.html#data-instance-method" class="tooltip">
+      <span>data</span>
+    data</a>, 
+    
+  
+    <a href="../../Ishi/Gnuplot/Plot.html#dim-instance-method" class="tooltip">
+      <span>dim</span>
+    dim</a>, 
+    
+  
+    <a href="../../Ishi/Gnuplot/Plot.html#inst-instance-method" class="tooltip">
+      <span>inst</span>
+    inst</a>
+    
+  
+
+
+    
+
+  <h3>Constructor methods inherited from class <code><a href="../../Ishi/Gnuplot/Plot.html">Ishi::Gnuplot::Plot</a></code></h3>
+  
+  
+    <a href="../../Ishi/Gnuplot/Plot.html#new(options=nil)-class-method" class="tooltip">
+      <span>new(options = <span class="n">nil</span>)</span>
+    new</a>
+    
+  
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+    
+
+
+  
+</div>
+
+
+  <h2>
+    <a id="constructor-detail" class="anchor" href="#constructor-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructor Detail
+  </h2>
+  
+    <div class="entry-detail" id="new(expression:String,title:String?=nil,style:Symbol|String|Nil=nil,format:String?=nil,dashtype:Array(Int32)|Int32|String|Nil=nil,fillstyle:Int32|Float64|Nil=nil,linecolor:String?=nil,linewidth:Int32|Float64|Nil=nil,linestyle:Int32?=nil,pointsize:Int32|Float64|Nil=nil,pointtype:Int32|String|Nil=nil,**options)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(expression : String, title : String? = <span class="n">nil</span>, style : Symbol | String | Nil = <span class="n">nil</span>, format : String? = <span class="n">nil</span>, dashtype : Array(Int32) | Int32 | String | Nil = <span class="n">nil</span>, fillstyle : Int32 | Float64 | Nil = <span class="n">nil</span>, linecolor : String? = <span class="n">nil</span>, linewidth : Int32 | Float64 | Nil = <span class="n">nil</span>, linestyle : Int32? = <span class="n">nil</span>, pointsize : Int32 | Float64 | Nil = <span class="n">nil</span>, pointtype : Int32 | String | Nil = <span class="n">nil</span>, **options)
+
+        <a class="method-permalink" href="#new(expression:String,title:String?=nil,style:Symbol%7CString%7CNil=nil,format:String?=nil,dashtype:Array(Int32)%7CInt32%7CString%7CNil=nil,fillstyle:Int32%7CFloat64%7CNil=nil,linecolor:String?=nil,linewidth:Int32%7CFloat64%7CNil=nil,linestyle:Int32?=nil,pointsize:Int32%7CFloat64%7CNil=nil,pointtype:Int32%7CString%7CNil=nil,**options)-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/toddsundsted/ishi/blob/v0.7.4/src/ishi/gnuplot.cr#L383" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+
+
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="data-instance-method">
+      <div class="signature">
+        
+        def <strong>data</strong>
+
+        <a class="method-permalink" href="#data-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/toddsundsted/ishi/blob/v0.7.4/src/ishi/gnuplot.cr#L406" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="dim-instance-method">
+      <div class="signature">
+        
+        def <strong>dim</strong>
+
+        <a class="method-permalink" href="#dim-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/toddsundsted/ishi/blob/v0.7.4/src/ishi/gnuplot.cr#L410" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="inst-instance-method">
+      <div class="signature">
+        
+        def <strong>inst</strong>
+
+        <a class="method-permalink" href="#inst-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/toddsundsted/ishi/blob/v0.7.4/src/ishi/gnuplot.cr#L398" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+
+</div>
+
+</body>
+</html>
