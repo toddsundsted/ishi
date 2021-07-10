@@ -580,7 +580,7 @@ module Ishi
 
     # Shows the chart.
     #
-    def show(chart)
+    def show(chart, **options)
       commands = [] of String
       commands += @prologue.to_a
       commands += _chart(chart)
@@ -593,7 +593,7 @@ module Ishi
 
     # Shows the charts.
     #
-    def show(charts, rows, cols)
+    def show(charts, rows, cols, **options)
       if charts.size != rows * cols
         raise ArgumentError.new("incompatible layout: rows * cols != number of charts")
       end
