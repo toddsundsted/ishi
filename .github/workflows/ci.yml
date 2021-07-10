@@ -1,0 +1,33 @@
+name: build
+on:
+  push:
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: '0 6 * * 6'
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        crystal: [latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Download source
+        uses: actions/checkout@v2
+      - name: Install Crystal
+        uses: crystal-lang/install-crystal@31648d0e69d6c8eaccb0b483bb2283515b1153ae
+        with:
+          crystal: ${{ matrix.crystal }}
+      - name: Install shards
+        run: shards update
+      - name: Run tests
+        run: crystal spec
+      - name: Build docs
+        run: crystal docs
+      - name: Deploy docs
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: oprypin/push-to-gh-pages@b16c4c1926875f4d9fce26ffc60a623b003231d2
+        with:
+          publish_dir: ./docs
