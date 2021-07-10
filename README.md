@@ -1,7 +1,7 @@
 # 石の上にも三年
 
 [![GitHub Release](https://img.shields.io/github/release/toddsundsted/ishi.svg)](https://github.com/toddsundsted/ishi/releases)
-[![Build Status](https://travis-ci.org/toddsundsted/ishi.svg?branch=master)](https://travis-ci.org/toddsundsted/ishi)
+[![Build Status](https://travis-ci.org/toddsundsted/ishi.svg?branch=main)](https://travis-ci.org/toddsundsted/ishi)
 [![Documentation](https://img.shields.io/badge/docs-available-brightgreen.svg)](https://toddsundsted.github.io/ishi/)
 
 Graph plotting package with a small API and sensible defaults powered by gnuplot.
@@ -58,7 +58,7 @@ end
 
 ![two plots](https://raw.githubusercontent.com/toddsundsted/ishi/e277adfe71bf8ad3ead70fab9b3736ed969608d7/etc/examples/1.png)
 
-The [etc/examples](https://github.com/toddsundsted/ishi/tree/master/etc/examples) directory contains examples of usage.
+The [etc/examples](https://github.com/toddsundsted/ishi/tree/main/etc/examples) directory contains examples of usage.
 
 ### plot
 
